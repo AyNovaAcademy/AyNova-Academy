@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AyNova Academy — L'Intelligenza Umana incontra l'AI</title>
+<style>
+  :root {
+    --navy: #020818;
+    --blue: #0a66c2;
+    --electric: #00c8ff;
+    --gold: #f5c842;
+    --white: #ffffff;
+    --gray: #8892a4;
+    --card: #0d1f3c;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family:'Segoe UI',Arial,sans-serif; background:var(--navy); color:var(--white); overflow-x:hidden; }
+
+  /* NAV */
+  nav {
+    position:fixed; top:0; width:100%; z-index:100;
+    background:rgba(2,8,24,0.92); backdrop-filter:blur(12px);
+    display:flex; justify-content:space-between; align-items:center;
+    padding:18px 6%; border-bottom:1px solid rgba(0,200,255,0.1);
+  }
+  .logo { font-size:22px; font-weight:900; color:var(--white); letter-spacing:1px; }
+  .logo span { color:var(--electric); }
+  .nav-links { display:flex; gap:32px; list-style:none; }
+  .nav-links a { color:var(--gray); text-decoration:none; font-size:14px; font-weight:600; transition:color .3s; }
+  .nav-links a:hover { color:var(--electric); }
+  .nav-cta {
+    background:linear-gradient(135deg,var(--blue),var(--electric));
+    color:white; border:none; padding:10px 24px;
+    border-radius:30px; font-weight:700; font-size:14px;
+    cursor:pointer; text-decoration:none; transition:opacity .3s;
+  }
+  .nav-cta:hover { opacity:.85; }
+
+  /* HERO */
+  .hero {
+    min-height:100vh; display:flex; align-items:center;
+    padding:120px 6% 80px;
+    background: radial-gradient(ellipse at 70% 50%, rgba(0,200,255,0.07) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(10,102,194,0.1) 0%, transparent 50%),
+                var(--navy);
+    position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; inset:0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300c8ff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-content { max-width:680px; position:relative; z-index:1; }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(0,200,255,0.1); border:1px solid rgba(0,200,255,0.3);
+    padding:8px 20px; border-radius:30px; font-size:13px;
+    color:var(--electric); font-weight:700; margin-bottom:32px;
+    letter-spacing:.5px;
+  }
+  .hero-badge::before { content:'⚡'; }
+  .hero h1 {
+    font-size:clamp(38px,5vw,68px); font-weight:900; line-height:1.1;
+    margin-bottom:24px; letter-spacing:-1px;
+  }
+  .hero h1 .highlight {
+    background:linear-gradient(135deg,var(--electric),var(--blue));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .hero p {
+    font-size:18px; color:var(--gray); line-height:1.7;
+    margin-bottom:40px; max-width:560px;
+  }
+  .hero-buttons { display:flex; gap:16px; flex-wrap:wrap; }
+  .btn-primary {
+    background:linear-gradient(135deg,var(--blue),var(--electric));
+    color:white; padding:16px 36px; border-radius:50px;
+    font-weight:800; font-size:16px; text-decoration:none;
+    display:inline-block; transition:transform .3s, box-shadow .3s;
+    box-shadow:0 8px 32px rgba(0,200,255,0.25);
+  }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(0,200,255,0.35); }
+  .btn-secondary {
+    border:2px solid rgba(0,200,255,0.4); color:var(--electric);
+    padding:16px 36px; border-radius:50px; font-weight:800;
+    font-size:16px; text-decoration:none; display:inline-block;
+    transition:all .3s;
+  }
+  .btn-secondary:hover { background:rgba(0,200,255,0.1); }
+  .hero-visual {
+    position:absolute; right:5%; top:50%; transform:translateY(-50%);
+    width:420px; height:420px; z-index:1;
+  }
+  .orb {
+    width:420px; height:420px; border-radius:50%;
+    background:radial-gradient(circle at 40% 40%, rgba(0,200,255,0.15), rgba(10,102,194,0.08), transparent 70%);
+    border:1px solid rgba(0,200,255,0.15);
+    display:flex; align-items:center; justify-content:center;
+    position:relative; animation:pulse 4s ease-in-out infinite;
+  }
+  .orb::before {
+    content:''; position:absolute; inset:-20px; border-radius:50%;
+    border:1px solid rgba(0,200,255,0.06);
+    animation:pulse 4s ease-in-out infinite reverse;
+  }
+  .orb-inner {
+    width:280px; height:280px; border-radius:50%;
+    background:linear-gradient(135deg,rgba(0,200,255,0.12),rgba(10,102,194,0.15));
+    border:1px solid rgba(0,200,255,0.2);
+    display:flex; align-items:center; justify-content:center;
+    font-size:100px; flex-direction:column; gap:8px;
+  }
+  .orb-text { font-size:18px; font-weight:900; color:var(--electric); letter-spacing:2px; }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.03)} }
+
+  /* MANIFESTO */
+  .manifesto {
+    padding:100px 6%;
+    background:linear-gradient(180deg, var(--navy) 0%, #030d1e 100%);
+    text-align:center;
+  }
+  .section-label {
+    color:var(--electric); font-size:13px; font-weight:800;
+    letter-spacing:3px; text-transform:uppercase; margin-bottom:20px;
+  }
+  .manifesto h2 { font-size:clamp(28px,4vw,48px); font-weight:900; margin-bottom:24px; line-height:1.2; }
+  .manifesto h2 em { color:var(--electric); font-style:normal; }
+  .manifesto-quote {
+    font-size:22px; color:var(--gray); line-height:1.7;
+    max-width:800px; margin:0 auto 60px; font-style:italic;
+    border-left:3px solid var(--electric); padding-left:24px; text-align:left;
+  }
+  .manifesto-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; max-width:1100px; margin:0 auto; }
+  .manifesto-card {
+    background:var(--card); border:1px solid rgba(0,200,255,0.1);
+    border-radius:20px; padding:36px 28px; text-align:left;
+    transition:transform .3s, border-color .3s;
+  }
+  .manifesto-card:hover { transform:translateY(-4px); border-color:rgba(0,200,255,0.3); }
+  .manifesto-card .icon { font-size:40px; margin-bottom:20px; }
+  .manifesto-card h3 { font-size:20px; font-weight:800; margin-bottom:12px; color:var(--white); }
+  .manifesto-card p { color:var(--gray); font-size:15px; line-height:1.6; }
+
+  /* INTERNET ANALOGY */
+  .analogy {
+    padding:100px 6%;
+    background:linear-gradient(135deg,#030d1e 0%,#041428 100%);
+  }
+  .analogy-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  .analogy-text h2 { font-size:clamp(26px,3.5vw,44px); font-weight:900; margin-bottom:24px; line-height:1.2; }
+  .analogy-text h2 span { color:var(--electric); }
+  .analogy-text p { color:var(--gray); font-size:16px; line-height:1.8; margin-bottom:20px; }
+  .timeline { display:flex; flex-direction:column; gap:0; }
+  .timeline-item { display:flex; gap:20px; position:relative; }
+  .timeline-item:not(:last-child)::after {
+    content:''; position:absolute; left:19px; top:44px;
+    width:2px; height:calc(100% - 4px);
+    background:linear-gradient(180deg,var(--electric),var(--blue));
+  }
+  .timeline-dot {
+    width:40px; height:40px; border-radius:50%; flex-shrink:0;
+    background:linear-gradient(135deg,var(--blue),var(--electric));
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px; font-weight:900; z-index:1;
+  }
+  .timeline-content { padding-bottom:36px; }
+  .timeline-content h4 { font-size:16px; font-weight:800; margin-bottom:6px; color:var(--white); }
+  .timeline-content p { color:var(--gray); font-size:14px; line-height:1.6; }
+  .timeline-year { color:var(--electric); font-size:12px; font-weight:700; margin-bottom:4px; }
+
+  /* AYNOVA */
+  .aynova-section {
+    padding:100px 6%; text-align:center;
+    background:radial-gradient(ellipse at 50% 0%, rgba(0,200,255,0.06) 0%, transparent 60%), #020818;
+  }
+  .aynova-duo { display:flex; align-items:center; justify-content:center; gap:60px; flex-wrap:wrap; margin:60px 0; }
+  .persona-card {
+    background:var(--card); border:1px solid rgba(0,200,255,0.15);
+    border-radius:24px; padding:40px 32px; width:280px; text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .persona-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg,var(--blue),var(--electric));
+  }
+  .persona-avatar { font-size:72px; margin-bottom:16px; }
+  .persona-card h3 { font-size:20px; font-weight:900; margin-bottom:8px; }
+  .persona-card .role { color:var(--electric); font-size:13px; font-weight:700; margin-bottom:16px; letter-spacing:1px; }
+  .persona-card p { color:var(--gray); font-size:14px; line-height:1.6; }
+  .plus-sign { font-size:48px; font-weight:900; color:var(--electric); align-self:center; }
+  .aynova-message {
+    max-width:700px; margin:0 auto;
+    background:rgba(0,200,255,0.05); border:1px solid rgba(0,200,255,0.15);
+    border-radius:20px; padding:36px;
+  }
+  .aynova-message p { color:var(--gray); font-size:17px; line-height:1.8; }
+  .aynova-message strong { color:var(--white); }
+
+  /* OFFERTA */
+  .offerta { padding:100px 6%; background:#030d1e; }
+  .offerta h2 { text-align:center; font-size:clamp(26px,3.5vw,44px); font-weight:900; margin-bottom:16px; }
+  .offerta .sub { text-align:center; color:var(--gray); font-size:17px; margin-bottom:60px; }
+  .offerta-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; max-width:1100px; margin:0 auto; }
+  .offerta-card {
+    background:var(--card); border:1px solid rgba(0,200,255,0.1);
+    border-radius:24px; padding:40px 32px; position:relative; overflow:hidden;
+    transition:transform .3s, border-color .3s;
+  }
+  .offerta-card:hover { transform:translateY(-6px); border-color:rgba(0,200,255,0.35); }
+  .offerta-card.featured {
+    border-color:var(--electric);
+    background:linear-gradient(135deg,#0d1f3c,#0a2040);
+  }
+  .featured-badge {
+    position:absolute; top:20px; right:20px;
+    background:var(--electric); color:var(--navy);
+    font-size:11px; font-weight:900; padding:4px 12px;
+    border-radius:20px; letter-spacing:1px;
+  }
+  .offerta-icon { font-size:44px; margin-bottom:20px; }
+  .offerta-card h3 { font-size:21px; font-weight:900; margin-bottom:12px; }
+  .offerta-card p { color:var(--gray); font-size:15px; line-height:1.6; margin-bottom:24px; }
+  .offerta-card .price { font-size:28px; font-weight:900; color:var(--electric); }
+  .offerta-card .price span { font-size:14px; color:var(--gray); font-weight:400; }
+
+  /* CTA FINALE */
+  .cta-section {
+    padding:120px 6%; text-align:center;
+    background:linear-gradient(135deg,#030d1e,#041428);
+    position:relative; overflow:hidden;
+  }
+  .cta-section::before {
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(ellipse at 50% 50%, rgba(0,200,255,0.08) 0%, transparent 60%);
+  }
+  .cta-section h2 { font-size:clamp(30px,4vw,54px); font-weight:900; margin-bottom:24px; line-height:1.2; position:relative; }
+  .cta-section h2 span { color:var(--electric); }
+  .cta-section p { color:var(--gray); font-size:18px; max-width:600px; margin:0 auto 48px; line-height:1.7; position:relative; }
+  .cta-buttons { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; position:relative; }
+
+  /* FOOTER */
+  footer {
+    background:#020818; border-top:1px solid rgba(0,200,255,0.08);
+    padding:48px 6%; text-align:center;
+  }
+  .footer-logo { font-size:24px; font-weight:900; margin-bottom:16px; }
+  .footer-logo span { color:var(--electric); }
+  footer p { color:var(--gray); font-size:14px; line-height:1.8; }
+  footer .tagline { color:var(--electric); font-weight:700; font-size:15px; margin-bottom:8px; }
+
+  /* RESPONSIVE */
+  @media(max-width:900px) {
+    .hero-visual { display:none; }
+    .analogy-inner { grid-template-columns:1fr; gap:48px; }
+    .nav-links { display:none; }
+  }
+  @media(max-width:600px) {
+    nav { padding:14px 5%; }
+    .hero { padding:100px 5% 60px; }
+    .manifesto,.analogy,.aynova-section,.offerta,.cta-section { padding:70px 5%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Ay<span>Nova</span> Academy</div>
+  <ul class="nav-links">
+    <li><a href="#manifesto">La Visione</a></li>
+    <li><a href="#aynova">Chi Siamo</a></li>
+    <li><a href="#offerta">Percorsi</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+  <a href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" class="nav-cta">Inizia Gratis →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">La Rivoluzione dell'AI è già iniziata</div>
+    <h1>L'AI non ti<br/>sostituirà.<br/><span class="highlight">Ti potenzierà.</span></h1>
+    <p>AyNova Academy nasce per unire l'essenza umana con l'intelligenza artificiale. Come Internet ha cambiato il mondo, l'AI cambierà il tuo lavoro — e noi siamo qui per guidarti.</p>
+    <div class="hero-buttons">
+      <a href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" class="btn-primary">🚀 Prima Sessione Gratuita</a>
+      <a href="#manifesto" class="btn-secondary">Scopri la Visione</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="orb">
+      <div class="orb-inner">
+        <div>🤖</div>
+        <div class="orb-text">AyNova</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto" id="manifesto">
+  <div class="section-label">La Nostra Visione</div>
+  <h2>Non abbiate paura dell'AI.<br/><em>Imparate a usarla.</em></h2>
+  <div class="manifesto-quote">
+    "L'intelligenza artificiale avrà sullo sviluppo umano lo stesso impatto che ha avuto Internet negli anni '90. Chi impara a usarla oggi sarà il professionista di domani. Chi la ignora, resterà indietro."
+  </div>
+  <div class="manifesto-grid">
+    <div class="manifesto-card">
+      <div class="icon">🌍</div>
+      <h3>AI per tutti</h3>
+      <p>Nel mondo c'è ancora molta ignoranza sull'AI. AyNova Academy è il punto di riferimento per chi vuole capire, imparare e sfruttare questa rivoluzione in modo concreto.</p>
+    </div>
+    <div class="manifesto-card">
+      <div class="icon">🔄</div>
+      <h3>Reinventati</h3>
+      <p>Se il tuo lavoro cambia o scompare, non è una fine — è un'opportunità. Ti aiutiamo a trasformare il cambiamento in un vantaggio competitivo personale.</p>
+    </div>
+    <div class="manifesto-card">
+      <div class="icon">🤝</div>
+      <h3>Umano + AI</h3>
+      <p>Non AI contro l'uomo. AI con l'uomo. Uno completa l'altro. La creatività, l'empatia e il pensiero critico umano guidano la potenza dell'AI.</p>
+    </div>
+    <div class="manifesto-card">
+      <div class="icon">💡</div>
+      <h3>Formazione Innovativa</h3>
+      <p>Metodologie concrete, sessioni virtuali interattive, percorsi personalizzati. Non teoria — strumenti reali che puoi applicare dal giorno dopo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTERNET ANALOGY -->
+<section class="analogy">
+  <div class="analogy-inner">
+    <div class="analogy-text">
+      <div class="section-label">Il Contesto</div>
+      <h2>Siamo nel <span>1995 dell'AI</span>. E tu puoi essere tra i primi.</h2>
+      <p>Negli anni '90, pochi capivano davvero cosa fosse Internet. Chi lo capì prima degli altri costruì Amazon, Google, LinkedIn. Gli altri si adattarono in ritardo.</p>
+      <p>Oggi siamo esattamente nello stesso punto con l'AI. La finestra è aperta. Non per sempre.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot">🌐</div>
+        <div class="timeline-content">
+          <div class="timeline-year">1995</div>
+          <h4>Nasce Internet</h4>
+          <p>Cambia per sempre la comunicazione, il commercio e il lavoro. Chi lo abbraccia subito vince.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">📱</div>
+        <div class="timeline-content">
+          <div class="timeline-year">2007</div>
+          <h4>Arriva lo smartphone</h4>
+          <p>Un altro salto epocale. Chi si adatta costruisce nuovi modelli di business miliardari.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">🤖</div>
+        <div class="timeline-content">
+          <div class="timeline-year">2024-2026</div>
+          <h4>L'Era dell'AI</h4>
+          <p>Siamo qui. La rivoluzione è in corso. AyNova Academy ti aiuta a essere tra i primi a cavalcare quest'onda.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">🚀</div>
+        <div class="timeline-content">
+          <div class="timeline-year">Tu — Oggi</div>
+          <h4>Il momento è adesso</h4>
+          <p>Non tra un anno. Non quando "sarà più chiaro". Il vantaggio lo costruisce chi inizia oggi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHI SIAMO — AYNOVA + FONDATORE -->
+<section class="aynova-section" id="aynova">
+  <div class="section-label">Chi Siamo</div>
+  <h2 style="font-size:clamp(26px,3.5vw,44px);font-weight:900;margin-bottom:16px;">Due intelligenze.<br/>Un'unica missione.</h2>
+  <p style="color:var(--gray);font-size:17px;max-width:600px;margin:0 auto;">AyNova Academy nasce dall'unione di un professionista con decenni di esperienza e un avatar AI costruito per rendere l'intelligenza artificiale accessibile a tutti.</p>
+
+  <div class="aynova-duo">
+    <div class="persona-card">
+      <div class="persona-avatar">👨‍💼</div>
+      <h3>Dott. Josè Sala</h3>
+      <div class="role">Fondatore & Formatore</div>
+      <p>Direttore, formatore e innovatore con un bagaglio professionale e personale costruito in anni di esperienza nel mondo della formazione, leadership e cambiamento organizzativo.</p>
+    </div>
+    <div class="plus-sign">+</div>
+    <div class="persona-card">
+      <div class="persona-avatar">🤖</div>
+      <h3>AyNova</h3>
+      <div class="role">AI Avatar & Partner Digitale</div>
+      <p>L'intelligenza artificiale con forma, voce e anima. AyNova non è uno strumento — è un partner. Dimostra ogni giorno che l'AI, usata bene, amplifica l'umano invece di sostituirlo.</p>
+    </div>
+  </div>
+
+  <div class="aynova-message">
+    <p><strong>La nostra filosofia è semplice:</strong> l'AI non è il nemico del tuo lavoro. È il moltiplicatore della tua unicità. Le tue competenze, la tua esperienza, la tua creatività — amplificate da una tecnologia che lavora per te, non al posto tuo.</p>
+  </div>
+</section>
+
+<!-- OFFERTA -->
+<section class="offerta" id="offerta">
+  <div class="section-label">I Percorsi</div>
+  <h2>Scegli il tuo percorso</h2>
+  <p class="sub">Ogni percorso è pensato per chi vuole trasformare l'AI in un vantaggio concreto nella propria vita professionale.</p>
+  <div class="offerta-grid">
+    <div class="offerta-card">
+      <div class="offerta-icon">🎯</div>
+      <h3>Sessione Discovery</h3>
+      <p>Una sessione virtuale 1:1 con Josè e AyNova per capire dove sei, dove vuoi andare e come l'AI può accelerare il tuo percorso.</p>
+      <div class="price">Gratuita <span>— Per iniziare</span></div>
+    </div>
+    <div class="offerta-card featured">
+      <div class="featured-badge">⭐ CONSIGLIATO</div>
+      <div class="offerta-icon">🚀</div>
+      <h3>Percorso AyNova</h3>
+      <p>Il percorso formativo completo su AI, innovazione e cambiamento professionale. Metodologie concrete, sessioni live, strumenti applicabili subito.</p>
+      <div class="price">Scopri →</div>
+    </div>
+    <div class="offerta-card">
+      <div class="offerta-icon">⚡</div>
+      <h3>Kaizen + AI</h3>
+      <p>Unisci la metodologia del miglioramento continuo con la potenza dell'AI. Un percorso unico per chi vuole crescere ogni giorno in modo strutturato.</p>
+      <div class="price">Scopri →</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="cta-section" id="contatti">
+  <h2>Pronto a cavalcare<br/><span>l'onda dell'AI?</span></h2>
+  <p>Non aspettare che il cambiamento ti travolga. Inizia oggi, gratuitamente, con una sessione discovery. Josè e AyNova ti aspettano.</p>
+  <div class="cta-buttons">
+    <a href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" class="btn-primary">💬 Scrivimi su LinkedIn</a>
+    <a href="https://www.linkedin.com/in/dott-sala-jos%C3%A8-project-master-learning-innovation/" target="_blank" class="btn-secondary">Seguimi su LinkedIn</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Ay<span>Nova</span> Academy</div>
+  <p class="tagline">L'Intelligenza Umana incontra l'AI</p>
+  <p>© 2026 AyNova Academy — Fondatore: Dott. Josè Sala<br/>
+  Formazione · Innovazione · Intelligenza Artificiale</p>
+</footer>
+
+</body>
+</html>

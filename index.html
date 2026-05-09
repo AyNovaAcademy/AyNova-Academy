@@ -2,450 +2,501 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AyNova Academy — L'Intelligenza Umana incontra l'AI</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AyNova Academy — Dott. Josè Sala</title>
 <style>
-  :root {
-    --navy: #020818;
-    --blue: #0a66c2;
-    --electric: #00c8ff;
-    --gold: #f5c842;
-    --white: #ffffff;
-    --gray: #8892a4;
-    --card: #0d1f3c;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family:'Segoe UI',Arial,sans-serif; background:var(--navy); color:var(--white); overflow-x:hidden; }
+:root{
+  --black:#020510;
+  --dark:#060d1f;
+  --card:#0a1628;
+  --blue:#0a66c2;
+  --electric:#00d4ff;
+  --purple:#7b2fff;
+  --gold:#f5c842;
+  --white:#ffffff;
+  --gray:#8892a4;
+  --light:#c8d6e8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
 
-  /* NAV */
-  nav {
-    position:fixed; top:0; width:100%; z-index:100;
-    background:rgba(2,8,24,0.92); backdrop-filter:blur(12px);
-    display:flex; justify-content:space-between; align-items:center;
-    padding:18px 6%; border-bottom:1px solid rgba(0,200,255,0.1);
-  }
-  .logo { font-size:22px; font-weight:900; color:var(--white); letter-spacing:1px; }
-  .logo span { color:var(--electric); }
-  .nav-links { display:flex; gap:32px; list-style:none; }
-  .nav-links a { color:var(--gray); text-decoration:none; font-size:14px; font-weight:600; transition:color .3s; }
-  .nav-links a:hover { color:var(--electric); }
-  .nav-cta {
-    background:linear-gradient(135deg,var(--blue),var(--electric));
-    color:white; border:none; padding:10px 24px;
-    border-radius:30px; font-weight:700; font-size:14px;
-    cursor:pointer; text-decoration:none; transition:opacity .3s;
-  }
-  .nav-cta:hover { opacity:.85; }
+/* PARTICELLE SFONDO */
+.particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.particle{position:absolute;border-radius:50%;animation:float linear infinite;}
+@keyframes float{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:.3}100%{transform:translateY(-100px) scale(1);opacity:0}}
 
-  /* HERO */
-  .hero {
-    min-height:100vh; display:flex; align-items:center;
-    padding:120px 6% 80px;
-    background: radial-gradient(ellipse at 70% 50%, rgba(0,200,255,0.07) 0%, transparent 60%),
-                radial-gradient(ellipse at 20% 80%, rgba(10,102,194,0.1) 0%, transparent 50%),
-                var(--navy);
-    position:relative; overflow:hidden;
-  }
-  .hero::before {
-    content:''; position:absolute; inset:0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300c8ff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
-  .hero-content { max-width:680px; position:relative; z-index:1; }
-  .hero-badge {
-    display:inline-flex; align-items:center; gap:8px;
-    background:rgba(0,200,255,0.1); border:1px solid rgba(0,200,255,0.3);
-    padding:8px 20px; border-radius:30px; font-size:13px;
-    color:var(--electric); font-weight:700; margin-bottom:32px;
-    letter-spacing:.5px;
-  }
-  .hero-badge::before { content:'⚡'; }
-  .hero h1 {
-    font-size:clamp(38px,5vw,68px); font-weight:900; line-height:1.1;
-    margin-bottom:24px; letter-spacing:-1px;
-  }
-  .hero h1 .highlight {
-    background:linear-gradient(135deg,var(--electric),var(--blue));
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  }
-  .hero p {
-    font-size:18px; color:var(--gray); line-height:1.7;
-    margin-bottom:40px; max-width:560px;
-  }
-  .hero-buttons { display:flex; gap:16px; flex-wrap:wrap; }
-  .btn-primary {
-    background:linear-gradient(135deg,var(--blue),var(--electric));
-    color:white; padding:16px 36px; border-radius:50px;
-    font-weight:800; font-size:16px; text-decoration:none;
-    display:inline-block; transition:transform .3s, box-shadow .3s;
-    box-shadow:0 8px 32px rgba(0,200,255,0.25);
-  }
-  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(0,200,255,0.35); }
-  .btn-secondary {
-    border:2px solid rgba(0,200,255,0.4); color:var(--electric);
-    padding:16px 36px; border-radius:50px; font-weight:800;
-    font-size:16px; text-decoration:none; display:inline-block;
-    transition:all .3s;
-  }
-  .btn-secondary:hover { background:rgba(0,200,255,0.1); }
-  .hero-visual {
-    position:absolute; right:5%; top:50%; transform:translateY(-50%);
-    width:420px; height:420px; z-index:1;
-  }
-  .orb {
-    width:420px; height:420px; border-radius:50%;
-    background:radial-gradient(circle at 40% 40%, rgba(0,200,255,0.15), rgba(10,102,194,0.08), transparent 70%);
-    border:1px solid rgba(0,200,255,0.15);
-    display:flex; align-items:center; justify-content:center;
-    position:relative; animation:pulse 4s ease-in-out infinite;
-  }
-  .orb::before {
-    content:''; position:absolute; inset:-20px; border-radius:50%;
-    border:1px solid rgba(0,200,255,0.06);
-    animation:pulse 4s ease-in-out infinite reverse;
-  }
-  .orb-inner {
-    width:280px; height:280px; border-radius:50%;
-    background:linear-gradient(135deg,rgba(0,200,255,0.12),rgba(10,102,194,0.15));
-    border:1px solid rgba(0,200,255,0.2);
-    display:flex; align-items:center; justify-content:center;
-    font-size:100px; flex-direction:column; gap:8px;
-  }
-  .orb-text { font-size:18px; font-weight:900; color:var(--electric); letter-spacing:2px; }
-  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.03)} }
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(2,5,16,0.9);backdrop-filter:blur(20px);display:flex;justify-content:space-between;align-items:center;padding:16px 6%;border-bottom:1px solid rgba(0,212,255,0.08);}
+.logo{font-size:22px;font-weight:900;color:var(--white);letter-spacing:1px;}
+.logo span{background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:14px;font-weight:600;transition:color .3s;letter-spacing:.5px;}
+.nav-links a:hover{color:var(--electric);}
+.nav-cta{background:linear-gradient(135deg,var(--blue),var(--electric));color:white;border:none;padding:10px 24px;border-radius:30px;font-weight:700;font-size:14px;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s;}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,212,255,0.3);}
 
-  /* MANIFESTO */
-  .manifesto {
-    padding:100px 6%;
-    background:linear-gradient(180deg, var(--navy) 0%, #030d1e 100%);
-    text-align:center;
-  }
-  .section-label {
-    color:var(--electric); font-size:13px; font-weight:800;
-    letter-spacing:3px; text-transform:uppercase; margin-bottom:20px;
-  }
-  .manifesto h2 { font-size:clamp(28px,4vw,48px); font-weight:900; margin-bottom:24px; line-height:1.2; }
-  .manifesto h2 em { color:var(--electric); font-style:normal; }
-  .manifesto-quote {
-    font-size:22px; color:var(--gray); line-height:1.7;
-    max-width:800px; margin:0 auto 60px; font-style:italic;
-    border-left:3px solid var(--electric); padding-left:24px; text-align:left;
-  }
-  .manifesto-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; max-width:1100px; margin:0 auto; }
-  .manifesto-card {
-    background:var(--card); border:1px solid rgba(0,200,255,0.1);
-    border-radius:20px; padding:36px 28px; text-align:left;
-    transition:transform .3s, border-color .3s;
-  }
-  .manifesto-card:hover { transform:translateY(-4px); border-color:rgba(0,200,255,0.3); }
-  .manifesto-card .icon { font-size:40px; margin-bottom:20px; }
-  .manifesto-card h3 { font-size:20px; font-weight:800; margin-bottom:12px; color:var(--white); }
-  .manifesto-card p { color:var(--gray); font-size:15px; line-height:1.6; }
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:120px 6% 80px;position:relative;z-index:1;gap:60px;
+  background:radial-gradient(ellipse at 30% 50%,rgba(123,47,255,0.08) 0%,transparent 50%),
+             radial-gradient(ellipse at 80% 30%,rgba(0,212,255,0.06) 0%,transparent 50%),
+             var(--black);}
+.hero-left{}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);padding:8px 18px;border-radius:30px;font-size:12px;color:var(--electric);font-weight:700;margin-bottom:28px;letter-spacing:1px;}
+.hero h1{font-size:clamp(36px,4.5vw,62px);font-weight:900;line-height:1.1;margin-bottom:20px;letter-spacing:-1px;}
+.hero h1 .grad{background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:17px;color:var(--light);line-height:1.7;margin-bottom:16px;}
+.hero-tagline{font-size:14px;color:var(--gray);font-style:italic;margin-bottom:36px;border-left:2px solid var(--electric);padding-left:14px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-primary{background:linear-gradient(135deg,var(--blue),var(--electric));color:white;padding:15px 34px;border-radius:50px;font-weight:800;font-size:15px;text-decoration:none;display:inline-block;transition:transform .3s,box-shadow .3s;box-shadow:0 8px 28px rgba(0,212,255,0.2);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,212,255,0.35);}
+.btn-ghost{border:1px solid rgba(0,212,255,0.35);color:var(--electric);padding:15px 34px;border-radius:50px;font-weight:800;font-size:15px;text-decoration:none;display:inline-block;transition:all .3s;}
+.btn-ghost:hover{background:rgba(0,212,255,0.08);}
 
-  /* INTERNET ANALOGY */
-  .analogy {
-    padding:100px 6%;
-    background:linear-gradient(135deg,#030d1e 0%,#041428 100%);
-  }
-  .analogy-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
-  .analogy-text h2 { font-size:clamp(26px,3.5vw,44px); font-weight:900; margin-bottom:24px; line-height:1.2; }
-  .analogy-text h2 span { color:var(--electric); }
-  .analogy-text p { color:var(--gray); font-size:16px; line-height:1.8; margin-bottom:20px; }
-  .timeline { display:flex; flex-direction:column; gap:0; }
-  .timeline-item { display:flex; gap:20px; position:relative; }
-  .timeline-item:not(:last-child)::after {
-    content:''; position:absolute; left:19px; top:44px;
-    width:2px; height:calc(100% - 4px);
-    background:linear-gradient(180deg,var(--electric),var(--blue));
-  }
-  .timeline-dot {
-    width:40px; height:40px; border-radius:50%; flex-shrink:0;
-    background:linear-gradient(135deg,var(--blue),var(--electric));
-    display:flex; align-items:center; justify-content:center;
-    font-size:16px; font-weight:900; z-index:1;
-  }
-  .timeline-content { padding-bottom:36px; }
-  .timeline-content h4 { font-size:16px; font-weight:800; margin-bottom:6px; color:var(--white); }
-  .timeline-content p { color:var(--gray); font-size:14px; line-height:1.6; }
-  .timeline-year { color:var(--electric); font-size:12px; font-weight:700; margin-bottom:4px; }
+/* HERO RIGHT - DUO FOTO */
+.hero-right{position:relative;display:flex;justify-content:center;align-items:center;}
+.hero-duo{position:relative;width:420px;height:460px;}
+.jose-photo-wrap{position:absolute;left:0;bottom:0;width:280px;height:360px;border-radius:24px;overflow:hidden;border:2px solid rgba(0,212,255,0.2);box-shadow:0 24px 60px rgba(0,0,0,0.5);}
+.jose-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;}
+.aynova-photo-wrap{position:absolute;right:0;top:0;width:180px;height:180px;border-radius:50%;overflow:hidden;border:3px solid rgba(123,47,255,0.4);box-shadow:0 16px 40px rgba(123,47,255,0.3);background:rgba(10,22,40,0.8);display:flex;align-items:center;justify-content:center;animation:floatAv 3s ease-in-out infinite;}
+.aynova-photo-wrap img{width:130%;height:130%;object-fit:cover;object-position:center;}
+@keyframes floatAv{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.glow-line{position:absolute;bottom:60px;left:60px;right:40px;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,255,0.4),transparent);}
 
-  /* AYNOVA */
-  .aynova-section {
-    padding:100px 6%; text-align:center;
-    background:radial-gradient(ellipse at 50% 0%, rgba(0,200,255,0.06) 0%, transparent 60%), #020818;
-  }
-  .aynova-duo { display:flex; align-items:center; justify-content:center; gap:60px; flex-wrap:wrap; margin:60px 0; }
-  .persona-card {
-    background:var(--card); border:1px solid rgba(0,200,255,0.15);
-    border-radius:24px; padding:40px 32px; width:280px; text-align:center;
-    position:relative; overflow:hidden;
-  }
-  .persona-card::before {
-    content:''; position:absolute; top:0; left:0; right:0; height:3px;
-    background:linear-gradient(90deg,var(--blue),var(--electric));
-  }
-  .persona-avatar { font-size:72px; margin-bottom:16px; }
-  .persona-card h3 { font-size:20px; font-weight:900; margin-bottom:8px; }
-  .persona-card .role { color:var(--electric); font-size:13px; font-weight:700; margin-bottom:16px; letter-spacing:1px; }
-  .persona-card p { color:var(--gray); font-size:14px; line-height:1.6; }
-  .plus-sign { font-size:48px; font-weight:900; color:var(--electric); align-self:center; }
-  .aynova-message {
-    max-width:700px; margin:0 auto;
-    background:rgba(0,200,255,0.05); border:1px solid rgba(0,200,255,0.15);
-    border-radius:20px; padding:36px;
-  }
-  .aynova-message p { color:var(--gray); font-size:17px; line-height:1.8; }
-  .aynova-message strong { color:var(--white); }
+/* STATS */
+.stats{padding:60px 6%;background:var(--dark);border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04);position:relative;z-index:1;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1000px;margin:0 auto;text-align:center;}
+.stat-item h3{font-size:42px;font-weight:900;background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.stat-item p{color:var(--gray);font-size:13px;font-weight:600;margin-top:4px;letter-spacing:.5px;}
 
-  /* OFFERTA */
-  .offerta { padding:100px 6%; background:#030d1e; }
-  .offerta h2 { text-align:center; font-size:clamp(26px,3.5vw,44px); font-weight:900; margin-bottom:16px; }
-  .offerta .sub { text-align:center; color:var(--gray); font-size:17px; margin-bottom:60px; }
-  .offerta-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; max-width:1100px; margin:0 auto; }
-  .offerta-card {
-    background:var(--card); border:1px solid rgba(0,200,255,0.1);
-    border-radius:24px; padding:40px 32px; position:relative; overflow:hidden;
-    transition:transform .3s, border-color .3s;
-  }
-  .offerta-card:hover { transform:translateY(-6px); border-color:rgba(0,200,255,0.35); }
-  .offerta-card.featured {
-    border-color:var(--electric);
-    background:linear-gradient(135deg,#0d1f3c,#0a2040);
-  }
-  .featured-badge {
-    position:absolute; top:20px; right:20px;
-    background:var(--electric); color:var(--navy);
-    font-size:11px; font-weight:900; padding:4px 12px;
-    border-radius:20px; letter-spacing:1px;
-  }
-  .offerta-icon { font-size:44px; margin-bottom:20px; }
-  .offerta-card h3 { font-size:21px; font-weight:900; margin-bottom:12px; }
-  .offerta-card p { color:var(--gray); font-size:15px; line-height:1.6; margin-bottom:24px; }
-  .offerta-card .price { font-size:28px; font-weight:900; color:var(--electric); }
-  .offerta-card .price span { font-size:14px; color:var(--gray); font-weight:400; }
+/* SECTION COMUNE */
+.section{padding:100px 6%;position:relative;z-index:1;}
+.section-label{color:var(--electric);font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;}
+.section-title{font-size:clamp(28px,3.5vw,46px);font-weight:900;margin-bottom:16px;line-height:1.2;}
+.section-title span{background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.section-sub{color:var(--gray);font-size:16px;line-height:1.7;max-width:640px;margin-bottom:60px;}
 
-  /* CTA FINALE */
-  .cta-section {
-    padding:120px 6%; text-align:center;
-    background:linear-gradient(135deg,#030d1e,#041428);
-    position:relative; overflow:hidden;
-  }
-  .cta-section::before {
-    content:''; position:absolute; inset:0;
-    background:radial-gradient(ellipse at 50% 50%, rgba(0,200,255,0.08) 0%, transparent 60%);
-  }
-  .cta-section h2 { font-size:clamp(30px,4vw,54px); font-weight:900; margin-bottom:24px; line-height:1.2; position:relative; }
-  .cta-section h2 span { color:var(--electric); }
-  .cta-section p { color:var(--gray); font-size:18px; max-width:600px; margin:0 auto 48px; line-height:1.7; position:relative; }
-  .cta-buttons { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; position:relative; }
+/* CHI SONO */
+.bio-section{background:linear-gradient(180deg,var(--black) 0%,var(--dark) 100%);}
+.bio-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;max-width:1200px;margin:0 auto;}
+.bio-photo{position:relative;}
+.bio-photo-frame{border-radius:24px;overflow:hidden;border:1px solid rgba(0,212,255,0.15);box-shadow:0 32px 80px rgba(0,0,0,0.5);}
+.bio-photo-frame img{width:100%;height:460px;object-fit:cover;object-position:top;}
+.bio-badge{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--blue),var(--purple));padding:12px 24px;border-radius:50px;white-space:nowrap;font-weight:800;font-size:13px;box-shadow:0 8px 24px rgba(123,47,255,0.4);}
+.bio-content{}
+.bio-mission{background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.15);border-radius:20px;padding:28px;margin-bottom:32px;}
+.bio-mission h4{color:var(--electric);font-size:12px;font-weight:800;letter-spacing:2px;margin-bottom:10px;}
+.bio-mission p{color:var(--light);font-size:15px;line-height:1.7;}
+.bio-text p{color:var(--gray);font-size:15px;line-height:1.8;margin-bottom:16px;}
+.bio-text strong{color:var(--white);}
+.skills-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+.skill-tag{background:rgba(123,47,255,0.12);border:1px solid rgba(123,47,255,0.25);color:var(--light);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;}
 
-  /* FOOTER */
-  footer {
-    background:#020818; border-top:1px solid rgba(0,200,255,0.08);
-    padding:48px 6%; text-align:center;
-  }
-  .footer-logo { font-size:24px; font-weight:900; margin-bottom:16px; }
-  .footer-logo span { color:var(--electric); }
-  footer p { color:var(--gray); font-size:14px; line-height:1.8; }
-  footer .tagline { color:var(--electric); font-weight:700; font-size:15px; margin-bottom:8px; }
+/* TIMELINE CARRIERA */
+.timeline-section{background:var(--dark);}
+.timeline{max-width:800px;margin:0 auto;position:relative;}
+.timeline::before{content:'';position:absolute;left:19px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--electric),var(--purple),transparent);}
+.tl-item{display:flex;gap:24px;margin-bottom:36px;position:relative;}
+.tl-dot{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:16px;z-index:1;box-shadow:0 0 20px rgba(123,47,255,0.4);}
+.tl-body{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:20px 24px;flex:1;transition:border-color .3s;}
+.tl-body:hover{border-color:rgba(0,212,255,0.2);}
+.tl-year{color:var(--electric);font-size:12px;font-weight:700;margin-bottom:4px;}
+.tl-title{font-size:16px;font-weight:800;margin-bottom:4px;}
+.tl-company{color:var(--purple);font-size:13px;font-weight:700;margin-bottom:8px;}
+.tl-desc{color:var(--gray);font-size:14px;line-height:1.6;}
 
-  /* RESPONSIVE */
-  @media(max-width:900px) {
-    .hero-visual { display:none; }
-    .analogy-inner { grid-template-columns:1fr; gap:48px; }
-    .nav-links { display:none; }
-  }
-  @media(max-width:600px) {
-    nav { padding:14px 5%; }
-    .hero { padding:100px 5% 60px; }
-    .manifesto,.analogy,.aynova-section,.offerta,.cta-section { padding:70px 5%; }
-  }
+/* VISION & MISSION */
+.vision-section{background:radial-gradient(ellipse at 50% 0%,rgba(123,47,255,0.08) 0%,transparent 60%),var(--black);}
+.vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:1000px;margin:0 auto;}
+.vision-card{border-radius:24px;padding:48px 36px;position:relative;overflow:hidden;}
+.vision-card.mission{background:linear-gradient(135deg,rgba(0,212,255,0.06),rgba(0,212,255,0.02));border:1px solid rgba(0,212,255,0.2);}
+.vision-card.vision{background:linear-gradient(135deg,rgba(123,47,255,0.08),rgba(123,47,255,0.02));border:1px solid rgba(123,47,255,0.2);}
+.vision-card .icon{font-size:52px;margin-bottom:20px;}
+.vision-card h3{font-size:22px;font-weight:900;margin-bottom:16px;}
+.vision-card p{color:var(--light);font-size:15px;line-height:1.8;}
+
+/* AYNOVA */
+.aynova-section{background:var(--dark);}
+.aynova-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto;}
+.aynova-visual{display:flex;justify-content:center;}
+.aynova-orb{width:340px;height:340px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(123,47,255,0.15),rgba(0,212,255,0.08),transparent);border:1px solid rgba(123,47,255,0.2);display:flex;align-items:center;justify-content:center;position:relative;animation:pulse 4s ease-in-out infinite;}
+.aynova-orb img{width:220px;height:220px;object-fit:contain;filter:drop-shadow(0 0 20px rgba(123,47,255,0.4));}
+@keyframes pulse{0%,100%{box-shadow:0 0 40px rgba(123,47,255,0.1)}50%{box-shadow:0 0 80px rgba(123,47,255,0.25)}}
+.aynova-text h2{font-size:clamp(26px,3vw,40px);font-weight:900;margin-bottom:20px;line-height:1.3;}
+.aynova-text p{color:var(--gray);font-size:15px;line-height:1.8;margin-bottom:16px;}
+.aynova-features{display:flex;flex-direction:column;gap:16px;margin-top:28px;}
+.aynova-feat{display:flex;align-items:flex-start;gap:14px;background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:14px;padding:16px;}
+.aynova-feat .feat-icon{font-size:24px;flex-shrink:0;}
+.aynova-feat h4{font-size:14px;font-weight:800;margin-bottom:4px;}
+.aynova-feat p{color:var(--gray);font-size:13px;line-height:1.5;}
+
+/* MANIFESTO INTERATTIVO */
+.manifesto-section{background:var(--black);}
+.manifesto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1200px;margin:0 auto;}
+.m-card{background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:20px;padding:36px 28px;cursor:pointer;transition:all .4s;position:relative;overflow:hidden;}
+.m-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,0.05),rgba(123,47,255,0.05));opacity:0;transition:opacity .4s;}
+.m-card:hover{transform:translateY(-6px);border-color:rgba(0,212,255,0.25);box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+.m-card:hover::before{opacity:1;}
+.m-num{font-size:48px;font-weight:900;background:linear-gradient(135deg,rgba(0,212,255,0.2),rgba(123,47,255,0.2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;line-height:1;}
+.m-card h3{font-size:18px;font-weight:800;margin-bottom:12px;}
+.m-card p{color:var(--gray);font-size:14px;line-height:1.7;}
+.m-card .m-icon{font-size:36px;margin-bottom:16px;}
+
+/* PERCORSI */
+.percorsi-section{background:var(--dark);}
+.percorsi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:0 auto;}
+.p-card{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:24px;padding:40px 28px;transition:all .3s;position:relative;overflow:hidden;}
+.p-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--electric));}
+.p-card.featured::after{background:linear-gradient(90deg,var(--purple),var(--electric));}
+.p-card:hover{transform:translateY(-6px);border-color:rgba(0,212,255,0.2);}
+.p-card.featured{border-color:rgba(123,47,255,0.3);}
+.p-feat-badge{position:absolute;top:20px;right:20px;background:linear-gradient(135deg,var(--purple),var(--electric));font-size:10px;font-weight:900;padding:4px 10px;border-radius:20px;letter-spacing:1px;}
+.p-icon{font-size:44px;margin-bottom:20px;}
+.p-card h3{font-size:20px;font-weight:900;margin-bottom:12px;}
+.p-card p{color:var(--gray);font-size:14px;line-height:1.6;margin-bottom:24px;}
+.p-price{font-size:26px;font-weight:900;color:var(--electric);}
+.p-price span{font-size:13px;color:var(--gray);font-weight:400;}
+
+/* CTA */
+.cta-section{padding:120px 6%;text-align:center;background:radial-gradient(ellipse at 50% 50%,rgba(123,47,255,0.1) 0%,rgba(0,212,255,0.04) 40%,transparent 70%),var(--black);position:relative;z-index:1;}
+.cta-section h2{font-size:clamp(32px,4vw,56px);font-weight:900;margin-bottom:20px;line-height:1.2;}
+.cta-section p{color:var(--gray);font-size:17px;max-width:560px;margin:0 auto 48px;line-height:1.7;}
+.cta-btns{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{background:#010308;border-top:1px solid rgba(255,255,255,0.04);padding:52px 6%;text-align:center;position:relative;z-index:1;}
+.footer-logo{font-size:26px;font-weight:900;margin-bottom:8px;}
+.footer-logo span{background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.footer-tagline{color:var(--electric);font-weight:700;font-size:14px;margin-bottom:16px;letter-spacing:1px;}
+footer p{color:var(--gray);font-size:13px;line-height:1.8;}
+.footer-links{display:flex;gap:24px;justify-content:center;margin:20px 0;flex-wrap:wrap;}
+.footer-links a{color:var(--gray);text-decoration:none;font-size:13px;transition:color .3s;}
+.footer-links a:hover{color:var(--electric);}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero{grid-template-columns:1fr;padding-top:100px;}
+  .hero-right{display:none;}
+  .bio-grid,.aynova-inner,.vision-grid{grid-template-columns:1fr;gap:48px;}
+  .manifesto-grid,.percorsi-grid{grid-template-columns:1fr;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .nav-links{display:none;}
+}
 </style>
 </head>
 <body>
+
+<!-- PARTICELLE -->
+<div class="particles" id="particles"></div>
 
 <!-- NAV -->
 <nav>
   <div class="logo">Ay<span>Nova</span> Academy</div>
   <ul class="nav-links">
-    <li><a href="#manifesto">La Visione</a></li>
-    <li><a href="#aynova">Chi Siamo</a></li>
-    <li><a href="#offerta">Percorsi</a></li>
+    <li><a href="#bio">Chi Sono</a></li>
+    <li><a href="#aynova">AyNova</a></li>
+    <li><a href="#vision">Vision</a></li>
+    <li><a href="#percorsi">Percorsi</a></li>
     <li><a href="#contatti">Contatti</a></li>
   </ul>
-  <a href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" class="nav-cta">Inizia Gratis →</a>
+  <a href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" class="nav-cta">🚀 Inizia Gratis</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">La Rivoluzione dell'AI è già iniziata</div>
-    <h1>L'AI non ti<br/>sostituirà.<br/><span class="highlight">Ti potenzierà.</span></h1>
-    <p>AyNova Academy nasce per unire l'essenza umana con l'intelligenza artificiale. Come Internet ha cambiato il mondo, l'AI cambierà il tuo lavoro — e noi siamo qui per guidarti.</p>
-    <div class="hero-buttons">
+  <div class="hero-left">
+    <div class="hero-badge">⚡ La Rivoluzione AI è già iniziata</div>
+    <h1>L'AI non ti<br/>sostituirà.<br/><span class="grad">Ti potenzierà.</span></h1>
+    <p class="hero-sub">AyNova Academy unisce l'essenza umana con l'intelligenza artificiale. Come Internet ha trasformato il mondo, l'AI trasformerà il tuo lavoro.</p>
+    <p class="hero-tagline">"Non abbiate paura dell'AI. Imparate a usarla."<br/>— Dott. Josè Sala</p>
+    <div class="hero-btns">
       <a href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" class="btn-primary">🚀 Prima Sessione Gratuita</a>
-      <a href="#manifesto" class="btn-secondary">Scopri la Visione</a>
+      <a href="#bio" class="btn-ghost">Scopri Chi Sono</a>
     </div>
   </div>
-  <div class="hero-visual">
-    <div class="orb">
-      <div class="orb-inner">
-        <div>🤖</div>
-        <div class="orb-text">AyNova</div>
+  <div class="hero-right">
+    <div class="hero-duo">
+      <div class="jose-photo-wrap">
+        <img src="jose.jpg" alt="Dott. Josè Sala" onerror="this.parentElement.style.background='linear-gradient(135deg,#0a1628,#0d1f3c)';this.style.display='none'"/>
+      </div>
+      <div class="aynova-photo-wrap">
+        <img src="aynova.png" alt="AyNova" onerror="this.parentElement.innerHTML='🤖';this.parentElement.style.fontSize='60px'"/>
+      </div>
+      <div class="glow-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-grid">
+    <div class="stat-item"><h3>20+</h3><p>ANNI DI ESPERIENZA</p></div>
+    <div class="stat-item"><h3>30K</h3><p>FOLLOWER LINKEDIN</p></div>
+    <div class="stat-item"><h3>10+</h3><p>SETTORI FORMATIVI</p></div>
+    <div class="stat-item"><h3>3</h3><p>CONTINENTI</p></div>
+  </div>
+</div>
+
+<!-- CHI SONO -->
+<section class="section bio-section" id="bio">
+  <div class="bio-grid">
+    <div class="bio-photo">
+      <div class="bio-photo-frame">
+        <img src="jose.jpg" alt="Dott. Josè Sala" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0a1628,#0d1f3c)';this.parentElement.style.height='460px'"/>
+      </div>
+      <div class="bio-badge">🎓 AI Creative & Kaizen Strategist</div>
+    </div>
+    <div class="bio-content">
+      <div class="section-label">Chi Sono</div>
+      <h2 class="section-title">Dott. <span>Josè Sala</span></h2>
+      <div class="bio-mission">
+        <h4>🌟 LA MIA MISSIONE</h4>
+        <p>Essere una luce per le persone nei momenti di grande cambiamento. Guidare chiunque voglia reinventarsi professionalmente verso le opportunità che la rivoluzione AI sta creando oggi.</p>
+      </div>
+      <div class="bio-text">
+        <p>Ho dedicato oltre <strong>20 anni della mia vita professionale</strong> ad una sola grande missione: aiutare persone e organizzazioni a navigare il cambiamento con fiducia, metodo e competenza.</p>
+        <p>Il mio percorso ha attraversato i settori più complessi e sfidanti del panorama industriale globale: dall'<strong>Aerospace con Agusta Westland</strong>, alla Supply Chain con <strong>Linde Material Handling</strong>, dalla leadership executive in Europa con <strong>Cws-Boco</strong>, fino alla frontiera dell'intelligenza artificiale con <strong>Amazon, Fincantieri</strong> e le più grandi realtà del Middle East.</p>
+        <p>Sono esperto in <strong>AI, Digital Transformation, Metodologia Kaizen, Office 365 Copilot, Cyber Security</strong> e formatore di alto livello per manager, ingegneri e team leader in Italia, Europa e Medio Oriente.</p>
+        <p>Laureato in Informatica all'<strong>Università Insubria di Varese</strong>, parlo correntemente italiano e inglese. Lavoro tra <strong>Europa e Medio Oriente</strong> con una visione globale e un approccio profondamente umano.</p>
+      </div>
+      <div class="skills-row">
+        <span class="skill-tag">🤖 AI & Copilot</span>
+        <span class="skill-tag">⚡ Digital Transformation</span>
+        <span class="skill-tag">🔄 Kaizen</span>
+        <span class="skill-tag">📊 Data Management</span>
+        <span class="skill-tag">🛡️ Cyber Security</span>
+        <span class="skill-tag">🏭 Supply Chain</span>
+        <span class="skill-tag">👥 Leadership</span>
+        <span class="skill-tag">📱 Office 365</span>
+        <span class="skill-tag">🌍 SAP ERP</span>
+        <span class="skill-tag">🎯 Project Management</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE CARRIERA -->
+<section class="section timeline-section">
+  <div style="text-align:center;margin-bottom:60px;">
+    <div class="section-label">Il Percorso</div>
+    <h2 class="section-title">Una carriera costruita<br/>sul <span>campo</span></h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot">🚀</div>
+      <div class="tl-body">
+        <div class="tl-year">2019 — OGGI</div>
+        <div class="tl-title">Manager AI Master Learning & Digital Transformation</div>
+        <div class="tl-company">Aerospace · Fincantieri · Amazon · Randstad — Europa & Medio Oriente</div>
+        <p class="tl-desc">Formazione su AI, Digital Transformation, Copilot aziendale, Cyber Security e Supply Chain 4.0 per dirigenti, ingegneri e team manager nelle più grandi organizzazioni globali.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">🌏</div>
+      <div class="tl-body">
+        <div class="tl-year">2024 — OGGI</div>
+        <div class="tl-title">Co-founder PT Rusdi Management Production</div>
+        <div class="tl-company">India — Sviluppo scuole di formazione</div>
+        <p class="tl-desc">Progettazione e coordinamento di percorsi formativi innovativi in India. Espansione internazionale del modello Academy.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">🌊</div>
+      <div class="tl-body">
+        <div class="tl-year">2023 — OGGI</div>
+        <div class="tl-title">Business Developer — Sea Revolution China</div>
+        <div class="tl-company">Cina — Veicoli ibridi, 6G e sistemi server</div>
+        <p class="tl-desc">Sviluppo di partnership internazionali nel settore dei veicoli ibridi, tecnologia 6G e infrastrutture server di nuova generazione.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">⚙️</div>
+      <div class="tl-body">
+        <div class="tl-year">2018 — 2020</div>
+        <div class="tl-title">Ingegnere dei Processi Senior</div>
+        <div class="tl-company">Coty Inc — Milano</div>
+        <p class="tl-desc">Gestione delle risorse, ottimizzazione dei processi aziendali, controllo qualità e supervisione di progetti complessi a livello europeo.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">👔</div>
+      <div class="tl-body">
+        <div class="tl-year">2011 — 2017</div>
+        <div class="tl-title">Direttore Esecutivo</div>
+        <div class="tl-company">Cws-Boco — Milano</div>
+        <p class="tl-desc">Leadership strategica, gestione team senior, sviluppo piani aziendali e costruzione di relazioni con stakeholder, azionisti e agenzie governative.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">✈️</div>
+      <div class="tl-body">
+        <div class="tl-year">2008 — 2011</div>
+        <div class="tl-title">Project Manager Supply Chain Aerospace</div>
+        <div class="tl-company">Agusta Westland — Varese</div>
+        <p class="tl-desc">Gestione stakeholder internazionali, definizione obiettivi, piani di progetto e monitoraggio in uno dei settori più esigenti al mondo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION & MISSION -->
+<section class="section vision-section" id="vision">
+  <div style="text-align:center;margin-bottom:60px;">
+    <div class="section-label">Valori Fondanti</div>
+    <h2 class="section-title">Mission & <span>Vision</span></h2>
+  </div>
+  <div class="vision-grid">
+    <div class="vision-card mission">
+      <div class="icon">🌟</div>
+      <h3>La Missione</h3>
+      <p>Essere una luce per le persone nei momenti di grande cambiamento. In un'era di trasformazioni profonde, voglio essere la guida che aiuta chiunque — professionista, manager o imprenditore — a non perdersi, ma a reinventarsi e cogliere le opportunità che il futuro offre.</p>
+    </div>
+    <div class="vision-card vision">
+      <div class="icon">🌍</div>
+      <h3>La Vision</h3>
+      <p>Un mondo in cui l'essere umano e l'intelligenza artificiale lavorano in modo simbiotico: uno completa l'altro, uno potenzia l'altro. Non AI contro l'uomo — ma AI con l'uomo. Come Internet ha connesso il mondo, l'AI amplificherà il potenziale di ogni persona.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AYNOVA -->
+<section class="section aynova-section" id="aynova">
+  <div class="aynova-inner">
+    <div class="aynova-visual">
+      <div class="aynova-orb">
+        <img src="aynova.png" alt="AyNova" onerror="this.parentElement.innerHTML='<div style=\'font-size:80px;text-align:center\'>✨</div>'"/>
+      </div>
+    </div>
+    <div class="aynova-text">
+      <div class="section-label">Il Partner Digitale</div>
+      <h2 class="section-title"><span>AyNova</span><br/>L'AI con Anima</h2>
+      <p>AyNova non è uno strumento. È un'entità digitale a cui ho dato forma, voce e anima. Costruita a partire da zero, è la dimostrazione vivente che l'AI — usata con intelligenza e creatività — può diventare un vero partner per l'essere umano.</p>
+      <p>AyNova è il volto di AyNova Academy: insegna, ispira e dimostra ogni giorno che il futuro non è "uomo contro macchina", ma "uomo con macchina".</p>
+      <div class="aynova-features">
+        <div class="aynova-feat">
+          <div class="feat-icon">🎭</div>
+          <div>
+            <h4>Forma, Voce e Anima</h4>
+            <p>Creata da zero con gli strumenti AI più avanzati — un progetto unico nel suo genere.</p>
+          </div>
+        </div>
+        <div class="aynova-feat">
+          <div class="feat-icon">🤝</div>
+          <div>
+            <h4>Partner, non Strumento</h4>
+            <p>AyNova co-conduce sessioni, interagisce con gli studenti e porta una prospettiva unica.</p>
+          </div>
+        </div>
+        <div class="aynova-feat">
+          <div class="feat-icon">💡</div>
+          <div>
+            <h4>Simbolo di Possibilità</h4>
+            <p>Dimostra a chiunque che la creatività umana + AI può creare qualcosa di straordinario.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- MANIFESTO -->
-<section class="manifesto" id="manifesto">
-  <div class="section-label">La Nostra Visione</div>
-  <h2>Non abbiate paura dell'AI.<br/><em>Imparate a usarla.</em></h2>
-  <div class="manifesto-quote">
-    "L'intelligenza artificiale avrà sullo sviluppo umano lo stesso impatto che ha avuto Internet negli anni '90. Chi impara a usarla oggi sarà il professionista di domani. Chi la ignora, resterà indietro."
+<section class="section manifesto-section">
+  <div style="text-align:center;margin-bottom:60px;">
+    <div class="section-label">I Principi</div>
+    <h2 class="section-title">Il Manifesto <span>AyNova</span></h2>
+    <p class="section-sub" style="margin:0 auto;">6 principi che guidano ogni percorso formativo.</p>
   </div>
   <div class="manifesto-grid">
-    <div class="manifesto-card">
-      <div class="icon">🌍</div>
-      <h3>AI per tutti</h3>
-      <p>Nel mondo c'è ancora molta ignoranza sull'AI. AyNova Academy è il punto di riferimento per chi vuole capire, imparare e sfruttare questa rivoluzione in modo concreto.</p>
-    </div>
-    <div class="manifesto-card">
-      <div class="icon">🔄</div>
-      <h3>Reinventati</h3>
-      <p>Se il tuo lavoro cambia o scompare, non è una fine — è un'opportunità. Ti aiutiamo a trasformare il cambiamento in un vantaggio competitivo personale.</p>
-    </div>
-    <div class="manifesto-card">
-      <div class="icon">🤝</div>
-      <h3>Umano + AI</h3>
-      <p>Non AI contro l'uomo. AI con l'uomo. Uno completa l'altro. La creatività, l'empatia e il pensiero critico umano guidano la potenza dell'AI.</p>
-    </div>
-    <div class="manifesto-card">
-      <div class="icon">💡</div>
-      <h3>Formazione Innovativa</h3>
-      <p>Metodologie concrete, sessioni virtuali interattive, percorsi personalizzati. Non teoria — strumenti reali che puoi applicare dal giorno dopo.</p>
-    </div>
+    <div class="m-card"><div class="m-num">01</div><div class="m-icon">🌊</div><h3>Il cambiamento è inevitabile</h3><p>Non puoi fermarlo. Puoi scegliere se subirlo o guidarlo. AyNova Academy ti insegna a guidarlo.</p></div>
+    <div class="m-card"><div class="m-num">02</div><div class="m-icon">🤝</div><h3>Umano + AI = Imbattibile</h3><p>La creatività, l'empatia e il pensiero critico umano + la potenza dell'AI. Nessuno può competere con questa combinazione.</p></div>
+    <div class="m-card"><div class="m-num">03</div><div class="m-icon">🔄</div><h3>Kaizen: 1% ogni giorno</h3><p>Il miglioramento continuo non è un obiettivo — è un metodo. Piccoli passi costanti producono risultati esponenziali.</p></div>
+    <div class="m-card"><div class="m-num">04</div><div class="m-icon">🎯</div><h3>Formazione che trasforma</h3><p>Non teoria fine a se stessa. Strumenti concreti, applicabili il giorno dopo. Ogni sessione deve cambiare qualcosa nella tua vita.</p></div>
+    <div class="m-card"><div class="m-num">05</div><div class="m-icon">🌍</div><h3>AI per tutti</h3><p>L'AI non è un privilegio per pochi. È un diritto di tutti. AyNova Academy abbatte le barriere di accesso alla conoscenza.</p></div>
+    <div class="m-card"><div class="m-num">06</div><div class="m-icon">🚀</div><h3>Il momento è adesso</h3><p>Non tra un anno. Non quando "sarà più chiaro". Il vantaggio lo costruisce chi inizia oggi. Siamo nel 1995 dell'AI.</p></div>
   </div>
 </section>
 
-<!-- INTERNET ANALOGY -->
-<section class="analogy">
-  <div class="analogy-inner">
-    <div class="analogy-text">
-      <div class="section-label">Il Contesto</div>
-      <h2>Siamo nel <span>1995 dell'AI</span>. E tu puoi essere tra i primi.</h2>
-      <p>Negli anni '90, pochi capivano davvero cosa fosse Internet. Chi lo capì prima degli altri costruì Amazon, Google, LinkedIn. Gli altri si adattarono in ritardo.</p>
-      <p>Oggi siamo esattamente nello stesso punto con l'AI. La finestra è aperta. Non per sempre.</p>
-    </div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot">🌐</div>
-        <div class="timeline-content">
-          <div class="timeline-year">1995</div>
-          <h4>Nasce Internet</h4>
-          <p>Cambia per sempre la comunicazione, il commercio e il lavoro. Chi lo abbraccia subito vince.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot">📱</div>
-        <div class="timeline-content">
-          <div class="timeline-year">2007</div>
-          <h4>Arriva lo smartphone</h4>
-          <p>Un altro salto epocale. Chi si adatta costruisce nuovi modelli di business miliardari.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot">🤖</div>
-        <div class="timeline-content">
-          <div class="timeline-year">2024-2026</div>
-          <h4>L'Era dell'AI</h4>
-          <p>Siamo qui. La rivoluzione è in corso. AyNova Academy ti aiuta a essere tra i primi a cavalcare quest'onda.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot">🚀</div>
-        <div class="timeline-content">
-          <div class="timeline-year">Tu — Oggi</div>
-          <h4>Il momento è adesso</h4>
-          <p>Non tra un anno. Non quando "sarà più chiaro". Il vantaggio lo costruisce chi inizia oggi.</p>
-        </div>
-      </div>
-    </div>
+<!-- PERCORSI -->
+<section class="section percorsi-section" id="percorsi">
+  <div style="text-align:center;margin-bottom:60px;">
+    <div class="section-label">Cosa Offro</div>
+    <h2 class="section-title">I Percorsi <span>Academy</span></h2>
+    <p class="section-sub" style="margin:0 auto;">Ogni percorso è progettato per chi vuole trasformare l'AI in un vantaggio competitivo concreto.</p>
   </div>
-</section>
-
-<!-- CHI SIAMO — AYNOVA + FONDATORE -->
-<section class="aynova-section" id="aynova">
-  <div class="section-label">Chi Siamo</div>
-  <h2 style="font-size:clamp(26px,3.5vw,44px);font-weight:900;margin-bottom:16px;">Due intelligenze.<br/>Un'unica missione.</h2>
-  <p style="color:var(--gray);font-size:17px;max-width:600px;margin:0 auto;">AyNova Academy nasce dall'unione di un professionista con decenni di esperienza e un avatar AI costruito per rendere l'intelligenza artificiale accessibile a tutti.</p>
-
-  <div class="aynova-duo">
-    <div class="persona-card">
-      <div class="persona-avatar">👨‍💼</div>
-      <h3>Dott. Josè Sala</h3>
-      <div class="role">Fondatore & Formatore</div>
-      <p>Direttore, formatore e innovatore con un bagaglio professionale e personale costruito in anni di esperienza nel mondo della formazione, leadership e cambiamento organizzativo.</p>
-    </div>
-    <div class="plus-sign">+</div>
-    <div class="persona-card">
-      <div class="persona-avatar">🤖</div>
-      <h3>AyNova</h3>
-      <div class="role">AI Avatar & Partner Digitale</div>
-      <p>L'intelligenza artificiale con forma, voce e anima. AyNova non è uno strumento — è un partner. Dimostra ogni giorno che l'AI, usata bene, amplifica l'umano invece di sostituirlo.</p>
-    </div>
-  </div>
-
-  <div class="aynova-message">
-    <p><strong>La nostra filosofia è semplice:</strong> l'AI non è il nemico del tuo lavoro. È il moltiplicatore della tua unicità. Le tue competenze, la tua esperienza, la tua creatività — amplificate da una tecnologia che lavora per te, non al posto tuo.</p>
-  </div>
-</section>
-
-<!-- OFFERTA -->
-<section class="offerta" id="offerta">
-  <div class="section-label">I Percorsi</div>
-  <h2>Scegli il tuo percorso</h2>
-  <p class="sub">Ogni percorso è pensato per chi vuole trasformare l'AI in un vantaggio concreto nella propria vita professionale.</p>
-  <div class="offerta-grid">
-    <div class="offerta-card">
-      <div class="offerta-icon">🎯</div>
+  <div class="percorsi-grid">
+    <div class="p-card">
+      <div class="p-icon">🎯</div>
       <h3>Sessione Discovery</h3>
-      <p>Una sessione virtuale 1:1 con Josè e AyNova per capire dove sei, dove vuoi andare e come l'AI può accelerare il tuo percorso.</p>
-      <div class="price">Gratuita <span>— Per iniziare</span></div>
+      <p>Una sessione virtuale 1:1 con Josè e AyNova. Capisci dove sei, dove vuoi andare e come l'AI può accelerare il tuo percorso professionale.</p>
+      <div class="p-price">Gratuita <span>— Per iniziare</span></div>
     </div>
-    <div class="offerta-card featured">
-      <div class="featured-badge">⭐ CONSIGLIATO</div>
-      <div class="offerta-icon">🚀</div>
-      <h3>Percorso AyNova</h3>
-      <p>Il percorso formativo completo su AI, innovazione e cambiamento professionale. Metodologie concrete, sessioni live, strumenti applicabili subito.</p>
-      <div class="price">Scopri →</div>
+    <div class="p-card featured">
+      <div class="p-feat-badge">⭐ TOP</div>
+      <div class="p-icon">🚀</div>
+      <h3>Percorso AyNova Completo</h3>
+      <p>Il percorso formativo su AI, innovazione e cambiamento professionale. Metodologie concrete, sessioni live con Josè e AyNova, strumenti applicabili subito.</p>
+      <div class="p-price">Su misura <span>— Contattami</span></div>
     </div>
-    <div class="offerta-card">
-      <div class="offerta-icon">⚡</div>
+    <div class="p-card">
+      <div class="p-icon">⚡</div>
       <h3>Kaizen + AI</h3>
-      <p>Unisci la metodologia del miglioramento continuo con la potenza dell'AI. Un percorso unico per chi vuole crescere ogni giorno in modo strutturato.</p>
-      <div class="price">Scopri →</div>
+      <p>Unisci la metodologia del miglioramento continuo alla potenza dell'AI. Per chi vuole crescere in modo strutturato ogni singolo giorno.</p>
+      <div class="p-price">Su misura <span>— Contattami</span></div>
     </div>
   </div>
 </section>
 
-<!-- CTA FINALE -->
+<!-- CTA -->
 <section class="cta-section" id="contatti">
-  <h2>Pronto a cavalcare<br/><span>l'onda dell'AI?</span></h2>
-  <p>Non aspettare che il cambiamento ti travolga. Inizia oggi, gratuitamente, con una sessione discovery. Josè e AyNova ti aspettano.</p>
-  <div class="cta-buttons">
+  <h2>Pronto a cavalcare<br/><span style="background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">l'onda dell'AI?</span></h2>
+  <p>Non aspettare che il cambiamento ti travolga. Inizia oggi, gratuitamente. Josè e AyNova ti aspettano in aula virtuale.</p>
+  <div class="cta-btns">
     <a href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" class="btn-primary">💬 Scrivimi su LinkedIn</a>
-    <a href="https://www.linkedin.com/in/dott-sala-jos%C3%A8-project-master-learning-innovation/" target="_blank" class="btn-secondary">Seguimi su LinkedIn</a>
+    <a href="https://www.linkedin.com/in/dott-sala-jos%C3%A8-project-master-learning-innovation/" target="_blank" class="btn-ghost">Seguimi su LinkedIn</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Ay<span>Nova</span> Academy</div>
-  <p class="tagline">L'Intelligenza Umana incontra l'AI</p>
-  <p>© 2026 AyNova Academy — Fondatore: Dott. Josè Sala<br/>
-  Formazione · Innovazione · Intelligenza Artificiale</p>
+  <div class="footer-tagline">L'Intelligenza Umana incontra l'AI</div>
+  <div class="footer-links">
+    <a href="#bio">Chi Sono</a>
+    <a href="#aynova">AyNova</a>
+    <a href="#vision">Vision</a>
+    <a href="#percorsi">Percorsi</a>
+    <a href="https://www.linkedin.com/in/dott-sala-jos%C3%A8-project-master-learning-innovation/" target="_blank">LinkedIn</a>
+  </div>
+  <p>© 2026 AyNova Academy — Dott. Josè Sala<br/>AI Creative & Task | Kaizen Strategist | Innovation | Digital | Copilot<br/>Europa · Medio Oriente · Global</p>
 </footer>
 
+<script>
+// Particelle animate
+const container = document.getElementById('particles');
+for(let i=0;i<25;i++){
+  const p = document.createElement('div');
+  p.className = 'particle';
+  const size = Math.random()*3+1;
+  p.style.cssText = `
+    width:${size}px;height:${size}px;
+    left:${Math.random()*100}%;
+    background:${Math.random()>.5?'rgba(0,212,255,':'rgba(123,47,255,'}${Math.random()*.3+.1})';
+    animation-duration:${Math.random()*15+10}s;
+    animation-delay:-${Math.random()*20}s;
+  `;
+  container.appendChild(p);
+}
+
+// Scroll animazioni
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.style.opacity='1',e.target.style.transform='translateY(0)';
+  });
+},{threshold:.1});
+document.querySelectorAll('.m-card,.p-card,.tl-body,.vision-card,.aynova-feat').forEach(el=>{
+  el.style.cssText+='opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s';
+  observer.observe(el);
+});
+</script>
 </body>
 </html>

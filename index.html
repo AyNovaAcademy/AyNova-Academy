@@ -206,7 +206,7 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 <section class="hero">
   <div class="hero-left">
     <div class="hero-badge">⚡ La Rivoluzione AI è già iniziata</div>
-    <h1>L'AI non ti<br/>sostituirà.<br/><span class="grad">Ti potenzierà.</span></h1>
+    <h1>L'AI non ti<br/>sostituirà.<br/><span class="grad typed-text">Ti potenzierà.</span></h1>
     <p class="hero-sub">AyNova Academy unisce l'essenza umana con l'intelligenza artificiale. Come Internet ha trasformato il mondo, l'AI trasformerà il tuo lavoro.</p>
     <p class="hero-tagline">"Non abbiate paura dell'AI. Imparate a usarla."<br/>— Dott. Josè Sala</p>
     <div class="hero-btns">
@@ -230,10 +230,10 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 <!-- STATS -->
 <div class="stats">
   <div class="stats-grid">
-    <div class="stat-item"><h3>20+</h3><p>ANNI DI ESPERIENZA</p></div>
-    <div class="stat-item"><h3>30K</h3><p>FOLLOWER LINKEDIN</p></div>
-    <div class="stat-item"><h3>10+</h3><p>SETTORI FORMATIVI</p></div>
-    <div class="stat-item"><h3>3</h3><p>CONTINENTI</p></div>
+    <div class="stat-item"><h3 data-target="20" data-suffix="+">0+</h3><p>ANNI DI ESPERIENZA</p></div>
+    <div class="stat-item"><h3 data-target="30" data-suffix="K">0K</h3><p>FOLLOWER LINKEDIN</p></div>
+    <div class="stat-item"><h3 data-target="10" data-suffix="+">0+</h3><p>SETTORI FORMATIVI</p></div>
+    <div class="stat-item"><h3 data-target="3" data-suffix="">0</h3><p>CONTINENTI</p></div>
   </div>
 </div>
 
@@ -544,12 +544,105 @@ for(let i=0;i<25;i++){
 // Scroll animazioni
 const observer = new IntersectionObserver(entries=>{
   entries.forEach(e=>{
-    if(e.isIntersecting) e.target.style.opacity='1',e.target.style.transform='translateY(0)';
+    if(e.isIntersecting){
+      e.target.style.opacity='1';
+      e.target.style.transform='translateY(0) scale(1)';
+    }
   });
 },{threshold:.1});
-document.querySelectorAll('.m-card,.p-card,.tl-body,.vision-card,.aynova-feat').forEach(el=>{
-  el.style.cssText+='opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s';
+document.querySelectorAll('.m-card,.p-card,.tl-body,.vision-card,.aynova-feat,.storia-card,.stat-item').forEach((el,i)=>{
+  el.style.cssText+=`opacity:0;transform:translateY(32px) scale(0.97);transition:opacity .6s ${i*0.08}s,transform .6s ${i*0.08}s`;
   observer.observe(el);
+});
+
+// Contatori animati nelle stats
+const animateCounter = (el, target, suffix='') => {
+  let current = 0;
+  const step = target / 60;
+  const timer = setInterval(() => {
+    current += step;
+    if(current >= target){
+      current = target;
+      clearInterval(timer);
+    }
+    el.textContent = Math.floor(current) + suffix;
+  }, 16);
+};
+
+const statsObserver = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const counters = e.target.querySelectorAll('h3[data-target]');
+      counters.forEach(c=>{
+        const target = parseInt(c.dataset.target);
+        const suffix = c.dataset.suffix||'';
+        animateCounter(c, target, suffix);
+      });
+      statsObserver.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+const statsGrid = document.querySelector('.stats-grid');
+if(statsGrid) statsObserver.observe(statsGrid);
+
+// Typing effect hero
+const typed = document.querySelector('.typed-text');
+if(typed){
+  const words = ['Ti potenzierà.','Ti differenzierà.','Ti libererà.','Ti potenzierà.'];
+  let wi=0, ci=0, deleting=false;
+  const type = () => {
+    const word = words[wi];
+    if(!deleting){
+      typed.textContent = word.slice(0,ci+1);
+      ci++;
+      if(ci===word.length){ deleting=true; setTimeout(type,1800); return; }
+    } else {
+      typed.textContent = word.slice(0,ci-1);
+      ci--;
+      if(ci===0){ deleting=false; wi=(wi+1)%words.length; }
+    }
+    setTimeout(type, deleting?40:80);
+  };
+  type();
+}
+
+// Hover glow sulle story cards
+document.querySelectorAll('.storia-card').forEach(card=>{
+  card.addEventListener('mouseenter',()=>{
+    card.style.transform='translateY(-8px)';
+    card.style.boxShadow='0 24px 60px rgba(0,212,255,0.15)';
+    card.style.borderColor='rgba(0,212,255,0.3)';
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='translateY(0)';
+    card.style.boxShadow='none';
+    card.style.borderColor='rgba(0,212,255,0.1)';
+  });
+});
+
+// Navbar scroll effect
+window.addEventListener('scroll',()=>{
+  const nav = document.querySelector('nav');
+  if(window.scrollY>50){
+    nav.style.background='rgba(2,5,16,0.98)';
+    nav.style.boxShadow='0 4px 30px rgba(0,0,0,0.5)';
+  } else {
+    nav.style.background='rgba(2,5,16,0.9)';
+    nav.style.boxShadow='none';
+  }
+});
+
+// Cursore glow personalizzato
+const cursor = document.createElement('div');
+cursor.style.cssText='position:fixed;width:20px;height:20px;border-radius:50%;background:rgba(0,212,255,0.15);border:1px solid rgba(0,212,255,0.4);pointer-events:none;z-index:9999;transition:transform .1s,width .3s,height .3s;transform:translate(-50%,-50%)';
+document.body.appendChild(cursor);
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=e.clientX+'px';
+  cursor.style.top=e.clientY+'px';
+});
+document.querySelectorAll('a,button,.m-card,.p-card,.storia-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ cursor.style.width='40px';cursor.style.height='40px';cursor.style.background='rgba(0,212,255,0.08)'; });
+  el.addEventListener('mouseleave',()=>{ cursor.style.width='20px';cursor.style.height='20px';cursor.style.background='rgba(0,212,255,0.15)'; });
 });
 </script>
 </body>

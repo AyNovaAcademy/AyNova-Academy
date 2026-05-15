@@ -187,7 +187,7 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 <body>
 
 <!-- PARTICELLE -->
-<canvas id="bgCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.65;"></canvas>
+<canvas id="bgCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.55;"></canvas>
 <div class="particles" id="particles"></div>
 
 <!-- NAV -->
@@ -534,110 +534,92 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 </footer>
 
 <script>
-// ============ SFONDO DINAMICO CANVAS ============
+// ============ SFONDO MATRIX ============
 const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 
 function resize(){
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+  initMatrix();
 }
+
+const fontSize = 14;
+let columns = [];
+
+const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&';
+
+function initMatrix(){
+  const cols = Math.floor(canvas.width / fontSize);
+  columns = Array.from({length: cols}, ()=>({
+    y: Math.random() * -canvas.height,
+    speed: Math.random() * 3 + 1,
+    chars: Array.from({length: Math.floor(Math.random()*20+10)}, ()=>({
+      char: chars[Math.floor(Math.random()*chars.length)],
+      timer: 0,
+      changeRate: Math.floor(Math.random()*8+4)
+    }))
+  }));
+}
+
 resize();
 window.addEventListener('resize', resize);
 
-// Nodi
-const nodes = Array.from({length:60}, ()=>({
-  x: Math.random()*window.innerWidth,
-  y: Math.random()*window.innerHeight,
-  vx: (Math.random()-.5)*.5,
-  vy: (Math.random()-.5)*.5,
-  r: Math.random()*2+1,
-  pulse: Math.random()*Math.PI*2
-}));
+function drawMatrix(){
+  // Scia scura semi-trasparente
+  ctx.fillStyle = 'rgba(2,5,16,0.08)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-// Circuiti
-const circuits = Array.from({length:12}, ()=>{
-  let x=Math.random()*window.innerWidth;
-  let y=Math.random()*window.innerHeight;
-  const segs=[];
-  for(let i=0;i<6;i++){
-    const dir=Math.floor(Math.random()*4);
-    const len=Math.random()*100+50;
-    let nx=x,ny=y;
-    if(dir===0)nx+=len; else if(dir===1)nx-=len;
-    else if(dir===2)ny+=len; else ny-=len;
-    segs.push({x1:x,y1:y,x2:nx,y2:ny});
-    x=nx;y=ny;
-  }
-  return {segs,prog:Math.random(),speed:Math.random()*.004+.001};
-});
+  columns.forEach((col, i)=>{
+    const x = i * fontSize;
+    col.y += col.speed;
 
-let gridOff=0;
-
-function draw(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  gridOff=(gridOff+.3)%60;
-
-  // Griglia scorrevole
-  ctx.strokeStyle='rgba(0,212,255,0.08)';
-  ctx.lineWidth=1;
-  for(let x=gridOff-60;x<canvas.width+60;x+=60){
-    ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,canvas.height);ctx.stroke();
-  }
-  for(let y=0;y<canvas.height+60;y+=60){
-    ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(canvas.width,y);ctx.stroke();
-  }
-
-  // Circuiti animati
-  circuits.forEach(c=>{
-    c.prog+=c.speed;
-    if(c.prog>1)c.prog=0;
-    const max=Math.floor(c.prog*c.segs.length);
-    c.segs.forEach((s,i)=>{
-      if(i<max){
-        ctx.strokeStyle='rgba(0,212,255,0.35)';
-        ctx.lineWidth=1.5;
-        ctx.beginPath();ctx.moveTo(s.x1,s.y1);ctx.lineTo(s.x2,s.y2);ctx.stroke();
-        ctx.fillStyle='rgba(0,212,255,0.8)';
-        ctx.beginPath();ctx.arc(s.x2,s.y2,2.5,0,Math.PI*2);ctx.fill();
+    col.chars.forEach((c, j)=>{
+      c.timer++;
+      if(c.timer >= c.changeRate){
+        c.char = chars[Math.floor(Math.random()*chars.length)];
+        c.timer = 0;
       }
-    });
-  });
 
-  // Nodi e connessioni
-  nodes.forEach((n,i)=>{
-    n.x+=n.vx; n.y+=n.vy; n.pulse+=.03;
-    if(n.x<0||n.x>canvas.width)n.vx*=-1;
-    if(n.y<0||n.y>canvas.height)n.vy*=-1;
-    const glow=(Math.sin(n.pulse)+1)/2;
+      const y = col.y - j * fontSize;
+      if(y < 0 || y > canvas.height) return;
 
-    nodes.forEach((n2,j)=>{
-      if(j<=i)return;
-      const dx=n2.x-n.x,dy=n2.y-n.y;
-      const d=Math.sqrt(dx*dx+dy*dy);
-      if(d<130){
-        ctx.strokeStyle=`rgba(123,47,255,${.25*(1-d/130)})`;
-        ctx.lineWidth=1;
-        ctx.beginPath();ctx.moveTo(n.x,n.y);ctx.lineTo(n2.x,n2.y);ctx.stroke();
+      // Primo carattere più luminoso (bianco/azzurro brillante)
+      if(j === 0){
+        ctx.fillStyle = '#ffffff';
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = '#00d4ff';
+      } else if(j < 3){
+        ctx.fillStyle = '#00d4ff';
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = '#00d4ff';
+      } else {
+        // Gradiente dal blu al viola man mano che sale
+        const ratio = j / col.chars.length;
+        const r = Math.floor(0 + ratio * 123);
+        const g = Math.floor(212 - ratio * 165);
+        const b = Math.floor(255);
+        const alpha = Math.max(0, 1 - ratio * 0.85);
+        ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+        ctx.shadowBlur = 0;
+        ctx.shadowColor = 'transparent';
       }
+
+      ctx.font = `${fontSize}px monospace`;
+      ctx.fillText(c.char, x, y);
     });
 
-    // Alone
-    const g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,12);
-    g.addColorStop(0,`rgba(0,212,255,${.5*glow})`);
-    g.addColorStop(1,'rgba(0,212,255,0)');
-    ctx.fillStyle=g;
-    ctx.beginPath();ctx.arc(n.x,n.y,12,0,Math.PI*2);ctx.fill();
-
-    // Punto centrale
-    ctx.fillStyle=`rgba(0,212,255,${.9*glow})`;
-    ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fill();
+    // Reset colonna quando esce dallo schermo
+    if(col.y - col.chars.length * fontSize > canvas.height){
+      col.y = Math.random() * -200;
+      col.speed = Math.random() * 3 + 1;
+    }
   });
 
-  requestAnimationFrame(draw);
+  requestAnimationFrame(drawMatrix);
 }
-draw();
-// ============ FINE SFONDO ============
+drawMatrix();
+// ============ FINE MATRIX ============
 const container = document.getElementById('particles');
 for(let i=0;i<25;i++){
   const p = document.createElement('div');

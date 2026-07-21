@@ -78,7 +78,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(2,5,16,0.9);back
              radial-gradient(ellipse at 80% 30%,rgba(0,212,255,0.06) 0%,transparent 50%),
              var(--black);}
 .hero-left{}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#0a66c2,#00d4ff);border:2px solid rgba(0,212,255,0.8);padding:14px 32px;border-radius:50px;font-size:17px;color:#fff;font-weight:900;margin-bottom:28px;letter-spacing:1.5px;text-transform:uppercase;box-shadow:0 0 25px rgba(0,212,255,0.6),0 0 50px rgba(0,212,255,0.3);animation:glowPulse 2s ease-in-out infinite;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);padding:8px 18px;border-radius:30px;font-size:12px;color:var(--electric);font-weight:700;margin-bottom:28px;letter-spacing:1px;}
 .hero h1{font-size:clamp(36px,4.5vw,62px);font-weight:900;line-height:1.1;margin-bottom:20px;letter-spacing:-1px;}
 .hero h1 .grad{background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .hero-sub{font-size:17px;color:var(--light);line-height:1.7;margin-bottom:16px;}
@@ -94,8 +94,8 @@ nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(2,5,16,0.9);back
 .hero-duo{position:relative;width:420px;height:460px;}
 .jose-photo-wrap{position:absolute;left:0;bottom:0;width:280px;height:360px;border-radius:24px;overflow:hidden;border:2px solid rgba(0,212,255,0.2);box-shadow:0 24px 60px rgba(0,0,0,0.5);}
 .jose-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;}
-.aynova-photo-wrap{position:absolute;right:0;top:0;width:180px;height:180px;border-radius:50%;overflow:hidden;border:3px solid rgba(123,47,255,0.4);box-shadow:0 16px 40px rgba(123,47,255,0.3);background:rgba(10,22,40,0.8);display:flex;align-items:center;justify-content:center;animation:floatAv 3s ease-in-out infinite;}
-.aynova-photo-wrap img{width:130%;height:130%;object-fit:cover;object-position:center;}
+.-photo-wrap{position:absolute;right:0;top:0;width:180px;height:180px;border-radius:50%;overflow:hidden;border:3px solid rgba(123,47,255,0.4);box-shadow:0 16px 40px rgba(123,47,255,0.3);background:rgba(10,22,40,0.8);display:flex;align-items:center;justify-content:center;animation:floatAv 3s ease-in-out infinite;}
+.-photo-wrap img{width:130%;height:130%;object-fit:cover;object-position:center;}
 @keyframes floatAv{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 .glow-line{position:absolute;bottom:60px;left:60px;right:40px;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,255,0.4),transparent);}
 
@@ -151,20 +151,20 @@ nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(2,5,16,0.9);back
 .vision-card h3{font-size:22px;font-weight:900;margin-bottom:16px;}
 .vision-card p{color:var(--light);font-size:15px;line-height:1.8;}
 
-/* AYNOVA */
-.aynova-section{background:var(--dark);}
-.aynova-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto;}
-.aynova-visual{display:flex;justify-content:center;}
-.aynova-orb{width:340px;height:340px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(123,47,255,0.15),rgba(0,212,255,0.08),transparent);border:1px solid rgba(123,47,255,0.2);display:flex;align-items:center;justify-content:center;position:relative;animation:pulse 4s ease-in-out infinite;}
-.aynova-orb img{width:220px;height:220px;object-fit:contain;filter:drop-shadow(0 0 20px rgba(123,47,255,0.4));}
+/*  */
+.-section{background:var(--dark);}
+.-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto;}
+.-visual{display:flex;justify-content:center;}
+.-orb{width:340px;height:340px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(123,47,255,0.15),rgba(0,212,255,0.08),transparent);border:1px solid rgba(123,47,255,0.2);display:flex;align-items:center;justify-content:center;position:relative;animation:pulse 4s ease-in-out infinite;}
+.-orb img{width:220px;height:220px;object-fit:contain;filter:drop-shadow(0 0 20px rgba(123,47,255,0.4));}
 @keyframes pulse{0%,100%{box-shadow:0 0 40px rgba(123,47,255,0.1)}50%{box-shadow:0 0 80px rgba(123,47,255,0.25)}}
-.aynova-text h2{font-size:clamp(26px,3vw,40px);font-weight:900;margin-bottom:20px;line-height:1.3;}
-.aynova-text p{color:var(--gray);font-size:15px;line-height:1.8;margin-bottom:16px;}
-.aynova-features{display:flex;flex-direction:column;gap:16px;margin-top:28px;}
-.aynova-feat{display:flex;align-items:flex-start;gap:14px;background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:14px;padding:16px;}
-.aynova-feat .feat-icon{font-size:24px;flex-shrink:0;}
-.aynova-feat h4{font-size:14px;font-weight:800;margin-bottom:4px;}
-.aynova-feat p{color:var(--gray);font-size:13px;line-height:1.5;}
+.-text h2{font-size:clamp(26px,3vw,40px);font-weight:900;margin-bottom:20px;line-height:1.3;}
+.-text p{color:var(--gray);font-size:15px;line-height:1.8;margin-bottom:16px;}
+.-features{display:flex;flex-direction:column;gap:16px;margin-top:28px;}
+.-feat{display:flex;align-items:flex-start;gap:14px;background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:14px;padding:16px;}
+.-feat .feat-icon{font-size:24px;flex-shrink:0;}
+.-feat h4{font-size:14px;font-weight:800;margin-bottom:4px;}
+.-feat p{color:var(--gray);font-size:13px;line-height:1.5;}
 
 /* MANIFESTO INTERATTIVO */
 .manifesto-section{background:var(--black);}
@@ -213,7 +213,7 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 @media(max-width:960px){
   .hero{grid-template-columns:1fr;padding-top:100px;}
   .hero-right{display:none;}
-  .bio-grid,.aynova-inner,.vision-grid{grid-template-columns:1fr;gap:48px;}
+  .bio-grid,.-inner,.vision-grid{grid-template-columns:1fr;gap:48px;}
   .manifesto-grid,.percorsi-grid{grid-template-columns:1fr;}
   .stats-grid{grid-template-columns:repeat(2,1fr);}
   .nav-links{display:none;}
@@ -231,7 +231,7 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
   <div class="logo">Ay<span>Nova</span> Academy</div>
   <ul class="nav-links">
     <li><a href="#bio">Chi Sono</a></li>
-    <li><a href="#aynova">AyNova</a></li>
+    <li><a href="#"></a></li>
     <li><a href="#vision">Vision</a></li>
     <li><a href="#percorsi">Percorsi</a></li>
     <li><a href="#contatti">Contatti</a></li>
@@ -244,7 +244,7 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
   <div class="hero-left">
     <div class="hero-badge">⚡ La Rivoluzione AI è già iniziata</div>
     <h1>L'AI non ti<br/>sostituirà.<br/><span class="grad typed-text">Ti potenzierà.</span></h1>
-    <p class="hero-sub">AyNova Academy unisce l'essenza umana con l'intelligenza artificiale. Come Internet ha trasformato il mondo, l'AI trasformerà il tuo lavoro.</p>
+    <p class="hero-sub"> Academy unisce l'essenza umana con l'intelligenza artificiale. Come Internet ha trasformato il mondo, l'AI trasformerà il tuo lavoro.</p>
     <p class="hero-tagline">"Non abbiate paura dell'AI. Imparate a usarla."<br/>— Dott. Josè Sala</p>
     <div class="hero-btns">
       <a href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" class="btn-primary">🚀 Prima Sessione Gratuita</a>
@@ -258,10 +258,10 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
           autoplay muted loop playsinline
           style="width:100%;height:100%;object-fit:cover;"
           onerror="this.parentElement.innerHTML='<img src=jose.jpg style=width:100%;height:100%;object-fit:cover;object-position:top />'">
-          <source src="aynova.mp4" type="video/mp4"/>
+          <source src=".mp4" type="video/mp4"/>
         </video>
         <div style="position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(0deg,rgba(2,5,16,0.8),transparent);"></div>
-        <div style="position:absolute;bottom:16px;left:16px;background:rgba(0,212,255,0.15);border:1px solid rgba(0,212,255,0.3);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;color:var(--electric);">▶ Josè & AyNova</div>
+        <div style="position:absolute;bottom:16px;left:16px;background:rgba(0,212,255,0.15);border:1px solid rgba(0,212,255,0.3);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;color:var(--electric);">▶ Josè & </div>
       </div>
       <div class="glow-line"></div>
     </div>

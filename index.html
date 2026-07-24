@@ -6,227 +6,189 @@
 <title>AyNova Academy — Dott. Josè Sala</title>
 <style>
 :root{
-  --black:#020510;
-  --dark:#060d1f;
-  --card:#0a1628;
-  --blue:#0a66c2;
-  --electric:#00d4ff;
-  --purple:#7b2fff;
-  --gold:#f5c842;
-  --white:#ffffff;
-  --gray:#8892a4;
-  --light:#c8d6e8;
+  --black:#020510; --dark:#060d1f; --card:#0a1628;
+  --blue:#0a66c2; --electric:#00d4ff; --purple:#7b2fff;
+  --white:#ffffff; --gray:#8892a4; --light:#c8d6e8;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-html, body { background: #000 !important; }
-section, .stats, .hero, .bio-section, .timeline-section,
-.vision-section, .aynova-section, .manifesto-section,
-.percorsi-section, .storie-section, .cta-section {
-  background: rgba(0,0,0,0.72) !important;
-}
-nav { background: rgba(0,0,0,0.85) !important; }
-footer { background: rgba(0,0,0,0.85) !important; }
-#bgCanvas { position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none; }
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
 
-/* PARTICELLE SFONDO */
-.particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
-.particle{position:absolute;border-radius:50%;animation:float linear infinite;}
-@keyframes float{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:.3}100%{transform:translateY(-100px) scale(1);opacity:0}}
+#netCanvas{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;}
+#spotlight{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1;pointer-events:none;background:radial-gradient(circle 280px at var(--mx,50%) var(--my,50%),rgba(0,212,255,0.06),transparent 70%);}
+
+section, nav, footer{position:relative;z-index:2;}
+section{background:rgba(2,5,16,0.78);}
 
 /* NAV */
-nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(2,5,16,0.9);backdrop-filter:blur(20px);display:flex;justify-content:space-between;align-items:center;padding:16px 6%;border-bottom:1px solid rgba(0,212,255,0.08);}
-.logo{font-size:22px;font-weight:900;color:var(--white);letter-spacing:1px;}
+nav{position:fixed;top:0;width:100%;z-index:50;background:rgba(2,5,16,0.9);backdrop-filter:blur(16px);display:flex;justify-content:space-between;align-items:center;padding:16px 6%;border-bottom:1px solid rgba(0,212,255,0.1);}
+.logo{font-size:22px;font-weight:900;letter-spacing:1px;}
 .logo span{background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.nav-links{display:flex;gap:12px;list-style:none;}
-.nav-links a{
-  color:#fff;
-  text-decoration:none;
-  font-size:13px;
-  font-weight:800;
-  letter-spacing:.5px;
-  padding:8px 18px;
-  border-radius:50px;
-  background:linear-gradient(135deg,#0a66c2,#00d4ff);
-  border:2px solid rgba(0,212,255,0.6);
-  box-shadow:0 0 15px rgba(0,212,255,0.5),0 0 30px rgba(0,212,255,0.3);
-  animation:glowPulse 2s ease-in-out infinite;
-  transition:all .3s;
-  position:relative;
-  overflow:hidden;
-}
-.nav-links a::before{
-  content:'';
-  position:absolute;
-  top:0;left:-100%;
-  width:60%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);
-  transform:skewX(-20deg);
-  animation:shimmer 3s infinite;
-}
-.nav-links a:hover{
-  transform:translateY(-3px) scale(1.08);
-  box-shadow:0 0 30px rgba(0,212,255,0.9),0 0 60px rgba(0,212,255,0.5);
-  background:linear-gradient(135deg,#00d4ff,#7b2fff);
-}
-.nav-cta{background:linear-gradient(135deg,var(--blue),var(--electric));color:white;border:none;padding:10px 24px;border-radius:30px;font-weight:700;font-size:14px;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s;}
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,212,255,0.3);}
+.nav-links{display:flex;gap:10px;list-style:none;}
+.nav-links a{color:#fff;text-decoration:none;font-size:13px;font-weight:800;padding:8px 18px;border-radius:50px;background:linear-gradient(135deg,var(--blue),var(--electric));border:2px solid rgba(0,212,255,0.5);box-shadow:0 0 15px rgba(0,212,255,0.4);transition:all .3s;}
+.nav-links a:hover{transform:translateY(-2px) scale(1.06);box-shadow:0 0 28px rgba(0,212,255,0.8);}
+.nav-cta{background:linear-gradient(135deg,var(--blue),var(--electric));color:#fff;padding:11px 26px;border-radius:30px;font-weight:800;font-size:14px;text-decoration:none;box-shadow:0 0 20px rgba(0,212,255,0.5);animation:glowPulse 2s infinite;}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 20px rgba(0,212,255,0.4)}50%{box-shadow:0 0 38px rgba(0,212,255,0.8)}}
+
+/* FLOATING AYNOVA WIDGET */
+.floating-widget{position:fixed;bottom:26px;right:26px;z-index:100;display:flex;align-items:center;gap:12px;}
+.floating-label{background:var(--card);border:1px solid rgba(0,212,255,0.35);padding:9px 16px;border-radius:20px;font-size:13px;font-weight:700;color:var(--electric);white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.4);}
+.floating-btn{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--electric));display:flex;align-items:center;justify-content:center;font-size:26px;text-decoration:none;box-shadow:0 0 30px rgba(0,212,255,0.6);animation:glowPulse 2s infinite;transition:transform .3s;}
+.floating-btn:hover{transform:scale(1.1);}
 
 /* HERO */
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:120px 6% 80px;position:relative;z-index:1;gap:60px;
-  background:radial-gradient(ellipse at 30% 50%,rgba(123,47,255,0.08) 0%,transparent 50%),
-             radial-gradient(ellipse at 80% 30%,rgba(0,212,255,0.06) 0%,transparent 50%),
-             var(--black);}
-.hero-left{}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);padding:8px 18px;border-radius:30px;font-size:12px;color:var(--electric);font-weight:700;margin-bottom:28px;letter-spacing:1px;}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:120px 6% 80px;gap:60px;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--blue),var(--electric));border:2px solid rgba(0,212,255,0.8);padding:14px 32px;border-radius:50px;font-size:16px;font-weight:900;margin-bottom:28px;letter-spacing:1.5px;text-transform:uppercase;box-shadow:0 0 25px rgba(0,212,255,0.6);animation:glowPulse 2s infinite;}
 .hero h1{font-size:clamp(36px,4.5vw,62px);font-weight:900;line-height:1.1;margin-bottom:20px;letter-spacing:-1px;}
 .hero h1 .grad{background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .hero-sub{font-size:17px;color:var(--light);line-height:1.7;margin-bottom:16px;}
 .hero-tagline{font-size:14px;color:var(--gray);font-style:italic;margin-bottom:36px;border-left:2px solid var(--electric);padding-left:14px;}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
-.btn-primary{background:linear-gradient(135deg,var(--blue),var(--electric));color:white;padding:15px 34px;border-radius:50px;font-weight:800;font-size:15px;text-decoration:none;display:inline-block;transition:transform .3s,box-shadow .3s;box-shadow:0 8px 28px rgba(0,212,255,0.2);}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,212,255,0.35);}
-.btn-ghost{border:1px solid rgba(0,212,255,0.35);color:var(--electric);padding:15px 34px;border-radius:50px;font-weight:800;font-size:15px;text-decoration:none;display:inline-block;transition:all .3s;}
-.btn-ghost:hover{background:rgba(0,212,255,0.08);}
+.btn-primary{background:linear-gradient(135deg,var(--blue),var(--electric));color:#fff;padding:16px 38px;border-radius:50px;font-weight:900;font-size:15px;text-decoration:none;display:inline-block;border:2px solid rgba(0,212,255,0.6);box-shadow:0 0 30px rgba(0,212,255,0.6);animation:glowPulse 2s infinite;transition:transform .3s;}
+.btn-primary:hover{transform:translateY(-4px) scale(1.05);}
+.btn-ghost{background:transparent;color:var(--electric);padding:16px 38px;border-radius:50px;font-weight:900;font-size:15px;text-decoration:none;display:inline-block;border:2px solid var(--electric);box-shadow:0 0 15px rgba(0,212,255,0.3);transition:all .3s;}
+.btn-ghost:hover{background:rgba(0,212,255,0.15);color:#fff;transform:translateY(-4px);}
+.hero-visual{position:relative;display:flex;justify-content:center;}
+.hero-duo{position:relative;width:100%;max-width:420px;height:460px;transition:transform .15s ease-out;}
+.jose-wrap{position:absolute;left:0;bottom:0;width:280px;height:360px;border-radius:24px;overflow:hidden;border:2px solid rgba(0,212,255,0.25);box-shadow:0 24px 60px rgba(0,0,0,0.5);}
+.jose-wrap video,.jose-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;}
+.aynova-wrap{position:absolute;right:0;top:0;width:170px;height:170px;border-radius:50%;overflow:hidden;border:3px solid rgba(123,47,255,0.4);box-shadow:0 16px 40px rgba(123,47,255,0.3);animation:floatY 3s ease-in-out infinite;}
+.aynova-wrap img{width:130%;height:130%;object-fit:cover;}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 
-/* HERO RIGHT - DUO FOTO */
-.hero-right{position:relative;display:flex;justify-content:center;align-items:center;}
-.hero-duo{position:relative;width:420px;height:460px;}
-.jose-photo-wrap{position:absolute;left:0;bottom:0;width:280px;height:360px;border-radius:24px;overflow:hidden;border:2px solid rgba(0,212,255,0.2);box-shadow:0 24px 60px rgba(0,0,0,0.5);}
-.jose-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;}
-.aynova-photo-wrap{position:absolute;right:0;top:0;width:180px;height:180px;border-radius:50%;overflow:hidden;border:3px solid rgba(123,47,255,0.4);box-shadow:0 16px 40px rgba(123,47,255,0.3);background:rgba(10,22,40,0.8);display:flex;align-items:center;justify-content:center;animation:floatAv 3s ease-in-out infinite;}
-.aynova-photo-wrap img{width:130%;height:130%;object-fit:cover;object-position:center;}
-@keyframes floatAv{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.glow-line{position:absolute;bottom:60px;left:60px;right:40px;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,255,0.4),transparent);}
+/* BENTO STATS */
+.stats-section{padding:60px 6%;}
+.bento{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;grid-template-rows:auto auto;gap:16px;max-width:1100px;margin:0 auto;}
+.bento-item{background:var(--card);border:1px solid rgba(0,212,255,0.1);border-radius:20px;padding:28px;display:flex;flex-direction:column;justify-content:center;transition:border-color .3s,transform .3s;}
+.bento-item:hover{border-color:rgba(0,212,255,0.4);transform:translateY(-4px);}
+.bento-item.big{grid-row:span 2;background:linear-gradient(135deg,rgba(0,212,255,0.08),rgba(123,47,255,0.08));}
+.bento-item h3{font-size:38px;font-weight:900;background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.bento-item.big h3{font-size:52px;}
+.bento-item p{color:var(--gray);font-size:13px;font-weight:600;margin-top:6px;letter-spacing:.5px;}
 
-/* STATS */
-.stats{padding:60px 6%;background:var(--dark);border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04);position:relative;z-index:1;}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1000px;margin:0 auto;text-align:center;}
-.stat-item h3{font-size:42px;font-weight:900;background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.stat-item p{color:var(--gray);font-size:13px;font-weight:600;margin-top:4px;letter-spacing:.5px;}
-
-/* SECTION COMUNE */
-.section{padding:100px 6%;position:relative;z-index:1;}
+/* COMMON SECTION STYLES */
+.section{padding:100px 6%;}
 .section-label{color:var(--electric);font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;}
 .section-title{font-size:clamp(28px,3.5vw,46px);font-weight:900;margin-bottom:16px;line-height:1.2;}
 .section-title span{background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.section-sub{color:var(--gray);font-size:16px;line-height:1.7;max-width:640px;margin-bottom:60px;}
+.section-sub{color:var(--gray);font-size:16px;line-height:1.7;max-width:640px;}
 
-/* CHI SONO */
-.bio-section{background:linear-gradient(180deg,var(--black) 0%,var(--dark) 100%);}
+/* BIO */
 .bio-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;max-width:1200px;margin:0 auto;}
 .bio-photo{position:relative;}
 .bio-photo-frame{border-radius:24px;overflow:hidden;border:1px solid rgba(0,212,255,0.15);box-shadow:0 32px 80px rgba(0,0,0,0.5);}
 .bio-photo-frame img{width:100%;height:460px;object-fit:cover;object-position:top;}
 .bio-badge{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--blue),var(--purple));padding:12px 24px;border-radius:50px;white-space:nowrap;font-weight:800;font-size:13px;box-shadow:0 8px 24px rgba(123,47,255,0.4);}
-.bio-content{}
 .bio-mission{background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.15);border-radius:20px;padding:28px;margin-bottom:32px;}
 .bio-mission h4{color:var(--electric);font-size:12px;font-weight:800;letter-spacing:2px;margin-bottom:10px;}
 .bio-mission p{color:var(--light);font-size:15px;line-height:1.7;}
 .bio-text p{color:var(--gray);font-size:15px;line-height:1.8;margin-bottom:16px;}
-.bio-text strong{color:var(--white);}
+.bio-text strong{color:#fff;}
 .skills-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
 .skill-tag{background:rgba(123,47,255,0.12);border:1px solid rgba(123,47,255,0.25);color:var(--light);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;}
 
-/* TIMELINE CARRIERA */
-.timeline-section{background:var(--dark);}
+/* TIMELINE */
 .timeline{max-width:800px;margin:0 auto;position:relative;}
 .timeline::before{content:'';position:absolute;left:19px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--electric),var(--purple),transparent);}
-.tl-item{display:flex;gap:24px;margin-bottom:36px;position:relative;}
+.tl-item{display:flex;gap:24px;margin-bottom:36px;}
 .tl-dot{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:16px;z-index:1;box-shadow:0 0 20px rgba(123,47,255,0.4);}
 .tl-body{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:20px 24px;flex:1;transition:border-color .3s;}
-.tl-body:hover{border-color:rgba(0,212,255,0.2);}
+.tl-body:hover{border-color:rgba(0,212,255,0.25);}
 .tl-year{color:var(--electric);font-size:12px;font-weight:700;margin-bottom:4px;}
 .tl-title{font-size:16px;font-weight:800;margin-bottom:4px;}
 .tl-company{color:var(--purple);font-size:13px;font-weight:700;margin-bottom:8px;}
 .tl-desc{color:var(--gray);font-size:14px;line-height:1.6;}
 
-/* VISION & MISSION */
-.vision-section{background:radial-gradient(ellipse at 50% 0%,rgba(123,47,255,0.08) 0%,transparent 60%),var(--black);}
+/* VISION */
 .vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:1000px;margin:0 auto;}
-.vision-card{border-radius:24px;padding:48px 36px;position:relative;overflow:hidden;}
+.vision-card{border-radius:24px;padding:48px 36px;}
 .vision-card.mission{background:linear-gradient(135deg,rgba(0,212,255,0.06),rgba(0,212,255,0.02));border:1px solid rgba(0,212,255,0.2);}
 .vision-card.vision{background:linear-gradient(135deg,rgba(123,47,255,0.08),rgba(123,47,255,0.02));border:1px solid rgba(123,47,255,0.2);}
 .vision-card .icon{font-size:52px;margin-bottom:20px;}
 .vision-card h3{font-size:22px;font-weight:900;margin-bottom:16px;}
 .vision-card p{color:var(--light);font-size:15px;line-height:1.8;}
 
-/* AYNOVA */
-.aynova-section{background:var(--dark);}
+/* AYNOVA SECTION */
 .aynova-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto;}
 .aynova-visual{display:flex;justify-content:center;}
-.aynova-orb{width:340px;height:340px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(123,47,255,0.15),rgba(0,212,255,0.08),transparent);border:1px solid rgba(123,47,255,0.2);display:flex;align-items:center;justify-content:center;position:relative;animation:pulse 4s ease-in-out infinite;}
-.aynova-orb img{width:220px;height:220px;object-fit:contain;filter:drop-shadow(0 0 20px rgba(123,47,255,0.4));}
-@keyframes pulse{0%,100%{box-shadow:0 0 40px rgba(123,47,255,0.1)}50%{box-shadow:0 0 80px rgba(123,47,255,0.25)}}
-.aynova-text h2{font-size:clamp(26px,3vw,40px);font-weight:900;margin-bottom:20px;line-height:1.3;}
+.aynova-orb{width:340px;height:340px;border-radius:24px;overflow:hidden;border:1px solid rgba(123,47,255,0.3);box-shadow:0 0 60px rgba(123,47,255,0.2);}
+.aynova-orb video,.aynova-orb img{width:100%;height:100%;object-fit:cover;}
+.aynova-text h2{margin-bottom:20px;}
 .aynova-text p{color:var(--gray);font-size:15px;line-height:1.8;margin-bottom:16px;}
 .aynova-features{display:flex;flex-direction:column;gap:16px;margin-top:28px;}
 .aynova-feat{display:flex;align-items:flex-start;gap:14px;background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:14px;padding:16px;}
 .aynova-feat .feat-icon{font-size:24px;flex-shrink:0;}
 .aynova-feat h4{font-size:14px;font-weight:800;margin-bottom:4px;}
-.aynova-feat p{color:var(--gray);font-size:13px;line-height:1.5;}
+.aynova-feat p{color:var(--gray);font-size:13px;line-height:1.5;margin:0;}
 
-/* MANIFESTO INTERATTIVO */
-.manifesto-section{background:var(--black);}
+/* MANIFESTO */
 .manifesto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1200px;margin:0 auto;}
-.m-card{background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:20px;padding:36px 28px;cursor:pointer;transition:all .4s;position:relative;overflow:hidden;}
-.m-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,0.05),rgba(123,47,255,0.05));opacity:0;transition:opacity .4s;}
-.m-card:hover{transform:translateY(-6px);border-color:rgba(0,212,255,0.25);box-shadow:0 20px 60px rgba(0,0,0,0.4);}
-.m-card:hover::before{opacity:1;}
+.m-card{background:var(--card);border:1px solid rgba(255,255,255,0.05);border-radius:20px;padding:36px 28px;transition:all .4s;}
+.m-card:hover{transform:translateY(-6px);border-color:rgba(0,212,255,0.25);}
 .m-num{font-size:48px;font-weight:900;background:linear-gradient(135deg,rgba(0,212,255,0.2),rgba(123,47,255,0.2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;line-height:1;}
 .m-card h3{font-size:18px;font-weight:800;margin-bottom:12px;}
 .m-card p{color:var(--gray);font-size:14px;line-height:1.7;}
-.m-card .m-icon{font-size:36px;margin-bottom:16px;}
+.m-icon{font-size:36px;margin-bottom:16px;}
+
+/* STORIE - interactive */
+.storie-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1200px;margin:0 auto;}
+.storia-card{background:var(--card);border:1px solid rgba(0,212,255,0.1);border-radius:24px;padding:32px;cursor:pointer;transition:all .4s;position:relative;overflow:hidden;}
+.storia-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--electric));}
+.storia-card:hover{border-color:rgba(0,212,255,0.3);transform:translateY(-4px);}
+.storia-icon{font-size:44px;margin-bottom:16px;}
+.storia-label{color:var(--electric);font-size:11px;font-weight:800;letter-spacing:2px;margin-bottom:10px;}
+.storia-title{font-size:18px;font-weight:900;margin-bottom:12px;}
+.storia-full{max-height:0;overflow:hidden;transition:max-height .5s ease;}
+.storia-card.open .storia-full{max-height:600px;}
+.storia-full p{color:var(--gray);font-size:14px;line-height:1.8;padding-top:8px;}
+.storia-full strong{color:#fff;}
+.storia-toggle{color:var(--electric);font-size:12px;font-weight:700;margin-top:10px;display:inline-block;}
 
 /* PERCORSI */
-.percorsi-section{background:var(--dark);}
 .percorsi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:0 auto;}
-.p-card{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:24px;padding:40px 28px;transition:all .3s;position:relative;overflow:hidden;}
+.p-card{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:24px;padding:40px 28px;position:relative;overflow:hidden;transition:all .3s;}
 .p-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--electric));}
 .p-card.featured::after{background:linear-gradient(90deg,var(--purple),var(--electric));}
 .p-card:hover{transform:translateY(-6px);border-color:rgba(0,212,255,0.2);}
 .p-card.featured{border-color:rgba(123,47,255,0.3);}
-.p-feat-badge{position:absolute;top:20px;right:20px;background:linear-gradient(135deg,var(--purple),var(--electric));font-size:10px;font-weight:900;padding:4px 10px;border-radius:20px;letter-spacing:1px;}
+.p-badge{position:absolute;top:20px;right:20px;background:linear-gradient(135deg,var(--purple),var(--electric));font-size:10px;font-weight:900;padding:4px 10px;border-radius:20px;letter-spacing:1px;}
 .p-icon{font-size:44px;margin-bottom:20px;}
 .p-card h3{font-size:20px;font-weight:900;margin-bottom:12px;}
 .p-card p{color:var(--gray);font-size:14px;line-height:1.6;margin-bottom:24px;}
 .p-price{font-size:26px;font-weight:900;color:var(--electric);}
 .p-price span{font-size:13px;color:var(--gray);font-weight:400;}
 
-/* CTA */
-.cta-section{padding:120px 6%;text-align:center;background:radial-gradient(ellipse at 50% 50%,rgba(123,47,255,0.1) 0%,rgba(0,212,255,0.04) 40%,transparent 70%),var(--black);position:relative;z-index:1;}
-.cta-section h2{font-size:clamp(32px,4vw,56px);font-weight:900;margin-bottom:20px;line-height:1.2;}
+/* CTA + FOOTER */
+.cta-section{text-align:center;}
+.cta-section h2{font-size:clamp(30px,4vw,54px);font-weight:900;margin-bottom:20px;line-height:1.2;}
 .cta-section p{color:var(--gray);font-size:17px;max-width:560px;margin:0 auto 48px;line-height:1.7;}
 .cta-btns{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;}
-
-/* FOOTER */
-footer{background:#010308;border-top:1px solid rgba(255,255,255,0.04);padding:52px 6%;text-align:center;position:relative;z-index:1;}
+footer{background:#010308;padding:52px 6%;text-align:center;}
 .footer-logo{font-size:26px;font-weight:900;margin-bottom:8px;}
 .footer-logo span{background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .footer-tagline{color:var(--electric);font-weight:700;font-size:14px;margin-bottom:16px;letter-spacing:1px;}
 footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 .footer-links{display:flex;gap:24px;justify-content:center;margin:20px 0;flex-wrap:wrap;}
-.footer-links a{color:var(--gray);text-decoration:none;font-size:13px;transition:color .3s;}
+.footer-links a{color:var(--gray);text-decoration:none;font-size:13px;}
 .footer-links a:hover{color:var(--electric);}
 
-/* RESPONSIVE */
 @media(max-width:960px){
   .hero{grid-template-columns:1fr;padding-top:100px;}
-  .hero-right{display:none;}
+  .hero-visual{display:none;}
   .bio-grid,.aynova-inner,.vision-grid{grid-template-columns:1fr;gap:48px;}
-  .manifesto-grid,.percorsi-grid{grid-template-columns:1fr;}
-  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .manifesto-grid,.percorsi-grid,.storie-grid{grid-template-columns:1fr;}
+  .bento{grid-template-columns:1fr 1fr;}
+  .bento-item.big{grid-row:span 1;grid-column:span 2;}
   .nav-links{display:none;}
+  .floating-label{display:none;}
 }
 </style>
 </head>
 <body>
 
-<!-- PARTICELLE -->
-<canvas id="bgCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
-<div class="particles" id="particles"></div>
+<canvas id="netCanvas"></canvas>
+<div id="spotlight"></div>
 
-<!-- NAV -->
 <nav>
   <div class="logo">Ay<span>Nova</span> Academy</div>
   <ul class="nav-links">
@@ -239,11 +201,15 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
   <a href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" class="nav-cta">🚀 Inizia Gratis</a>
 </nav>
 
-<!-- HERO -->
+<div class="floating-widget">
+  <div class="floating-label">💬 Parla con AyNova</div>
+  <a href="https://claude.ai/public/artifacts/a82156a0-f02e-41c5-97a3-4474a1a6cca4" target="_blank" class="floating-btn">💬</a>
+</div>
+
 <section class="hero">
   <div class="hero-left">
     <div class="hero-badge">⚡ La Rivoluzione AI è già iniziata</div>
-    <h1>L'AI non ti<br/>sostituirà.<br/><span class="grad typed-text">Ti potenzierà.</span></h1>
+    <h1>L'AI non ti<br/>sostituirà.<br/><span class="grad">Ti potenzierà.</span></h1>
     <p class="hero-sub">AyNova Academy unisce l'essenza umana con l'intelligenza artificiale. Come Internet ha trasformato il mondo, l'AI trasformerà il tuo lavoro.</p>
     <p class="hero-tagline">"Non abbiate paura dell'AI. Imparate a usarla."<br/>— Dott. Josè Sala</p>
     <div class="hero-btns">
@@ -251,45 +217,40 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
       <a href="#bio" class="btn-ghost">Scopri Chi Sono</a>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-duo">
-      <div class="jose-photo-wrap" style="width:320px;height:400px;border-radius:24px;overflow:hidden;border:2px solid rgba(0,212,255,0.25);box-shadow:0 24px 60px rgba(0,0,0,0.5),0 0 40px rgba(0,212,255,0.1);position:relative;">
-        <video
-          autoplay muted loop playsinline
-          style="width:100%;height:100%;object-fit:cover;"
-          onerror="this.parentElement.innerHTML='<img src=jose.jpg style=width:100%;height:100%;object-fit:cover;object-position:top />'">
+  <div class="hero-visual">
+    <div class="hero-duo" id="heroDuo">
+      <div class="jose-wrap">
+        <video autoplay muted loop playsinline onerror="this.style.display='none'">
           <source src="aynova.mp4" type="video/mp4"/>
         </video>
-        <div style="position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(0deg,rgba(2,5,16,0.8),transparent);"></div>
-        <div style="position:absolute;bottom:16px;left:16px;background:rgba(0,212,255,0.15);border:1px solid rgba(0,212,255,0.3);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;color:var(--electric);">▶ Josè & AyNova</div>
       </div>
-      <div class="glow-line"></div>
+      <div class="aynova-wrap">
+        <img src="aynova.png" alt="AyNova" onerror="this.parentElement.innerHTML='✨';this.parentElement.style.fontSize='60px';this.parentElement.style.display='flex';this.parentElement.style.alignItems='center';this.parentElement.style.justifyContent='center';"/>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats">
-  <div class="stats-grid">
-    <div class="stat-item"><h3 data-target="20" data-suffix="+">0+</h3><p>ANNI DI ESPERIENZA</p></div>
-    <div class="stat-item"><h3 data-target="30" data-suffix="K">0K</h3><p>FOLLOWER LINKEDIN</p></div>
-    <div class="stat-item"><h3 data-target="10" data-suffix="+">0+</h3><p>SETTORI FORMATIVI</p></div>
-    <div class="stat-item"><h3 data-target="3" data-suffix="">0</h3><p>CONTINENTI</p></div>
+<section class="stats-section">
+  <div class="bento">
+    <div class="bento-item big"><h3>20+</h3><p>ANNI DI ESPERIENZA TRA EUROPA E MEDIO ORIENTE</p></div>
+    <div class="bento-item"><h3>30K</h3><p>FOLLOWER LINKEDIN</p></div>
+    <div class="bento-item"><h3>10+</h3><p>SETTORI FORMATIVI</p></div>
+    <div class="bento-item"><h3>3</h3><p>CONTINENTI</p></div>
   </div>
-</div>
+</section>
 
-<!-- CHI SONO -->
-<section class="section bio-section" id="bio">
+<section class="section" id="bio">
   <div class="bio-grid">
     <div class="bio-photo">
       <div class="bio-photo-frame">
-        <img src="jose.jpg" alt="Dott. Josè Sala" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0a1628,#0d1f3c)';this.parentElement.style.height='460px'"/>
+        <img src="jose.jpg" alt="Dott. Josè Sala" onerror="this.style.display='none'"/>
       </div>
       <div class="bio-badge">🎓 AI Creative & Kaizen Strategist</div>
     </div>
     <div class="bio-content">
       <div class="section-label">Chi Sono</div>
-      <h2 class="section-title" style="font-size:clamp(36px,5vw,64px);font-weight:900;letter-spacing:-1px;text-shadow:0 0 20px rgba(0,212,255,0.5);animation:glowPulse 2s ease-in-out infinite;">Dott. <span>Josè Sala</span></h2>
+      <h2 class="section-title">Dott. <span>Josè Sala</span></h2>
       <div class="bio-mission">
         <h4>🌟 LA MIA MISSIONE</h4>
         <p>Essere una luce per le persone nei momenti di grande cambiamento. Guidare chiunque voglia reinventarsi professionalmente verso le opportunità che la rivoluzione AI sta creando oggi.</p>
@@ -298,7 +259,7 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
         <p>Ho dedicato oltre <strong>20 anni della mia vita professionale</strong> ad una sola grande missione: aiutare persone e organizzazioni a navigare il cambiamento con fiducia, metodo e competenza.</p>
         <p>Il mio percorso ha attraversato i settori più complessi e sfidanti del panorama industriale globale: dall'<strong>Aerospace con Agusta Westland</strong>, alla Supply Chain con <strong>Linde Material Handling</strong>, dalla leadership executive in Europa con <strong>Cws-Boco</strong>, fino alla frontiera dell'intelligenza artificiale con <strong>Amazon, Fincantieri</strong> e le più grandi realtà del Middle East.</p>
         <p>Sono esperto in <strong>AI, Digital Transformation, Metodologia Kaizen, Office 365 Copilot, Cyber Security</strong> e formatore di alto livello per manager, ingegneri e team leader in Italia, Europa e Medio Oriente.</p>
-        <p>Laureato in Informatica all'<strong>Università Insubria di Varese</strong>, parlo correntemente italiano e inglese. Lavoro tra <strong>Europa e Medio Oriente</strong> con una visione globale e un approccio profondamente umano.</p>
+        <p>Laureato in Informatica all'<strong>Università Insubria di Varese</strong>, parlo correntemente italiano e inglese.</p>
       </div>
       <div class="skills-row">
         <span class="skill-tag">🤖 AI & Copilot</span>
@@ -316,152 +277,67 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
   </div>
 </section>
 
-<!-- TIMELINE CARRIERA -->
-<section class="section timeline-section">
+<section class="section">
   <div style="text-align:center;margin-bottom:60px;">
     <div class="section-label">Il Percorso</div>
     <h2 class="section-title">Una carriera costruita<br/>sul <span>campo</span></h2>
   </div>
   <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-dot">🚀</div>
-      <div class="tl-body">
-        <div class="tl-year">2019 — OGGI</div>
-        <div class="tl-title">Manager AI Master Learning & Digital Transformation</div>
-        <div class="tl-company">Aerospace · Fincantieri · Amazon · Randstad — Europa & Medio Oriente</div>
-        <p class="tl-desc">Formazione su AI, Digital Transformation, Copilot aziendale, Cyber Security e Supply Chain 4.0 per dirigenti, ingegneri e team manager nelle più grandi organizzazioni globali.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot">🌏</div>
-      <div class="tl-body">
-        <div class="tl-year">2024 — OGGI</div>
-        <div class="tl-title">Co-founder PT Rusdi Management Production</div>
-        <div class="tl-company">India — Sviluppo scuole di formazione</div>
-        <p class="tl-desc">Progettazione e coordinamento di percorsi formativi innovativi in India. Espansione internazionale del modello Academy.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot">🌊</div>
-      <div class="tl-body">
-        <div class="tl-year">2023 — OGGI</div>
-        <div class="tl-title">Business Developer — Sea Revolution China</div>
-        <div class="tl-company">Cina — Veicoli ibridi, 6G e sistemi server</div>
-        <p class="tl-desc">Sviluppo di partnership internazionali nel settore dei veicoli ibridi, tecnologia 6G e infrastrutture server di nuova generazione.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot">⚙️</div>
-      <div class="tl-body">
-        <div class="tl-year">2018 — 2020</div>
-        <div class="tl-title">Ingegnere dei Processi Senior</div>
-        <div class="tl-company">Coty Inc — Milano</div>
-        <p class="tl-desc">Gestione delle risorse, ottimizzazione dei processi aziendali, controllo qualità e supervisione di progetti complessi a livello europeo.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot">👔</div>
-      <div class="tl-body">
-        <div class="tl-year">2011 — 2017</div>
-        <div class="tl-title">Direttore Esecutivo</div>
-        <div class="tl-company">Cws-Boco — Milano</div>
-        <p class="tl-desc">Leadership strategica, gestione team senior, sviluppo piani aziendali e costruzione di relazioni con stakeholder, azionisti e agenzie governative.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot">✈️</div>
-      <div class="tl-body">
-        <div class="tl-year">2008 — 2011</div>
-        <div class="tl-title">Project Manager Supply Chain Aerospace</div>
-        <div class="tl-company">Agusta Westland — Varese</div>
-        <p class="tl-desc">Gestione stakeholder internazionali, definizione obiettivi, piani di progetto e monitoraggio in uno dei settori più esigenti al mondo.</p>
-      </div>
-    </div>
+    <div class="tl-item"><div class="tl-dot">🚀</div><div class="tl-body">
+      <div class="tl-year">2019 — OGGI</div><div class="tl-title">Manager AI Master Learning & Digital Transformation</div>
+      <div class="tl-company">Aerospace · Fincantieri · Amazon · Randstad — Europa & Medio Oriente</div>
+      <p class="tl-desc">Formazione su AI, Digital Transformation, Copilot aziendale, Cyber Security e Supply Chain 4.0 per dirigenti, ingegneri e team manager nelle più grandi organizzazioni globali.</p>
+    </div></div>
+    <div class="tl-item"><div class="tl-dot">🌏</div><div class="tl-body">
+      <div class="tl-year">2024 — OGGI</div><div class="tl-title">Co-founder PT Rusdi Management Production</div>
+      <div class="tl-company">India — Sviluppo scuole di formazione</div>
+      <p class="tl-desc">Progettazione e coordinamento di percorsi formativi innovativi in India. Espansione internazionale del modello Academy.</p>
+    </div></div>
+    <div class="tl-item"><div class="tl-dot">🌊</div><div class="tl-body">
+      <div class="tl-year">2023 — OGGI</div><div class="tl-title">Business Developer — Sea Revolution China</div>
+      <div class="tl-company">Cina — Veicoli ibridi, 6G e sistemi server</div>
+      <p class="tl-desc">Sviluppo di partnership internazionali nel settore dei veicoli ibridi, tecnologia 6G e infrastrutture server di nuova generazione.</p>
+    </div></div>
+    <div class="tl-item"><div class="tl-dot">⚙️</div><div class="tl-body">
+      <div class="tl-year">2018 — 2020</div><div class="tl-title">Ingegnere dei Processi Senior</div>
+      <div class="tl-company">Coty Inc — Milano</div>
+      <p class="tl-desc">Gestione delle risorse, ottimizzazione dei processi aziendali, controllo qualità e supervisione di progetti complessi a livello europeo.</p>
+    </div></div>
+    <div class="tl-item"><div class="tl-dot">👔</div><div class="tl-body">
+      <div class="tl-year">2011 — 2017</div><div class="tl-title">Direttore Esecutivo</div>
+      <div class="tl-company">Cws-Boco — Milano</div>
+      <p class="tl-desc">Leadership strategica, gestione team senior, sviluppo piani aziendali e costruzione di relazioni con stakeholder, azionisti e agenzie governative.</p>
+    </div></div>
+    <div class="tl-item"><div class="tl-dot">✈️</div><div class="tl-body">
+      <div class="tl-year">2008 — 2011</div><div class="tl-title">Project Manager Supply Chain Aerospace</div>
+      <div class="tl-company">Agusta Westland — Varese</div>
+      <p class="tl-desc">Gestione stakeholder internazionali, definizione obiettivi, piani di progetto e monitoraggio in uno dei settori più esigenti al mondo.</p>
+    </div></div>
   </div>
 </section>
 
-<!-- STORIE CHE MI HANNO FORMATO -->
-<section class="section storie-section" id="storie" style="background:linear-gradient(180deg,var(--dark) 0%,var(--black) 100%);">
-  <div style="text-align:center;margin-bottom:60px;">
-    <div class="section-label">La Mia Essenza</div>
-    <h2 class="section-title">Storie che mi hanno <span>formato</span></h2>
-    <p style="color:var(--gray);font-size:16px;max-width:640px;margin:16px auto 0;line-height:1.7;">Non sono solo le competenze a definire un formatore. Sono le persone che hai incontrato, i momenti che ti hanno cambiato, le storie che porti nel cuore.</p>
-  </div>
-
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;max-width:1200px;margin:0 auto;">
-
-    <!-- STORIA 1 - CARCERE -->
-    <div class="storia-card" style="background:var(--card);border:1px solid rgba(0,212,255,0.1);border-radius:24px;padding:40px 32px;position:relative;overflow:hidden;transition:all .4s;cursor:default;">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--electric));"></div>
-      <div style="font-size:52px;margin-bottom:20px;">🌹</div>
-      <div style="color:var(--electric);font-size:12px;font-weight:800;letter-spacing:2px;margin-bottom:12px;">CARCERE DI MILANO</div>
-      <h3 style="font-size:20px;font-weight:900;margin-bottom:16px;color:var(--white);">La rosa che vale più di ogni certificato</h3>
-      <p style="color:var(--gray);font-size:14px;line-height:1.8;">Sono entrato nel carcere di Milano per formare dei detenuti. Non sapevo cosa aspettarmi. Non sapevo se avrei fatto la differenza. Alla fine del percorso mi hanno regalato una rosa — fatta a mano da loro. In quel momento ho capito perché faccio questo lavoro. Non per i titoli. Non per i soldi. Per quel momento. Perché la formazione vera non trasferisce competenze. <strong style="color:var(--white);">Trasferisce speranza.</strong></p>
-    </div>
-
-    <!-- STORIA 2 - RAGAZZO DSA -->
-    <div class="storia-card" style="background:var(--card);border:1px solid rgba(123,47,255,0.1);border-radius:24px;padding:40px 32px;position:relative;overflow:hidden;transition:all .4s;cursor:default;">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--electric));"></div>
-      <div style="font-size:52px;margin-bottom:20px;">⭐</div>
-      <div style="color:var(--electric);font-size:12px;font-weight:800;letter-spacing:2px;margin-bottom:12px;">IL RAGAZZO DSA</div>
-      <h3 style="font-size:20px;font-weight:900;margin-bottom:16px;color:var(--white);">"Dott. Sala, posso dare una mano?"</h3>
-      <p style="color:var(--gray);font-size:14px;line-height:1.8;">L'ente formativo mi aveva detto di trattarlo diversamente. Non l'ho fatto. Per me era come tutti gli altri — con la stessa dignità e la stessa fiducia. Quel ragazzo si è sentito a suo agio e ha dimostrato un talento che nessuno si aspettava. Al test finale non solo aveva finito prima degli altri — stava aiutando i compagni. Mi ha chiesto: <em style="color:var(--white);">"Dott. Sala, posso dare una mano?"</em> Ho risposto: <strong style="color:var(--white);">"Certo, fai."</strong> Quel giorno ho capito cosa significa credere davvero nelle persone.</p>
-    </div>
-
-    <!-- STORIA 3 - SIGNORA 55 ANNI -->
-    <div class="storia-card" style="background:var(--card);border:1px solid rgba(0,212,255,0.1);border-radius:24px;padding:40px 32px;position:relative;overflow:hidden;transition:all .4s;cursor:default;">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--electric),var(--blue));"></div>
-      <div style="font-size:52px;margin-bottom:20px;">👩</div>
-      <div style="color:var(--electric);font-size:12px;font-weight:800;letter-spacing:2px;margin-bottom:12px;">LA SIGNORA DI 55 ANNI</div>
-      <h3 style="font-size:20px;font-weight:900;margin-bottom:16px;color:var(--white);">L'età non è mai un limite</h3>
-      <p style="color:var(--gray);font-size:14px;line-height:1.8;">Sto formando una donna di 55 anni su informatica e comunicazione efficace. Potrebbe non fare nulla — essere presente ma non partecipare. Invece fa gli esercizi. Fa domande. Torna con i compiti fatti. Mi ha insegnato più lei a me che io a lei. Mi ha ricordato che <strong style="color:var(--white);">il momento per investire su se stessi non è "quando avrò tempo". È adesso. Sempre adesso.</strong> Il mercato del lavoro non aspetta nessuno. Lei lo ha capito. Quanti altri potrebbero farlo?</p>
-    </div>
-
-    <!-- STORIA 4 - AYNOVA -->
-    <div class="storia-card" style="background:var(--card);border:1px solid rgba(123,47,255,0.1);border-radius:24px;padding:40px 32px;position:relative;overflow:hidden;transition:all .4s;cursor:default;">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--blue));"></div>
-      <div style="font-size:52px;margin-bottom:20px;">🤖</div>
-      <div style="color:var(--electric);font-size:12px;font-weight:800;letter-spacing:2px;margin-bottom:12px;">LA NASCITA DI AYNOVA</div>
-      <h3 style="font-size:20px;font-weight:900;margin-bottom:16px;color:var(--white);">Costruita a costo zero. Con anima.</h3>
-      <p style="color:var(--gray);font-size:14px;line-height:1.8;">Ho creato AyNova da solo. Senza soldi. Senza un team. Senza una struttura alle spalle. Solo con la forza di un'idea e la determinazione di realizzarla. Le ho dato forma, voce e anima. Perché volevo dimostrare una cosa sola: <strong style="color:var(--white);">che l'AI, usata con intelligenza e creatività umana, può creare qualcosa di straordinario.</strong> AyNova non è uno strumento. È la prova vivente che il futuro appartiene a chi osa immaginarlo.</p>
-    </div>
-
-  </div>
-
-  <div style="text-align:center;margin-top:60px;">
-    <p style="color:var(--gray);font-size:16px;font-style:italic;max-width:600px;margin:0 auto 28px;">"Ne ho molte altre di storie da raccontare. Ogni persona che ho incontrato mi ha lasciato qualcosa. Questo è il mio vero bagaglio professionale."</p>
-    <a href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" class="btn-primary">💬 Raccontami la tua storia</a>
-  </div>
-</section>
-
-<!-- VISION & MISSION -->
-<section class="section vision-section" id="vision">
+<section class="section" id="vision">
   <div style="text-align:center;margin-bottom:60px;">
     <div class="section-label">Valori Fondanti</div>
     <h2 class="section-title">Mission & <span>Vision</span></h2>
   </div>
   <div class="vision-grid">
     <div class="vision-card mission">
-      <div class="icon">🌟</div>
-      <h3>La Missione</h3>
-      <p>Essere una luce per le persone nei momenti di grande cambiamento. In un'era di trasformazioni profonde, voglio essere la guida che aiuta chiunque — professionista, manager o imprenditore — a non perdersi, ma a reinventarsi e cogliere le opportunità che il futuro offre.</p>
+      <div class="icon">🌟</div><h3>La Missione</h3>
+      <p>Essere una luce per le persone nei momenti di grande cambiamento. In un'era di trasformazioni profonde, voglio essere la guida che aiuta chiunque a non perdersi, ma a reinventarsi e cogliere le opportunità che il futuro offre.</p>
     </div>
     <div class="vision-card vision">
-      <div class="icon">🌍</div>
-      <h3>La Vision</h3>
-      <p>Un mondo in cui l'essere umano e l'intelligenza artificiale lavorano in modo simbiotico: uno completa l'altro, uno potenzia l'altro. Non AI contro l'uomo — ma AI con l'uomo. Come Internet ha connesso il mondo, l'AI amplificherà il potenziale di ogni persona.</p>
+      <div class="icon">🌍</div><h3>La Vision</h3>
+      <p>Un mondo in cui l'essere umano e l'intelligenza artificiale lavorano in modo simbiotico: uno completa l'altro, uno potenzia l'altro. Non AI contro l'uomo — ma AI con l'uomo.</p>
     </div>
   </div>
 </section>
 
-<!-- AYNOVA -->
-<section class="section aynova-section" id="aynova">
+<section class="section" id="aynova">
   <div class="aynova-inner">
     <div class="aynova-visual">
-      <div class="aynova-orb" style="width:380px;height:380px;border-radius:24px;overflow:hidden;border:1px solid rgba(123,47,255,0.3);box-shadow:0 0 60px rgba(123,47,255,0.2);">
-        <video
-          autoplay muted loop playsinline
-          style="width:100%;height:100%;object-fit:cover;">
+      <div class="aynova-orb">
+        <video autoplay muted loop playsinline onerror="this.style.display='none'">
           <source src="aynova2.mp4" type="video/mp4"/>
         </video>
       </div>
@@ -472,44 +348,18 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
       <p>AyNova non è uno strumento. È un'entità digitale a cui ho dato forma, voce e anima. Costruita a partire da zero, è la dimostrazione vivente che l'AI — usata con intelligenza e creatività — può diventare un vero partner per l'essere umano.</p>
       <p>AyNova è il volto di AyNova Academy: insegna, ispira e dimostra ogni giorno che il futuro non è "uomo contro macchina", ma "uomo con macchina".</p>
       <div class="aynova-features">
-        <div class="aynova-feat">
-          <div class="feat-icon">🎭</div>
-          <div>
-            <h4>Forma, Voce e Anima</h4>
-            <p>Creata da zero con gli strumenti AI più avanzati — un progetto unico nel suo genere.</p>
-          </div>
-        </div>
-        <div class="aynova-feat">
-          <div class="feat-icon">🤝</div>
-          <div>
-            <h4>Partner, non Strumento</h4>
-            <p>AyNova co-conduce sessioni, interagisce con gli studenti e porta una prospettiva unica.</p>
-          </div>
-        </div>
-        <div class="aynova-feat">
-          <div class="feat-icon">💡</div>
-          <div>
-            <h4>Simbolo di Possibilità</h4>
-            <p>Dimostra a chiunque che la creatività umana + AI può creare qualcosa di straordinario.</p>
-          </div>
-        </div>
+        <div class="aynova-feat"><div class="feat-icon">🎭</div><div><h4>Forma, Voce e Anima</h4><p>Creata da zero con gli strumenti AI più avanzati — un progetto unico nel suo genere.</p></div></div>
+        <div class="aynova-feat"><div class="feat-icon">🤝</div><div><h4>Partner, non Strumento</h4><p>AyNova co-conduce sessioni, interagisce con gli studenti e porta una prospettiva unica.</p></div></div>
+        <div class="aynova-feat"><div class="feat-icon">💡</div><div><h4>Simbolo di Possibilità</h4><p>Dimostra a chiunque che la creatività umana + AI può creare qualcosa di straordinario.</p></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<div style="position:relative;z-index:5;background:#0a1628;border:2px solid rgba(0,212,255,0.35);max-width:700px;margin:40px auto;text-align:center;padding:32px 24px;border-radius:20px;display:block;">
-      <p style="margin-bottom:20px;color:#c8d6e8;font-size:16px;">Vuoi provarla davvero? Parla con AyNova in tempo reale — ragiona seguendo il metodo, le storie e i principi di Josè.</p>
-      <a href="https://claude.ai/public/artifacts/a82156a0-f02e-41c5-97a3-4474a1a6cca4" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#0a66c2,#00d4ff);color:#fff;padding:16px 36px;border-radius:50px;font-weight:800;font-size:16px;text-decoration:none;box-shadow:0 0 25px rgba(0,212,255,0.6);">💬 Chatta con AyNova</a>
-      <p style="margin-top:16px;font-size:13px;color:#8892a4;">Si apre in una nuova pagina — per scrivere serve un account Claude (gratuito).</p>
-    </div>
-
-    <!-- MANIFESTO -->
-<section class="section manifesto-section">
+<section class="section">
   <div style="text-align:center;margin-bottom:60px;">
     <div class="section-label">I Principi</div>
     <h2 class="section-title">Il Manifesto <span>AyNova</span></h2>
-    <p class="section-sub" style="margin:0 auto;">6 principi che guidano ogni percorso formativo.</p>
   </div>
   <div class="manifesto-grid">
     <div class="m-card"><div class="m-num">01</div><div class="m-icon">🌊</div><h3>Il cambiamento è inevitabile</h3><p>Non puoi fermarlo. Puoi scegliere se subirlo o guidarlo. AyNova Academy ti insegna a guidarlo.</p></div>
@@ -521,38 +371,70 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
   </div>
 </section>
 
-<!-- PERCORSI -->
-<section class="section percorsi-section" id="percorsi">
+<section class="section" id="storie">
+  <div style="text-align:center;margin-bottom:60px;">
+    <div class="section-label">La Mia Essenza</div>
+    <h2 class="section-title">Storie che mi hanno <span>formato</span></h2>
+    <p class="section-sub" style="margin:16px auto 0;">Clicca su ogni card per leggere la storia completa.</p>
+  </div>
+  <div class="storie-grid">
+    <div class="storia-card" onclick="this.classList.toggle('open')">
+      <div class="storia-icon">🌹</div>
+      <div class="storia-label">CARCERE DI MILANO</div>
+      <div class="storia-title">La rosa che vale più di ogni certificato</div>
+      <div class="storia-toggle">Clicca per leggere ↓</div>
+      <div class="storia-full"><p>Sono entrato nel carcere di Milano per formare dei detenuti. Non sapevo cosa aspettarmi. Non sapevo se avrei fatto la differenza. Alla fine del percorso mi hanno regalato una rosa — fatta a mano da loro. In quel momento ho capito perché faccio questo lavoro. Non per i titoli. Non per i soldi. Per quel momento. Perché la formazione vera non trasferisce competenze. <strong>Trasferisce speranza.</strong></p></div>
+    </div>
+    <div class="storia-card" onclick="this.classList.toggle('open')">
+      <div class="storia-icon">⭐</div>
+      <div class="storia-label">IL RAGAZZO DSA</div>
+      <div class="storia-title">"Dott. Sala, posso dare una mano?"</div>
+      <div class="storia-toggle">Clicca per leggere ↓</div>
+      <div class="storia-full"><p>L'ente formativo mi aveva detto di trattarlo diversamente. Non l'ho fatto. Per me era come tutti gli altri — con la stessa dignità e la stessa fiducia. Quel ragazzo si è sentito a suo agio e ha dimostrato un talento che nessuno si aspettava. Al test finale non solo aveva finito prima degli altri — stava aiutando i compagni. Mi ha chiesto: <em>"Dott. Sala, posso dare una mano?"</em> Ho risposto: <strong>"Certo, fai."</strong></p></div>
+    </div>
+    <div class="storia-card" onclick="this.classList.toggle('open')">
+      <div class="storia-icon">👩</div>
+      <div class="storia-label">LA SIGNORA DI 55 ANNI</div>
+      <div class="storia-title">L'età non è mai un limite</div>
+      <div class="storia-toggle">Clicca per leggere ↓</div>
+      <div class="storia-full"><p>Sto formando una donna di 55 anni su informatica e comunicazione efficace. Potrebbe non fare nulla — essere presente ma non partecipare. Invece fa gli esercizi. Fa domande. Torna con i compiti fatti. Mi ha insegnato più lei a me che io a lei. Mi ha ricordato che <strong>il momento per investire su se stessi non è "quando avrò tempo". È adesso. Sempre adesso.</strong></p></div>
+    </div>
+    <div class="storia-card" onclick="this.classList.toggle('open')">
+      <div class="storia-icon">🤖</div>
+      <div class="storia-label">LA NASCITA DI AYNOVA</div>
+      <div class="storia-title">Costruita a costo zero. Con anima.</div>
+      <div class="storia-toggle">Clicca per leggere ↓</div>
+      <div class="storia-full"><p>Ho creato AyNova da solo. Senza soldi. Senza un team. Le ho dato forma, voce e anima. Perché volevo dimostrare una cosa sola: <strong>che l'AI, usata con intelligenza e creatività umana, può creare qualcosa di straordinario.</strong> AyNova non è uno strumento. È la prova vivente che il futuro appartiene a chi osa immaginarlo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="percorsi">
   <div style="text-align:center;margin-bottom:60px;">
     <div class="section-label">Cosa Offro</div>
     <h2 class="section-title">I Percorsi <span>Academy</span></h2>
-    <p class="section-sub" style="margin:0 auto;">Ogni percorso è progettato per chi vuole trasformare l'AI in un vantaggio competitivo concreto.</p>
   </div>
   <div class="percorsi-grid">
     <div class="p-card">
-      <div class="p-icon">🎯</div>
-      <h3>Sessione Discovery</h3>
-      <p>Una sessione virtuale 1:1 con Josè e AyNova. Capisci dove sei, dove vuoi andare e come l'AI può accelerare il tuo percorso professionale.</p>
+      <div class="p-icon">🎯</div><h3>Sessione Discovery</h3>
+      <p>Una sessione virtuale 1:1 con Josè e AyNova. Capisci dove sei, dove vuoi andare e come l'AI può accelerare il tuo percorso.</p>
       <div class="p-price">Gratuita <span>— Per iniziare</span></div>
     </div>
     <div class="p-card featured">
-      <div class="p-feat-badge">⭐ TOP</div>
-      <div class="p-icon">🚀</div>
-      <h3>Percorso AyNova Completo</h3>
-      <p>Il percorso formativo su AI, innovazione e cambiamento professionale. Metodologie concrete, sessioni live con Josè e AyNova, strumenti applicabili subito.</p>
+      <div class="p-badge">⭐ TOP</div>
+      <div class="p-icon">🚀</div><h3>Percorso AyNova Completo</h3>
+      <p>Il percorso formativo su AI, innovazione e cambiamento professionale. Sessioni live con Josè e AyNova, strumenti applicabili subito.</p>
       <div class="p-price">Su misura <span>— Contattami</span></div>
     </div>
     <div class="p-card">
-      <div class="p-icon">⚡</div>
-      <h3>Kaizen + AI</h3>
-      <p>Unisci la metodologia del miglioramento continuo alla potenza dell'AI. Per chi vuole crescere in modo strutturato ogni singolo giorno.</p>
+      <div class="p-icon">⚡</div><h3>Kaizen + AI</h3>
+      <p>Unisci la metodologia del miglioramento continuo alla potenza dell'AI. Per chi vuole crescere in modo strutturato ogni giorno.</p>
       <div class="p-price">Su misura <span>— Contattami</span></div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" id="contatti">
+<section class="section cta-section" id="contatti">
   <h2>Pronto a cavalcare<br/><span style="background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">l'onda dell'AI?</span></h2>
   <p>Non aspettare che il cambiamento ti travolga. Inizia oggi, gratuitamente. Josè e AyNova ti aspettano in aula virtuale.</p>
   <div class="cta-btns">
@@ -561,180 +443,71 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">Ay<span>Nova</span> Academy</div>
   <div class="footer-tagline">L'Intelligenza Umana incontra l'AI</div>
   <div class="footer-links">
-    <a href="#bio">Chi Sono</a>
-    <a href="#aynova">AyNova</a>
-    <a href="#vision">Vision</a>
-    <a href="#percorsi">Percorsi</a>
+    <a href="#bio">Chi Sono</a><a href="#aynova">AyNova</a><a href="#vision">Vision</a><a href="#percorsi">Percorsi</a>
     <a href="https://www.linkedin.com/in/dott-sala-jos%C3%A8-project-master-learning-innovation/" target="_blank">LinkedIn</a>
   </div>
-  <p>© 2026 AyNova Academy — Dott. Josè Sala<br/>AI Creative & Task | Kaizen Strategist | Innovation | Digital | Copilot<br/>Europa · Medio Oriente · Global</p>
+  <p>© 2026 AyNova Academy — Dott. Josè Sala<br/>AI Creative & Task | Kaizen Strategist | Innovation | Digital | Copilot</p>
 </footer>
 
 <script>
-// ============ MATRIX RAIN ============
-(function(){
-  const c = document.getElementById('bgCanvas');
-  const x = c.getContext('2d');
-  function sz(){ c.width=window.innerWidth; c.height=window.innerHeight; }
-  sz(); window.addEventListener('resize',sz);
-  const fs=16;
-  const chars='アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*';
-  let drops=[];
-  function init(){ drops=Array.from({length:Math.floor(c.width/fs)},()=>Math.floor(Math.random()*-50)); }
-  init(); window.addEventListener('resize',init);
-  function draw(){
-    x.fillStyle='rgba(0,0,0,0.05)';
-    x.fillRect(0,0,c.width,c.height);
-    for(let i=0;i<drops.length;i++){
-      const ch=chars[Math.floor(Math.random()*chars.length)];
-      const py=drops[i]*fs;
-      if(py>=0 && py<c.height){
-        // Testa colonna — bianco brillante con glow
-        x.shadowBlur=25; x.shadowColor='#00ffff';
-        x.fillStyle='#ffffff';
-        x.font=`bold ${fs}px monospace`;
-        x.fillText(ch,i*fs,py);
-        // Corpo colonna — azzurro elettrico
-        x.shadowBlur=10; x.shadowColor='#00d4ff';
-        x.fillStyle='#00d4ff';
-        x.font=`${fs}px monospace`;
-        x.fillText(chars[Math.floor(Math.random()*chars.length)],i*fs,py+fs);
-        x.fillStyle='rgba(0,180,220,0.7)';
-        x.fillText(chars[Math.floor(Math.random()*chars.length)],i*fs,py+fs*2);
-        x.fillStyle='rgba(0,140,180,0.4)';
-        x.fillText(chars[Math.floor(Math.random()*chars.length)],i*fs,py+fs*3);
-        x.shadowBlur=0;
-      }
-      drops[i]++;
-      if(drops[i]*fs>c.height && Math.random()>0.97) drops[i]=Math.floor(Math.random()*-30);
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-// ============ FINE MATRIX ============
-const container = document.getElementById('particles');
-for(let i=0;i<25;i++){
-  const p = document.createElement('div');
-  p.className = 'particle';
-  const size = Math.random()*3+1;
-  p.style.cssText = `
-    width:${size}px;height:${size}px;
-    left:${Math.random()*100}%;
-    background:${Math.random()>.5?'rgba(0,212,255,':'rgba(123,47,255,'}${Math.random()*.3+.1})';
-    animation-duration:${Math.random()*15+10}s;
-    animation-delay:-${Math.random()*20}s;
-  `;
-  container.appendChild(p);
+// Rete neurale di sfondo
+const canvas=document.getElementById('netCanvas');
+const ctx=canvas.getContext('2d');
+function sz(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+sz();window.addEventListener('resize',sz);
+const nodes=Array.from({length:60},()=>({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}));
+function drawNet(){
+  ctx.fillStyle='rgba(2,5,16,0.18)';ctx.fillRect(0,0,canvas.width,canvas.height);
+  nodes.forEach((n,i)=>{
+    n.x+=n.vx;n.y+=n.vy;
+    if(n.x<0||n.x>canvas.width)n.vx*=-1;
+    if(n.y<0||n.y>canvas.height)n.vy*=-1;
+    nodes.forEach((n2,j)=>{
+      if(j<=i)return;
+      const d=Math.hypot(n2.x-n.x,n2.y-n.y);
+      if(d<130){ctx.strokeStyle=`rgba(0,212,255,${.12*(1-d/130)})`;ctx.beginPath();ctx.moveTo(n.x,n.y);ctx.lineTo(n2.x,n2.y);ctx.stroke();}
+    });
+    ctx.fillStyle='rgba(0,212,255,0.5)';ctx.beginPath();ctx.arc(n.x,n.y,1.8,0,Math.PI*2);ctx.fill();
+  });
+  requestAnimationFrame(drawNet);
+}
+drawNet();
+
+// Spotlight cursore
+document.addEventListener('mousemove',e=>{
+  document.getElementById('spotlight').style.setProperty('--mx',e.clientX+'px');
+  document.getElementById('spotlight').style.setProperty('--my',e.clientY+'px');
+});
+
+// Parallasse hero
+const heroDuo=document.getElementById('heroDuo');
+if(heroDuo){
+  document.addEventListener('mousemove',e=>{
+    const x=(e.clientX/window.innerWidth-0.5)*20;
+    const y=(e.clientY/window.innerHeight-0.5)*20;
+    heroDuo.style.transform=`translate(${x}px,${y}px)`;
+  });
 }
 
-// Scroll animazioni
-const observer = new IntersectionObserver(entries=>{
+// Scroll reveal
+const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.style.opacity='1';
-      e.target.style.transform='translateY(0) scale(1)';
-    }
+    if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}
   });
 },{threshold:.1});
-document.querySelectorAll('.m-card,.p-card,.tl-body,.vision-card,.aynova-feat,.storia-card,.stat-item').forEach((el,i)=>{
-  el.style.cssText+=`opacity:0;transform:translateY(32px) scale(0.97);transition:opacity .6s ${i*0.08}s,transform .6s ${i*0.08}s`;
+document.querySelectorAll('.m-card,.p-card,.tl-body,.vision-card,.storia-card,.bento-item').forEach((el,i)=>{
+  el.style.cssText+=`opacity:0;transform:translateY(24px);transition:opacity .6s ${i*0.05}s,transform .6s ${i*0.05}s`;
   observer.observe(el);
 });
 
-// Contatori animati nelle stats
-const animateCounter = (el, target, suffix='') => {
-  let current = 0;
-  const step = target / 60;
-  const timer = setInterval(() => {
-    current += step;
-    if(current >= target){
-      current = target;
-      clearInterval(timer);
-    }
-    el.textContent = Math.floor(current) + suffix;
-  }, 16);
-};
-
-const statsObserver = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const counters = e.target.querySelectorAll('h3[data-target]');
-      counters.forEach(c=>{
-        const target = parseInt(c.dataset.target);
-        const suffix = c.dataset.suffix||'';
-        animateCounter(c, target, suffix);
-      });
-      statsObserver.unobserve(e.target);
-    }
-  });
-},{threshold:.3});
-const statsGrid = document.querySelector('.stats-grid');
-if(statsGrid) statsObserver.observe(statsGrid);
-
-// Typing effect hero
-const typed = document.querySelector('.typed-text');
-if(typed){
-  const words = ['Ti potenzierà.','Ti differenzierà.','Ti libererà.','Ti potenzierà.'];
-  let wi=0, ci=0, deleting=false;
-  const type = () => {
-    const word = words[wi];
-    if(!deleting){
-      typed.textContent = word.slice(0,ci+1);
-      ci++;
-      if(ci===word.length){ deleting=true; setTimeout(type,1800); return; }
-    } else {
-      typed.textContent = word.slice(0,ci-1);
-      ci--;
-      if(ci===0){ deleting=false; wi=(wi+1)%words.length; }
-    }
-    setTimeout(type, deleting?40:80);
-  };
-  type();
-}
-
-// Hover glow sulle story cards
-document.querySelectorAll('.storia-card').forEach(card=>{
-  card.addEventListener('mouseenter',()=>{
-    card.style.transform='translateY(-8px)';
-    card.style.boxShadow='0 24px 60px rgba(0,212,255,0.15)';
-    card.style.borderColor='rgba(0,212,255,0.3)';
-  });
-  card.addEventListener('mouseleave',()=>{
-    card.style.transform='translateY(0)';
-    card.style.boxShadow='none';
-    card.style.borderColor='rgba(0,212,255,0.1)';
-  });
-});
-
-// Navbar scroll effect
+// Navbar scroll
 window.addEventListener('scroll',()=>{
-  const nav = document.querySelector('nav');
-  if(window.scrollY>50){
-    nav.style.background='rgba(2,5,16,0.98)';
-    nav.style.boxShadow='0 4px 30px rgba(0,0,0,0.5)';
-  } else {
-    nav.style.background='rgba(2,5,16,0.9)';
-    nav.style.boxShadow='none';
-  }
-});
-
-// Cursore glow personalizzato
-const cursor = document.createElement('div');
-cursor.style.cssText='position:fixed;width:20px;height:20px;border-radius:50%;background:rgba(0,212,255,0.15);border:1px solid rgba(0,212,255,0.4);pointer-events:none;z-index:9999;transition:transform .1s,width .3s,height .3s;transform:translate(-50%,-50%)';
-document.body.appendChild(cursor);
-document.addEventListener('mousemove',e=>{
-  cursor.style.left=e.clientX+'px';
-  cursor.style.top=e.clientY+'px';
-});
-document.querySelectorAll('a,button,.m-card,.p-card,.storia-card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ cursor.style.width='40px';cursor.style.height='40px';cursor.style.background='rgba(0,212,255,0.08)'; });
-  el.addEventListener('mouseleave',()=>{ cursor.style.width='20px';cursor.style.height='20px';cursor.style.background='rgba(0,212,255,0.15)'; });
+  const nav=document.querySelector('nav');
+  nav.style.background=window.scrollY>50?'rgba(2,5,16,0.98)':'rgba(2,5,16,0.9)';
 });
 </script>
 </body>

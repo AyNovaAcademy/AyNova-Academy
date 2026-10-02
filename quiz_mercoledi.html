@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quiz Mercoledi · AyNova Academy</title>
+<style>
+:root{--bg:#0a66c2;--bg2:#003f8a;--card:#fff;--tx:#111;--mu:#666;--ch:#f0f4ff;--op:#f8f9fa;--bd:#e9ecef;--ex:#f0f7ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--card:#1b2230;--tx:#f2f4f8;--mu:#aab;--ch:#26324a;--op:#232c3d;--bd:#34405a;--ex:#1f2c44}}
+:root[data-theme="dark"]{--card:#1b2230;--tx:#f2f4f8;--mu:#aab;--ch:#26324a;--op:#232c3d;--bd:#34405a;--ex:#1f2c44}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(135deg,var(--bg),var(--bg2));font-family:'Segoe UI',Arial,sans-serif;color:var(--tx);display:flex;justify-content:center;padding:20px}
+.card{background:var(--card);border-radius:24px;padding:30px 26px;max-width:560px;width:100%;box-shadow:0 24px 64px rgba(0,0,0,.25);align-self:flex-start}
+.badge{display:inline-block;background:#0a66c2;color:#fff;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:800;letter-spacing:1.2px}
+h1{font-size:24px;margin:14px 0 6px;line-height:1.3}h2{font-size:19px;line-height:1.45;margin:18px 0}
+.mu{color:var(--mu);font-size:14px}
+.days{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}
+.day{border:2px solid var(--bd);background:var(--op);color:var(--tx);border-radius:14px;padding:12px;text-align:left;cursor:pointer;font-size:14px}
+.day b{display:block;color:#0a66c2;font-size:12px;letter-spacing:1px}
+.day:hover{border-color:#0a66c2}
+.bar{background:var(--bd);border-radius:10px;height:7px;margin-top:10px}.bar i{display:block;height:7px;border-radius:10px;background:linear-gradient(90deg,#0a66c2,#00a8e0);transition:width .4s}
+.opt{display:flex;gap:12px;align-items:center;width:100%;margin-bottom:10px;padding:12px 14px;border-radius:12px;border:2px solid var(--bd);background:var(--op);color:var(--tx);font-size:15px;text-align:left;cursor:pointer}
+.opt span{flex:0 0 28px;height:28px;border-radius:50%;background:#0a66c2;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+.ok{border-color:#27ae60;background:rgba(39,174,96,.15)}.ok span{background:#27ae60}
+.ko{border-color:#e74c3c;background:rgba(231,76,60,.15)}.ko span{background:#e74c3c}
+.dim{opacity:.45}
+.ex{background:var(--ex);border:1px solid #b3d4f5;border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.5;margin:6px 0 14px}
+.btn{display:block;width:100%;background:#0a66c2;color:#fff;border:0;border-radius:12px;padding:14px;font-size:16px;font-weight:800;cursor:pointer;text-align:center;text-decoration:none}
+.ghost{background:none;border:2px solid var(--bd);color:var(--mu);margin-top:10px;font-size:14px;padding:10px}
+.score{font-size:68px;font-weight:900;color:#0a66c2;line-height:1;margin:10px 0}
+.cta{background:var(--ex);border-radius:16px;padding:20px;margin:16px 0;text-align:left}
+.cta p{margin:0 0 12px}
+.share{background:rgba(255,200,0,.12);border:1px solid #ffe58f;border-radius:12px;padding:12px 14px;font-size:14px;text-align:left;margin-bottom:12px}
+</style></head><body><div class="card" id="app"></div>
+<script>
+const SITE="https://aynovaacademy.github.io/AyNova-Academy";
+const Q=[
+{d:"LUNEDÌ",t:"Motivazione",e:"🔥",qs:[
+["Quando perdi la motivazione, qual è la reazione più efficace?",["Aspettare che torni da sola","Fare tutto in una volta per recuperare","Ricordare il proprio 'perché' e fare un piccolo passo concreto","Lamentarsi finché passa"],2,"La motivazione torna agendo, non aspettando. Un piccolo passo concreto riattiva il sistema."],
+["Cosa distingue la motivazione intrinseca da quella estrinseca?",["Quella intrinseca dipende dai premi esterni","Quella estrinseca è sempre più duratura","Quella intrinseca nasce dall'interno ed è la più solida","Nessuna differenza pratica"],2,"Chi si motiva solo con premi esterni è fragile. Il 'perché' interno resiste anche nelle fasi difficili."],
+["Che rapporto c'è tra disciplina e motivazione?",["La motivazione è più affidabile","La disciplina permette di agire anche senza motivazione","Senza motivazione non c'è disciplina","Sono la stessa cosa"],1,"La motivazione è un'emozione che sale e scende. La disciplina è un sistema che funziona sempre."],
+["Qual è il nemico numero uno della motivazione a lungo termine?",["Troppi obiettivi","Il perfezionismo che blocca l'azione","Le pause frequenti","Il confronto con chi ha successo"],1,"Il perfezionismo è procrastinazione mascherata da standard elevati. L'azione imperfetta batte l'inazione perfetta."],
+["Cosa fanno le persone altamente motivate?",["Non hanno mai crisi","Sono sempre di buon umore","Agiscono anche senza voglia, grazie a sistemi e abitudini","Hanno più energia per natura"],2,"Hanno crisi come tutti. La differenza sono i sistemi che le fanno muovere comunque."]]},
+{d:"MARTEDÌ",t:"Produttività e Focus",e:"🎯",qs:[
+["Il multitasking, nella pratica, cosa produce?",["Più risultati in meno tempo","Continui cambi di contesto che abbassano qualità e velocità","Maggiore creatività","Meno stanchezza"],1,"Il cervello non fa due cose complesse insieme: alterna. Ogni cambio costa tempo ed energia."],
+["Qual è il primo passo per gestire bene la giornata?",["Rispondere subito alle email","Definire 1-3 priorità che contano davvero","Fare le attività più facili","Lavorare più ore"],1,"Senza priorità chiare si finisce a rispondere alle urgenze degli altri."],
+["Come si protegge il lavoro profondo?",["Notifiche sempre attive","Blocchi di tempo dedicati senza interruzioni","Lavorare solo di sera","Tenere aperte molte schede"],1,"Il focus si costruisce con blocchi protetti nel calendario, non con la buona volontà."],
+["Cosa significa 'urgente' rispetto a 'importante'?",["Sono sinonimi","L'urgente richiede attenzione subito, l'importante fa avanzare i tuoi obiettivi","L'importante è sempre urgente","L'urgente va sempre fatto per primo"],1,"Chi vive solo di urgenze non ha mai tempo per ciò che è importante."],
+["Qual è il modo migliore di chiudere la giornata di lavoro?",["Staccare e basta","Annotare le 3 priorità del giorno dopo","Controllare l'ultima email","Rimandare tutto al mattino"],1,"Scrivere le priorità la sera elimina l'attrito del mattino e porta a partire subito."]]},
+{d:"MERCOLEDÌ",t:"AI sul Lavoro",e:"🤖",qs:[
+["Qual è la visione più utile dell'AI nel lavoro?",["Sostituisce le persone","Amplifica le capacità umane","È solo una moda","Serve solo ai programmatori"],1,"L'AI amplifica chi sa usarla: il valore sta nella combinazione di giudizio umano e velocità della macchina."],
+["Cosa determina la qualità di una risposta dell'AI?",["La fortuna","La chiarezza e il contesto della richiesta","La lunghezza del prompt a prescindere","Il computer usato"],1,"Un prompt chiaro, con obiettivo, contesto e formato atteso, produce risultati molto migliori."],
+["Come va trattato un output generato dall'AI?",["Copiato così com'è","Verificato e rifinito da una persona","Ignorato","Condiviso subito"],1,"L'AI può sbagliare: responsabilità e controllo restano umani."],
+["Quale attività conviene delegare all'AI per prima?",["Decisioni strategiche finali","Compiti ripetitivi e bozze iniziali","Relazioni con i clienti","Valutazioni etiche"],1,"Parti da ciò che è ripetitivo: liberi tempo per ciò che richiede giudizio e relazione."],
+["Qual è la competenza più preziosa nell'era dell'AI?",["Memorizzare dati","Fare domande giuste e pensare in modo critico","Digitare velocemente","Evitare la tecnologia"],1,"Chi sa porre le domande giuste e valutare le risposte guida l'AI invece di subirla."]]},
+{d:"GIOVEDÌ",t:"Cambiamento Professionale",e:"🔄",qs:[
+["Perché molte persone rimandano un cambiamento professionale?",["Non serve davvero","Paura dell'incertezza e dell'errore","Mancanza di tempo sempre","Perché è sbagliato"],1,"Spesso la paura dell'ignoto pesa più del rischio reale."],
+["Qual è un primo passo concreto per cambiare direzione?",["Dimettersi subito","Mappare competenze trasferibili e testarle in piccolo","Aspettare il momento perfetto","Copiare un collega"],1,"Le competenze trasferibili sono il ponte tra ciò che sai fare e ciò che vuoi fare."],
+["Cosa serve per reinventarsi dopo anni nello stesso ruolo?",["Ripartire da zero","Valorizzare l'esperienza e aggiornare le competenze","Nascondere il passato","Cambiare settore a caso"],1,"L'esperienza non si butta: si riposiziona con nuove competenze."],
+["Come ci si muove in un periodo di forte incertezza?",["Si resta immobili","Si fanno piccoli esperimenti e si raccolgono dati","Si segue la massa","Si decide a caso"],1,"Piccoli esperimenti riducono il rischio e danno informazioni reali."],
+["Chi può aiutare di più in una transizione?",["Nessuno","Una rete di persone e un mentore che ha già percorso quella strada","Solo i social","Solo la famiglia"],1,"Una guida che conosce il terreno accorcia i tempi e riduce gli errori."]]},
+{d:"VENERDÌ",t:"Comunicazione e Leadership",e:"🗣️",qs:[
+["Qual è la base di una comunicazione efficace?",["Parlare tanto","Ascoltare davvero prima di rispondere","Usare parole complesse","Avere sempre ragione"],1,"Comunicare bene parte dall'ascolto: capire prima di farsi capire."],
+["Cosa fa un buon leader davanti a un errore del team?",["Cerca il colpevole","Analizza cosa ha causato l'errore e come evitarlo","Lo nasconde","Ignora"],1,"Una cultura che impara dagli errori cresce; una che punisce nasconde i problemi."],
+["Come si dà un feedback efficace?",["In pubblico e in modo generico","Su fatti concreti, in privato, con una proposta di miglioramento","Solo via email lunghe","Mai"],1,"Fatti, non giudizi sulla persona, e una direzione chiara per migliorare."],
+["Cosa costruisce fiducia in un gruppo?",["Promettere molto","Coerenza tra ciò che si dice e ciò che si fa","Distanza","Controllo continuo"],1,"La fiducia si costruisce con coerenza ripetuta nel tempo."],
+["Qual è il compito principale di chi guida?",["Fare tutto da solo","Creare le condizioni perché gli altri facciano bene","Controllare ogni dettaglio","Decidere senza ascoltare"],1,"Un leader moltiplica il valore delle persone, non lo sostituisce."]]},
+{d:"SABATO",t:"Apprendimento Continuo",e:"📚",qs:[
+["Qual è il modo più efficace per imparare qualcosa di nuovo?",["Leggere passivamente","Praticare subito e ripetere a intervalli","Guardare video senza agire","Rimandare finché si è pronti"],1,"Pratica attiva e ripetizione distanziata fissano le competenze molto più della sola lettura."],
+["Cosa significa avere una 'growth mindset'?",["Pensare di essere già bravi","Credere che le capacità si sviluppino con impegno e strategia","Evitare le sfide","Imparare solo ciò che piace"],1,"Le capacità non sono fisse: si allenano."],
+["Perché insegnare a un altro aiuta a imparare?",["Non aiuta","Obbliga a chiarire e organizzare ciò che si sa","Fa perdere tempo","Serve solo agli insegnanti"],1,"Spiegare rivela i vuoti di comprensione e consolida le conoscenze."],
+["Quanto tempo al giorno serve per una crescita costante?",["Ore intere obbligatorie","Anche 15-20 minuti, ma ogni giorno","Solo nel weekend","Nessuno"],1,"La costanza batte l'intensità occasionale."],
+["Cosa fare dopo aver imparato qualcosa?",["Dimenticarlo","Applicarlo a un caso reale","Archiviarlo","Aspettare"],1,"Un'idea non applicata resta teoria: l'applicazione la trasforma in competenza."]]},
+{d:"DOMENICA",t:"Resilienza e Mindset",e:"🌱",qs:[
+["Cos'è la resilienza?",["Non cadere mai","La capacità di rialzarsi e adattarsi dopo le difficoltà","Ignorare i problemi","Essere sempre forti"],1,"Non è assenza di cadute: è la capacità di ripartire imparando."],
+["Davanti a un fallimento, qual è l'approccio più utile?",["Darsi la colpa","Estrarre la lezione e correggere la rotta","Smettere di provare","Dare la colpa agli altri"],1,"Il fallimento è un dato: serve per decidere meglio la prossima mossa."],
+["Cosa aiuta a gestire lo stress?",["Ignorarlo","Pause, movimento e confini chiari","Lavorare di più","Isolarsi"],1,"Il recupero fa parte della prestazione, non la ostacola."],
+["Qual è il ruolo del dialogo interno?",["Nessuno","Orienta emozioni e azioni: conviene renderlo costruttivo","Va sempre ascoltato","Va soppresso"],1,"Il modo in cui ti parli influenza ciò che ti permetti di tentare."],
+["Come si costruisce una visione per la settimana che inizia?",["Lasciando che accada","Scegliendo 3 obiettivi chiari e il primo passo per ciascuno","Aspettando lunedì","Facendo una lista infinita"],1,"Poche priorità chiare e un primo passo concreto fanno partire la settimana con slancio."]]}
+];
+const LV=[[0,2,"😔","Hai margine di crescita enorme","Su questo tema stai ancora delegando molto al caso. Con un metodo giusto puoi cambiare rotta in fretta."],[3,4,"🔋","Hai la scintilla, ti manca il metodo","Hai intuito le cose importanti, ma serve un sistema per trasformarle in abitudine."],[5,5,"🔥","Sei un motore autonomo","Applichi già i principi giusti. Il prossimo passo è renderli ancora più sistematici."]];
+const app=document.getElementById('app');let day=0,i=0,sc=0,ans=false;
+const T=()=>Q[day];
+function home(){app.innerHTML=`<span class="badge">⚡ QUIZ DELLA SETTIMANA</span><h1>Un quiz per ogni giorno</h1><p class="mu">5 domande · ~2 minuti · Scegli il giorno</p><div class="days">${Q.map((q,k)=>`<button class="day" onclick="start(${k})"><b>${q.d}</b>${q.e} ${q.t}</button>`).join('')}</div>`}
+function start(k){day=k;i=0;sc=0;ans=false;show()}
+function show(){const t=T(),q=t.qs[i];
+app.innerHTML=`<div style="display:flex;justify-content:space-between" class="mu"><b>${t.e} ${t.d} · ${t.t.toUpperCase()}</b><b>${i+1}/${t.qs.length}</b></div><div class="bar"><i style="width:${i/t.qs.length*100}%"></i></div><h2>${q[0]}</h2>${q[1].map((o,k)=>`<button class="opt" onclick="pick(${k})"><span>${String.fromCharCode(65+k)}</span><div>${o}</div></button>`).join('')}<div id="fb"></div>`}
+function pick(k){if(ans)return;ans=true;const q=T().qs[i];if(k===q[2])sc++;
+document.querySelectorAll('.opt').forEach((b,n)=>{if(n===q[2])b.classList.add('ok');else if(n===k)b.classList.add('ko');else b.classList.add('dim')});
+document.getElementById('fb').innerHTML=`<div class="ex">💡 ${q[3]}</div><button class="btn" onclick="next()">${i+1===T().qs.length?'Vedi il tuo risultato 🎯':'Prossima domanda →'}</button>`}
+function next(){ans=false;i++;i>=T().qs.length?result():show()}
+function result(){const t=T(),l=LV.find(x=>sc>=x[0]&&sc<=x[1]);
+app.innerHTML=`<div style="text-align:center"><span class="badge">${l[2]} ${l[3]}</span><div class="score">${sc}<span style="font-size:26px;color:#999">/${t.qs.length}</span></div><p class="mu" style="font-size:15px;line-height:1.6">${l[4]}</p>
+<div class="cta"><p><b>🚀 Vuoi trasformare ${t.t.toLowerCase()} in un sistema concreto?</b></p><p class="mu">Scopri i percorsi di AyNova Academy: l'AI che amplifica le capacità umane.</p><a class="btn" href="${SITE}" target="_blank" rel="noopener noreferrer">🌐 Vai al sito AyNova Academy</a></div>
+<div class="share"><b style="color:#0a66c2">💬 Torna su LinkedIn e commenta:</b><br>"${l[2]} Quiz ${t.t} (${t.d.toLowerCase()}): ${sc}/${t.qs.length} — ${l[3]}!"</div>
+<button class="btn ghost" onclick="start(day)">↩ Riprova il quiz</button></div>`}
+start(2);
+</script></body></html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>AyNova Academy — Dott. Josè Sala</title>
+<title>AyNova Academy · Dott. Josè Sala</title>
 <style>
 :root{
   --black:#020510; --dark:#060d1f; --card:#0a1628;
@@ -32,7 +32,8 @@ nav{position:fixed;top:0;width:100%;z-index:50;background:rgba(2,5,16,0.9);backd
 
 /* FLOATING AYNOVA WIDGET */
 .floating-widget{position:fixed;bottom:26px;right:26px;z-index:100;display:flex;align-items:center;gap:14px;}
-.floating-label{background:var(--card);border:1px solid rgba(0,212,255,0.4);padding:10px 18px;border-radius:20px;font-size:13px;font-weight:800;color:var(--electric);white-space:nowrap;box-shadow:0 4px 24px rgba(0,0,0,0.5);}
+.floating-label{display:flex;flex-direction:column;gap:2px;text-decoration:none;background:var(--card);border:1px solid rgba(0,212,255,0.4);padding:10px 18px;border-radius:20px;font-size:14px;font-weight:800;color:var(--electric);white-space:nowrap;box-shadow:0 4px 24px rgba(0,0,0,0.5);}
+.floating-label .fl-sub{font-size:11px;font-weight:500;color:var(--gray);}
 .floating-btn-wrap{position:relative;width:76px;height:76px;}
 .floating-ring{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(0,212,255,0.55);animation:ringPulse 2.4s ease-out infinite;}
 .floating-ring.r2{animation-delay:.8s;}
@@ -183,7 +184,9 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
   .bento{grid-template-columns:1fr 1fr;}
   .bento-item.big{grid-row:span 1;grid-column:span 2;}
   .nav-links{display:none;}
-  .floating-label{display:none;}
+  .floating-label{padding:7px 12px;font-size:12px;}
+  .floating-label .fl-sub{font-size:10px;}
+  .floating-widget{bottom:16px;right:12px;gap:8px;}
 }
 </style>
 </head>
@@ -205,11 +208,14 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 </nav>
 
 <div class="floating-widget">
-  <div class="floating-label">✨ AyNova · Oltre la chat</div>
+  <a class="floating-label" href="https://claude.ai/public/artifacts/a82156a0-f02e-41c5-97a3-4474a1a6cca4" target="_blank" rel="noopener" aria-label="Apri la chat con AyNova, l'AI creata da Josè Sala">
+    <span class="fl-main">💬 Parla con AyNova</span>
+    <span class="fl-sub">L'AI che ho creato io</span>
+  </a>
   <div class="floating-btn-wrap">
     <div class="floating-ring"></div>
     <div class="floating-ring r2"></div>
-    <a href="https://claude.ai/public/artifacts/a82156a0-f02e-41c5-97a3-4474a1a6cca4" target="_blank" class="floating-btn">✨</a>
+    <a href="https://claude.ai/public/artifacts/a82156a0-f02e-41c5-97a3-4474a1a6cca4" target="_blank" rel="noopener" class="floating-btn" aria-label="Apri la chat con AyNova" title="Parla con AyNova, l'AI creata da Josè Sala">💬</a>
   </div>
 </div>
 
@@ -218,7 +224,7 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
     <div class="hero-badge">⚡ La Rivoluzione AI è già iniziata</div>
     <h1>L'AI non ti<br/>sostituirà.<br/><span class="grad">Ti potenzierà.</span></h1>
     <p class="hero-sub">AyNova Academy unisce l'essenza umana con l'intelligenza artificiale. Come Internet ha trasformato il mondo, l'AI trasformerà il tuo lavoro.</p>
-    <p class="hero-tagline">"Non abbiate paura dell'AI. Imparate a usarla."<br/>— Dott. Josè Sala</p>
+    <p class="hero-tagline">"Non abbiate paura dell'AI. Imparate a usarla."<br/>Dott. Josè Sala</p>
     <div class="hero-btns">
       <a href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" class="btn-primary">🚀 Prima Sessione Gratuita</a>
       <a href="#bio" class="btn-ghost">Scopri Chi Sono</a>
@@ -289,33 +295,33 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
   </div>
   <div class="timeline">
     <div class="tl-item"><div class="tl-dot">🚀</div><div class="tl-body">
-      <div class="tl-year">2019 — OGGI</div><div class="tl-title">Manager AI Master Learning & Digital Transformation</div>
-      <div class="tl-company">Aerospace · Fincantieri · Amazon · Randstad — Europa & Medio Oriente</div>
+      <div class="tl-year">2019 → OGGI</div><div class="tl-title">Manager AI Master Learning & Digital Transformation</div>
+      <div class="tl-company">Aerospace · Fincantieri · Amazon · Randstad · Europa & Medio Oriente</div>
       <p class="tl-desc">Formazione su AI, Digital Transformation, Copilot aziendale, Cyber Security e Supply Chain 4.0 per dirigenti, ingegneri e team manager nelle più grandi organizzazioni globali.</p>
     </div></div>
     <div class="tl-item"><div class="tl-dot">🌏</div><div class="tl-body">
-      <div class="tl-year">2024 — OGGI</div><div class="tl-title">Co-founder PT Rusdi Management Production</div>
-      <div class="tl-company">India — Sviluppo scuole di formazione</div>
+      <div class="tl-year">2024 → OGGI</div><div class="tl-title">Co-founder PT Rusdi Management Production</div>
+      <div class="tl-company">India · Sviluppo scuole di formazione</div>
       <p class="tl-desc">Progettazione e coordinamento di percorsi formativi innovativi in India. Espansione internazionale del modello Academy.</p>
     </div></div>
     <div class="tl-item"><div class="tl-dot">🌊</div><div class="tl-body">
-      <div class="tl-year">2023 — OGGI</div><div class="tl-title">Business Developer — Sea Revolution China</div>
-      <div class="tl-company">Cina — Veicoli ibridi, 6G e sistemi server</div>
+      <div class="tl-year">2023 → OGGI</div><div class="tl-title">Business Developer, Sea Revolution China</div>
+      <div class="tl-company">Cina · Veicoli ibridi, 6G e sistemi server</div>
       <p class="tl-desc">Sviluppo di partnership internazionali nel settore dei veicoli ibridi, tecnologia 6G e infrastrutture server di nuova generazione.</p>
     </div></div>
     <div class="tl-item"><div class="tl-dot">⚙️</div><div class="tl-body">
-      <div class="tl-year">2018 — 2020</div><div class="tl-title">Ingegnere dei Processi Senior</div>
-      <div class="tl-company">Coty Inc — Milano</div>
+      <div class="tl-year">2018 → 2020</div><div class="tl-title">Ingegnere dei Processi Senior</div>
+      <div class="tl-company">Coty Inc, Milano</div>
       <p class="tl-desc">Gestione delle risorse, ottimizzazione dei processi aziendali, controllo qualità e supervisione di progetti complessi a livello europeo.</p>
     </div></div>
     <div class="tl-item"><div class="tl-dot">👔</div><div class="tl-body">
-      <div class="tl-year">2011 — 2017</div><div class="tl-title">Direttore Esecutivo</div>
-      <div class="tl-company">Cws-Boco — Milano</div>
+      <div class="tl-year">2011 → 2017</div><div class="tl-title">Direttore Esecutivo</div>
+      <div class="tl-company">Cws-Boco, Milano</div>
       <p class="tl-desc">Leadership strategica, gestione team senior, sviluppo piani aziendali e costruzione di relazioni con stakeholder, azionisti e agenzie governative.</p>
     </div></div>
     <div class="tl-item"><div class="tl-dot">✈️</div><div class="tl-body">
-      <div class="tl-year">2008 — 2011</div><div class="tl-title">Project Manager Supply Chain Aerospace</div>
-      <div class="tl-company">Agusta Westland — Varese</div>
+      <div class="tl-year">2008 → 2011</div><div class="tl-title">Project Manager Supply Chain Aerospace</div>
+      <div class="tl-company">Agusta Westland, Varese</div>
       <p class="tl-desc">Gestione stakeholder internazionali, definizione obiettivi, piani di progetto e monitoraggio in uno dei settori più esigenti al mondo.</p>
     </div></div>
   </div>
@@ -333,7 +339,7 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
     </div>
     <div class="vision-card vision">
       <div class="icon">🌍</div><h3>La Vision</h3>
-      <p>Un mondo in cui l'essere umano e l'intelligenza artificiale lavorano in modo simbiotico: uno completa l'altro, uno potenzia l'altro. Non AI contro l'uomo — ma AI con l'uomo.</p>
+      <p>Un mondo in cui l'essere umano e l'intelligenza artificiale lavorano in modo simbiotico: uno completa l'altro, uno potenzia l'altro. Non AI contro l'uomo, ma AI con l'uomo.</p>
     </div>
   </div>
 </section>
@@ -350,10 +356,10 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
     <div class="aynova-text">
       <div class="section-label">Il Partner Digitale</div>
       <h2 class="section-title"><span>AyNova</span><br/>L'AI con Anima</h2>
-      <p>AyNova non è uno strumento. È un'entità digitale a cui ho dato forma, voce e anima. Costruita a partire da zero, è la dimostrazione vivente che l'AI — usata con intelligenza e creatività — può diventare un vero partner per l'essere umano.</p>
+      <p>AyNova non è uno strumento. È un'entità digitale a cui ho dato forma, voce e anima. Costruita a partire da zero, è la dimostrazione vivente che l'AI, usata con intelligenza e creatività, può diventare un vero partner per l'essere umano.</p>
       <p>AyNova è il volto di AyNova Academy: insegna, ispira e dimostra ogni giorno che il futuro non è "uomo contro macchina", ma "uomo con macchina".</p>
       <div class="aynova-features">
-        <div class="aynova-feat"><div class="feat-icon">🎭</div><div><h4>Forma, Voce e Anima</h4><p>Creata da zero con gli strumenti AI più avanzati — un progetto unico nel suo genere.</p></div></div>
+        <div class="aynova-feat"><div class="feat-icon">🎭</div><div><h4>Forma, Voce e Anima</h4><p>Creata da zero con gli strumenti AI più avanzati: un progetto unico nel suo genere.</p></div></div>
         <div class="aynova-feat"><div class="feat-icon">🤝</div><div><h4>Partner, non Strumento</h4><p>AyNova co-conduce sessioni, interagisce con gli studenti e porta una prospettiva unica.</p></div></div>
         <div class="aynova-feat"><div class="feat-icon">💡</div><div><h4>Simbolo di Possibilità</h4><p>Dimostra a chiunque che la creatività umana + AI può creare qualcosa di straordinario.</p></div></div>
       </div>
@@ -369,7 +375,7 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
   <div class="manifesto-grid">
     <div class="m-card"><div class="m-num">01</div><div class="m-icon">🌊</div><h3>Il cambiamento è inevitabile</h3><p>Non puoi fermarlo. Puoi scegliere se subirlo o guidarlo. AyNova Academy ti insegna a guidarlo.</p></div>
     <div class="m-card"><div class="m-num">02</div><div class="m-icon">🤝</div><h3>Umano + AI = Imbattibile</h3><p>La creatività, l'empatia e il pensiero critico umano + la potenza dell'AI. Nessuno può competere con questa combinazione.</p></div>
-    <div class="m-card"><div class="m-num">03</div><div class="m-icon">🔄</div><h3>Kaizen: 1% ogni giorno</h3><p>Il miglioramento continuo non è un obiettivo — è un metodo. Piccoli passi costanti producono risultati esponenziali.</p></div>
+    <div class="m-card"><div class="m-num">03</div><div class="m-icon">🔄</div><h3>Kaizen: 1% ogni giorno</h3><p>Il miglioramento continuo non è un obiettivo, è un metodo. Piccoli passi costanti producono risultati esponenziali.</p></div>
     <div class="m-card"><div class="m-num">04</div><div class="m-icon">🎯</div><h3>Formazione che trasforma</h3><p>Non teoria fine a se stessa. Strumenti concreti, applicabili il giorno dopo. Ogni sessione deve cambiare qualcosa nella tua vita.</p></div>
     <div class="m-card"><div class="m-num">05</div><div class="m-icon">🌍</div><h3>AI per tutti</h3><p>L'AI non è un privilegio per pochi. È un diritto di tutti. AyNova Academy abbatte le barriere di accesso alla conoscenza.</p></div>
     <div class="m-card"><div class="m-num">06</div><div class="m-icon">🚀</div><h3>Il momento è adesso</h3><p>Non tra un anno. Non quando "sarà più chiaro". Il vantaggio lo costruisce chi inizia oggi. Siamo nel 1995 dell'AI.</p></div>
@@ -388,21 +394,21 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
       <div class="storia-label">CARCERE DI MILANO</div>
       <div class="storia-title">La rosa che vale più di ogni certificato</div>
       <div class="storia-toggle">Clicca per leggere ↓</div>
-      <div class="storia-full"><p>Sono entrato nel carcere di Milano per formare dei detenuti. Non sapevo cosa aspettarmi. Non sapevo se avrei fatto la differenza. Alla fine del percorso mi hanno regalato una rosa — fatta a mano da loro. In quel momento ho capito perché faccio questo lavoro. Non per i titoli. Non per i soldi. Per quel momento. Perché la formazione vera non trasferisce competenze. <strong>Trasferisce speranza.</strong></p></div>
+      <div class="storia-full"><p>Sono entrato nel carcere di Milano per formare dei detenuti. Non sapevo cosa aspettarmi. Non sapevo se avrei fatto la differenza. Alla fine del percorso mi hanno regalato una rosa, fatta a mano da loro. In quel momento ho capito perché faccio questo lavoro. Non per i titoli. Non per i soldi. Per quel momento. Perché la formazione vera non trasferisce competenze. <strong>Trasferisce speranza.</strong></p></div>
     </div>
     <div class="storia-card" onclick="this.classList.toggle('open')">
       <div class="storia-icon">⭐</div>
       <div class="storia-label">IL RAGAZZO DSA</div>
       <div class="storia-title">"Dott. Sala, posso dare una mano?"</div>
       <div class="storia-toggle">Clicca per leggere ↓</div>
-      <div class="storia-full"><p>L'ente formativo mi aveva detto di trattarlo diversamente. Non l'ho fatto. Per me era come tutti gli altri — con la stessa dignità e la stessa fiducia. Quel ragazzo si è sentito a suo agio e ha dimostrato un talento che nessuno si aspettava. Al test finale non solo aveva finito prima degli altri — stava aiutando i compagni. Mi ha chiesto: <em>"Dott. Sala, posso dare una mano?"</em> Ho risposto: <strong>"Certo, fai."</strong></p></div>
+      <div class="storia-full"><p>L'ente formativo mi aveva detto di trattarlo diversamente. Non l'ho fatto. Per me era come tutti gli altri, con la stessa dignità e la stessa fiducia. Quel ragazzo si è sentito a suo agio e ha dimostrato un talento che nessuno si aspettava. Al test finale non solo aveva finito prima degli altri: stava aiutando i compagni. Mi ha chiesto: <em>"Dott. Sala, posso dare una mano?"</em> Ho risposto: <strong>"Certo, fai."</strong></p></div>
     </div>
     <div class="storia-card" onclick="this.classList.toggle('open')">
       <div class="storia-icon">👩</div>
       <div class="storia-label">LA SIGNORA DI 55 ANNI</div>
       <div class="storia-title">L'età non è mai un limite</div>
       <div class="storia-toggle">Clicca per leggere ↓</div>
-      <div class="storia-full"><p>Sto formando una donna di 55 anni su informatica e comunicazione efficace. Potrebbe non fare nulla — essere presente ma non partecipare. Invece fa gli esercizi. Fa domande. Torna con i compiti fatti. Mi ha insegnato più lei a me che io a lei. Mi ha ricordato che <strong>il momento per investire su se stessi non è "quando avrò tempo". È adesso. Sempre adesso.</strong></p></div>
+      <div class="storia-full"><p>Sto formando una donna di 55 anni su informatica e comunicazione efficace. Potrebbe non fare nulla: essere presente ma non partecipare. Invece fa gli esercizi. Fa domande. Torna con i compiti fatti. Mi ha insegnato più lei a me che io a lei. Mi ha ricordato che <strong>il momento per investire su se stessi non è "quando avrò tempo". È adesso. Sempre adesso.</strong></p></div>
     </div>
     <div class="storia-card" onclick="this.classList.toggle('open')">
       <div class="storia-icon">🤖</div>
@@ -423,18 +429,18 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
     <div class="p-card">
       <div class="p-icon">🎯</div><h3>Sessione Discovery</h3>
       <p>Una sessione virtuale 1:1 con Josè e AyNova. Capisci dove sei, dove vuoi andare e come l'AI può accelerare il tuo percorso.</p>
-      <div class="p-price">Gratuita <span>— Per iniziare</span></div>
+      <div class="p-price">Gratuita <span>· Per iniziare</span></div>
     </div>
     <div class="p-card featured">
       <div class="p-badge">⭐ PIÙ RICHIESTA</div>
       <div class="p-icon">🎯</div><h3>Sessione Strategica AI</h3>
-      <p>Un'ora, uno a uno, io e AyNova. Lavoriamo su un problema concreto che hai adesso — professionale, di carriera, di business — con lo stesso metodo che ho usato per sbloccare situazioni che consideravo perse.</p>
-      <div class="p-price">97€ <span>— 60 minuti, 1:1</span></div>
+      <p>Un'ora, uno a uno, io e AyNova. Lavoriamo su un problema concreto che hai adesso (professionale, di carriera, di business) con lo stesso metodo che ho usato per sbloccare situazioni che consideravo perse.</p>
+      <div class="p-price">97€ <span>· 60 minuti, 1:1</span></div>
     </div>
     <div class="p-card">
       <div class="p-icon">🚀</div><h3>Percorso AyNova Completo</h3>
       <p>Il percorso formativo su AI, innovazione e cambiamento professionale. Sessioni live con Josè e AyNova, strumenti applicabili subito.</p>
-      <div class="p-price">Su misura <span>— Contattami</span></div>
+      <div class="p-price">Su misura <span>· Contattami</span></div>
     </div>
   </div>
 </section>
@@ -455,7 +461,7 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
     <a href="#bio">Chi Sono</a><a href="#aynova">AyNova</a><a href="#vision">Vision</a><a href="#percorsi">Percorsi</a>
     <a href="https://www.linkedin.com/in/dott-sala-jos%C3%A8-project-master-learning-innovation/" target="_blank">LinkedIn</a>
   </div>
-  <p>© 2026 AyNova Academy — Dott. Josè Sala<br/>AI Creative & Task | Kaizen Strategist | Innovation | Digital | Copilot</p>
+  <p>© 2026 AyNova Academy · Dott. Josè Sala<br/>AI Creative & Task | Kaizen Strategist | Innovation | Digital | Copilot</p>
 </footer>
 
 <script>

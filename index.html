@@ -188,6 +188,29 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
   .floating-label .fl-sub{font-size:10px;}
   .floating-widget{bottom:16px;right:12px;gap:8px;}
 }
+
+/* DASHBOARD WOW */
+#dashboard{scroll-margin-top:80px;text-align:center;}
+.dash-sub{color:var(--light);font-size:17px;line-height:1.7;max-width:700px;margin:0 auto 40px;}
+.dash-frame{position:relative;max-width:1100px;margin:0 auto;border-radius:20px;padding:6px;background:linear-gradient(135deg,var(--electric),var(--purple));box-shadow:0 0 60px rgba(0,212,255,0.35),0 0 120px rgba(123,47,255,0.2);cursor:zoom-in;}
+.dash-frame img{display:block;width:100%;height:auto;border-radius:15px;}
+.dash-hint{position:absolute;right:18px;bottom:16px;background:rgba(2,5,16,0.85);border:1px solid rgba(0,212,255,0.5);color:var(--electric);font-size:12px;font-weight:800;padding:6px 12px;border-radius:20px;}
+.dash-cap{color:var(--gray);font-size:13px;margin:14px 0 30px;}
+.dash-points{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:70px;}
+.dash-points span{background:var(--card);border:1px solid rgba(0,212,255,0.3);color:var(--light);font-size:14px;font-weight:700;padding:10px 20px;border-radius:30px;}
+.tools-title{font-size:clamp(22px,2.6vw,32px);font-weight:900;margin-bottom:12px;}
+.tools-sub{color:var(--gray);font-size:16px;max-width:620px;margin:0 auto 36px;line-height:1.6;}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:1000px;margin:0 auto 44px;}
+.tool-card{background:var(--card);border:1px solid rgba(0,212,255,0.25);border-radius:18px;padding:26px 22px;text-align:left;}
+.tool-card h4{font-size:20px;font-weight:900;margin-bottom:8px;color:var(--electric);}
+.tool-card p{color:var(--light);font-size:14px;line-height:1.6;}
+.lb{position:fixed;inset:0;background:rgba(2,5,16,0.95);z-index:300;display:none;align-items:center;justify-content:center;padding:16px;cursor:zoom-out;}
+.lb.open{display:flex;}
+.lb img{max-width:100%;max-height:100%;border-radius:12px;}
+.dash-strip{display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center;max-width:900px;margin:50px auto 0;background:var(--card);border:1px solid rgba(0,212,255,0.3);border-radius:18px;padding:20px 24px;}
+.dash-strip img{width:200px;max-width:100%;border-radius:10px;border:1px solid rgba(0,212,255,0.4);}
+.dash-strip div{flex:1;min-width:240px;text-align:left;}
+.dash-strip p{color:var(--light);font-size:15px;line-height:1.6;margin-bottom:14px;}
 </style>
 </head>
 <body>
@@ -198,6 +221,7 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 <nav>
   <div class="logo">Ay<span>Nova</span> Academy</div>
   <ul class="nav-links">
+    <li><a href="#dashboard">Dashboard</a></li>
     <li><a href="#bio">Chi Sono</a></li>
     <li><a href="#aynova">AyNova</a></li>
     <li><a href="#vision">Vision</a></li>
@@ -250,6 +274,31 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
     <div class="bento-item"><h3>3</h3><p>CONTINENTI</p></div>
   </div>
 </section>
+
+<section class="section" id="dashboard">
+  <div class="section-label">La Prova</div>
+  <h2 class="section-title">Questa l'ho costruita <span>con l'AI</span></h2>
+  <p class="dash-sub">Filtri, indicatori, grafici collegati e dati elaborati in automatico, tutto in un'unica schermata. Nel percorso impari il metodo per costruire dashboard di questo tipo con gli strumenti AI.</p>
+  <div class="dash-frame" id="dashFrame" role="button" tabindex="0" aria-label="Ingrandisci la dashboard">
+    <img src="dashboard.webp" alt="Dashboard interattiva di vendite con filtri, grafici per categoria, regione e manager, costruita con l'AI" loading="lazy"/>
+    <span class="dash-hint">🔍 Clicca per ingrandire</span>
+  </div>
+  <p class="dash-cap">Dashboard dimostrativa con dati di esempio.</p>
+  <div class="dash-points">
+    <span>🎛️ Filtri e indicatori chiave</span>
+    <span>📈 Grafici collegati tra loro</span>
+    <span>⚙️ Dati elaborati in automatico</span>
+  </div>
+  <h3 class="tools-title">Gli strumenti AI che conosco a fondo</h3>
+  <p class="tools-sub">Non ti insegno uno strumento solo. Ti aiuto a scegliere quello giusto per il lavoro che devi fare.</p>
+  <div class="tools-grid">
+    <div class="tool-card"><h4>Microsoft Copilot</h4><p>L'AI dentro gli strumenti che usi ogni giorno: Excel, Word, PowerPoint e Outlook.</p></div>
+    <div class="tool-card"><h4>ChatGPT Plus</h4><p>Un assistente versatile per analizzare dati, scrivere, ragionare e automatizzare attività ripetitive.</p></div>
+    <div class="tool-card"><h4>Claude</h4><p>Ideale per leggere e confrontare documenti lunghi, come contratti e relazioni, e ragionare con precisione.</p></div>
+  </div>
+  <a class="btn-primary" href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" rel="noopener">🚀 Voglio imparare a farlo</a>
+</section>
+<div class="lb" id="lb"><img src="dashboard.webp" alt="Dashboard ingrandita"/></div>
 
 <section class="section" id="bio">
   <div class="bio-grid">
@@ -443,6 +492,13 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
       <div class="p-price">Su misura <span>· Contattami</span></div>
     </div>
   </div>
+  <div class="dash-strip">
+    <img src="dashboard.webp" alt="Anteprima della dashboard" loading="lazy"/>
+    <div>
+      <p>La dashboard che hai visto sopra? Nel percorso impari il metodo per costruire dashboard di questo tipo con Copilot, ChatGPT Plus e Claude.</p>
+      <a class="btn-ghost" href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" rel="noopener">💬 Parliamone</a>
+    </div>
+  </div>
 </section>
 
 <section class="section cta-section" id="contatti">
@@ -517,6 +573,15 @@ window.addEventListener('scroll',()=>{
   const nav=document.querySelector('nav');
   nav.style.background=window.scrollY>50?'rgba(2,5,16,0.98)':'rgba(2,5,16,0.9)';
 });
+
+const lb=document.getElementById('lb'),df=document.getElementById('dashFrame');
+if(lb&&df){
+  const open=()=>lb.classList.add('open'),close=()=>lb.classList.remove('open');
+  df.addEventListener('click',open);
+  df.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});
+  lb.addEventListener('click',close);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+}
 </script>
 </body>
 </html>

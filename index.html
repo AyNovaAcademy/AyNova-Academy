@@ -192,8 +192,10 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 /* DASHBOARD WOW */
 #dashboard{scroll-margin-top:80px;text-align:center;}
 .dash-sub{color:var(--light);font-size:17px;line-height:1.7;max-width:700px;margin:0 auto 40px;}
-.dash-frame{position:relative;max-width:1100px;margin:0 auto;border-radius:20px;padding:6px;background:linear-gradient(135deg,var(--electric),var(--purple));box-shadow:0 0 60px rgba(0,212,255,0.35),0 0 120px rgba(123,47,255,0.2);cursor:zoom-in;}
-.dash-frame img{display:block;width:100%;height:auto;border-radius:15px;}
+.dash-frame{position:relative;max-width:1100px;margin:0 auto;border-radius:20px;padding:6px;background:linear-gradient(135deg,var(--electric),var(--purple));box-shadow:0 0 60px rgba(0,212,255,0.35),0 0 120px rgba(123,47,255,0.2);}
+.dash-frame video{display:block;width:100%;height:auto;border-radius:15px;background:#020510;}
+.dash-open{background:transparent;border:2px solid rgba(0,212,255,0.5);color:var(--electric);font-size:14px;font-weight:800;padding:10px 22px;border-radius:30px;cursor:pointer;margin:0 0 30px;}
+.dash-open:hover{background:rgba(0,212,255,0.12);}
 .dash-hint{position:absolute;right:18px;bottom:16px;background:rgba(2,5,16,0.85);border:1px solid rgba(0,212,255,0.5);color:var(--electric);font-size:12px;font-weight:800;padding:6px 12px;border-radius:20px;}
 .dash-cap{color:var(--gray);font-size:13px;margin:14px 0 30px;}
 .dash-points{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:70px;}
@@ -287,11 +289,13 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
   <div class="section-label">La Prova</div>
   <h2 class="section-title">Questa l'ho costruita <span>con l'AI</span></h2>
   <p class="dash-sub">Filtri, indicatori, grafici collegati e dati elaborati in automatico, tutto in un'unica schermata. Nel percorso impari il metodo per costruire dashboard di questo tipo con gli strumenti AI.</p>
-  <div class="dash-frame" id="dashFrame" role="button" tabindex="0" aria-label="Ingrandisci la dashboard">
-    <img src="dashboard.webp" alt="Dashboard interattiva di vendite con filtri, grafici per categoria, regione e manager, costruita con l'AI" loading="lazy"/>
-    <span class="dash-hint">🔍 Clicca per ingrandire</span>
+  <div class="dash-frame">
+    <video id="dashVideo" autoplay muted loop playsinline preload="metadata" poster="dashboard-poster.webp" aria-label="Animazione di una dashboard dimostrativa con filtri, grafici e indicatori">
+      <source src="dashboard.mp4" type="video/mp4"/>
+    </video>
   </div>
-  <p class="dash-cap">Dashboard dimostrativa con dati di esempio.</p>
+  <p class="dash-cap">Animazione dimostrativa creata con l'AI, con dati di esempio.</p>
+  <button class="dash-open" id="dashOpen" type="button">🔍 Vedi la dashboard completa</button>
   <div class="dash-points">
     <span>🎛️ Filtri e indicatori chiave</span>
     <span>📈 Grafici collegati tra loro</span>
@@ -586,7 +590,7 @@ window.addEventListener('scroll',()=>{
   nav.style.background=window.scrollY>50?'rgba(2,5,16,0.98)':'rgba(2,5,16,0.9)';
 });
 
-const lb=document.getElementById('lb'),df=document.getElementById('dashFrame');
+const lb=document.getElementById('lb'),df=document.getElementById('dashOpen');
 if(lb&&df){
   const open=()=>lb.classList.add('open'),close=()=>lb.classList.remove('open');
   df.addEventListener('click',open);
@@ -594,6 +598,9 @@ if(lb&&df){
   lb.addEventListener('click',close);
   document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
 }
+
+const dv=document.getElementById('dashVideo');
+if(dv&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){dv.removeAttribute('autoplay');dv.pause();}
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1d021cb69d9b4991a656b3ce60901075"}'></script><!-- End Cloudflare Web Analytics -->
 </body>

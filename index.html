@@ -221,6 +221,46 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 .ai-badge{background:var(--card);border:1px solid rgba(0,212,255,0.5);border-radius:14px;padding:16px 14px;text-align:center;box-shadow:0 0 18px rgba(0,212,255,0.25);}
 .ai-badge strong{display:block;font-size:20px;font-weight:900;color:#fff;margin-bottom:4px;}
 .ai-badge small{color:var(--electric);font-size:12px;font-weight:700;letter-spacing:1px;}
+.dx{position:relative;max-width:1100px;margin:0 auto;text-align:left;background:linear-gradient(160deg,#04090f,#060b18);border:1px solid rgba(0,212,255,0.4);border-radius:20px;padding:20px;box-shadow:0 0 60px rgba(0,212,255,0.28),0 0 120px rgba(123,47,255,0.18);}
+.dx-bar{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:flex-end;margin-bottom:16px;}
+.dx-title{font-weight:900;font-size:17px;letter-spacing:1px;color:#fff;}
+.dx-title small{display:block;font-size:11px;font-weight:600;color:var(--gray);letter-spacing:.5px;margin-top:3px;}
+.dx-live{display:inline-block;width:9px;height:9px;border-radius:50%;background:#27ae60;margin-right:9px;box-shadow:0 0 10px #27ae60;animation:dxp 1.6s infinite;}
+@keyframes dxp{50%{opacity:.35}}
+.dx-filters{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;}
+.dx-filters label{font-size:11px;font-weight:800;color:var(--electric);letter-spacing:1px;display:flex;flex-direction:column;gap:4px;}
+.dx-filters select{background:#0b1626;color:#fff;border:1px solid rgba(0,212,255,0.4);border-radius:10px;padding:9px 12px;font-size:15px;min-width:150px;}
+.dx-filters button{background:transparent;color:var(--electric);border:1px solid rgba(0,212,255,0.5);border-radius:10px;padding:10px 14px;font-size:14px;font-weight:800;cursor:pointer;}
+.dx-filters button:hover{background:rgba(0,212,255,0.12);}
+.dx-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px;}
+.dx-k{background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.25);border-radius:14px;padding:14px;}
+.dx-k span{display:block;font-size:10.5px;font-weight:800;letter-spacing:1px;color:var(--gray);margin-bottom:6px;}
+.dx-k b{font-size:26px;font-weight:900;color:#fff;}
+.dx-k b.up{color:#2ecc71;}
+.dx-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;}
+.dx-card{background:rgba(5,12,24,0.9);border:1px solid rgba(0,212,255,0.22);border-radius:16px;padding:16px;min-width:0;}
+.dx-card h5{font-size:12px;font-weight:800;letter-spacing:1.4px;color:var(--electric);margin-bottom:12px;}
+.dx-card h5 small{font-size:10.5px;font-weight:600;color:var(--gray);letter-spacing:0;margin-left:8px;}
+.dx-donut{grid-column:span 4;text-align:center;}.dx-line{grid-column:span 8;}
+.dx-cat,.dx-reg{grid-column:span 6;}.dx-mgr{grid-column:span 12;}
+.dx svg{width:100%;height:auto;display:block;}
+.dx-leg{display:flex;justify-content:center;gap:16px;font-size:12px;color:var(--light);margin-top:6px;}
+.dx-leg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;}
+.dx-row{display:grid;grid-template-columns:96px 1fr 62px;gap:10px;align-items:center;padding:7px 8px;border-radius:10px;font-size:13px;color:var(--light);transition:opacity .3s,background .3s;}
+.dx-row.click{cursor:pointer;}.dx-row.click:hover{background:rgba(0,212,255,0.08);}
+.dx-row.sel{background:rgba(255,140,10,0.12);}.dx-row.dim{opacity:.4;}
+.dx-row .nm{font-weight:800;color:#fff;font-size:13px;}
+.dx-b{position:relative;height:16px;background:rgba(255,255,255,0.05);border-radius:8px;margin:2px 0;overflow:hidden;}
+.dx-b i{position:absolute;left:0;top:0;bottom:0;border-radius:8px;transition:width .6s cubic-bezier(.2,.8,.2,1);}
+.dx-b em{position:absolute;right:8px;top:0;line-height:16px;font-size:11px;font-style:normal;font-weight:800;color:#fff;text-shadow:0 0 4px #000;}
+.o i{background:linear-gradient(90deg,#c25a00,#ff8c0a);box-shadow:0 0 12px rgba(255,140,10,.6);}
+.c i{background:linear-gradient(90deg,#0a6fb0,#14aaff);box-shadow:0 0 12px rgba(20,170,255,.6);}
+.dx-row .gr{font-size:12px;font-weight:800;color:#2ecc71;text-align:right;}
+.dx-mrow{grid-template-columns:140px 1fr 70px;}
+.dx-mrow .nm{display:flex;align-items:center;gap:8px;}
+.dx-av{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--electric),var(--purple));color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;flex:0 0 24px;}
+.dx-tip{position:absolute;pointer-events:none;opacity:0;transition:opacity .15s;background:#0b1626;border:1px solid var(--electric);border-radius:10px;padding:8px 11px;font-size:12px;color:#fff;z-index:5;white-space:nowrap;box-shadow:0 0 20px rgba(0,212,255,.4);}
+@media(max-width:820px){.dx-kpis{grid-template-columns:repeat(2,1fr);}.dx-donut,.dx-line,.dx-cat,.dx-reg,.dx-mgr{grid-column:span 12;}.dx-row{grid-template-columns:78px 1fr 54px;}.dx-mrow{grid-template-columns:112px 1fr 58px;}.dx-filters select{min-width:0;width:100%;}.dx-filters label{flex:1 1 140px;}.dx{padding:14px;}.dx-k b{font-size:21px;}}
 </style>
 </head>
 <body>
@@ -287,15 +327,34 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 
 <section class="section" id="dashboard">
   <div class="section-label">La Prova</div>
-  <h2 class="section-title">Questa l'ho costruita <span>con l'AI</span></h2>
-  <p class="dash-sub">Filtri, indicatori, grafici collegati e dati elaborati in automatico, tutto in un'unica schermata. Nel percorso impari il metodo per costruire dashboard di questo tipo con gli strumenti AI.</p>
-  <div class="dash-frame">
-    <video id="dashVideo" autoplay muted loop playsinline preload="metadata" poster="dashboard-poster.webp" aria-label="Animazione di una dashboard dimostrativa con filtri, grafici e indicatori">
-      <source src="dashboard.mp4" type="video/mp4"/>
-    </video>
+  <h2 class="section-title">Questa dashboard è viva. <span>Provala.</span></h2>
+  <p class="dash-sub">Cambia i filtri, clicca sulle regioni, guarda i numeri aggiornarsi in tempo reale. L'ho costruita con l'AI su dati di esempio. Nel percorso impari il metodo per costruire dashboard di questo tipo con gli strumenti AI.</p>
+  <div class="dx" id="dx">
+    <div class="dx-bar">
+      <div class="dx-title"><span class="dx-live"></span>BIG FASHION GROUP · VENDITE <small>Dati di esempio · Gen-Giu 2024</small></div>
+      <div class="dx-filters">
+        <label>Regione<select id="fR"></select></label>
+        <label>Categoria<select id="fC"></select></label>
+        <button type="button" id="fReset">↺ Reset</button>
+        <button type="button" id="fDemo">▶ Demo automatica</button>
+      </div>
+    </div>
+    <div class="dx-kpis">
+      <div class="dx-k"><span>VENDITE TOTALI</span><b id="k0">$0M</b></div>
+      <div class="dx-k"><span>ORDINI</span><b id="k1">0</b></div>
+      <div class="dx-k"><span>VALORE MEDIO ORDINE</span><b id="k2">$0</b></div>
+      <div class="dx-k"><span>CRESCITA VS 2023</span><b id="k3" class="up">0%</b></div>
+    </div>
+    <div class="dx-grid">
+      <div class="dx-card dx-donut"><h5>MIX VENDITE</h5><div id="donut"></div></div>
+      <div class="dx-card dx-line"><h5>VENDITE NEL TEMPO <small>tocca o passa il mouse sui mesi</small></h5><div id="line"></div></div>
+      <div class="dx-card dx-cat"><h5>PER CATEGORIA <small>clicca per filtrare</small></h5><div id="cats"></div></div>
+      <div class="dx-card dx-reg"><h5>PER REGIONE <small>clicca per filtrare</small></h5><div id="regs"></div></div>
+      <div class="dx-card dx-mgr"><h5>PER MANAGER</h5><div id="mgrs"></div></div>
+    </div>
+    <div class="dx-tip" id="tip"></div>
   </div>
-  <p class="dash-cap">Animazione dimostrativa creata con l'AI, con dati di esempio.</p>
-  <button class="dash-open" id="dashOpen" type="button">🔍 Vedi la dashboard completa</button>
+  <p class="dash-cap">Dashboard interattiva con dati di esempio, costruita con l'AI. Cambia i filtri o clicca sulle barre.</p>
   <div class="dash-points">
     <span>🎛️ Filtri e indicatori chiave</span>
     <span>📈 Grafici collegati tra loro</span>
@@ -601,6 +660,90 @@ if(lb&&df){
 
 const dv=document.getElementById('dashVideo');
 if(dv&&window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){dv.removeAttribute('autoplay');dv.pause();}
+
+(function(){
+const $=id=>document.getElementById(id);if(!$('dx'))return;
+const R=[["NSW",87.3,.22],["Victoria",46.7,.17],["Queensland",32.1,.166],["W. Australia",18.7,.172],["N. Territory",2.4,.1],["Tasmania",2.2,.086]];
+const C=[["Scarpe",.35,.60,7900,.214],["Casa",.25,.57,9200,.163],["Bambini",.22,.52,5800,.198],["Calze",.18,.52,5200,.117]];
+const MO=["Gen","Feb","Mar","Apr","Mag","Giu"],S=[.13,.14,.16,.20,.19,.18];
+const MG=[["Jessica Davis",.152],["Michael Brown",.130],["Sarah Wilson",.115],["David Lee",.103],["Emily Clark",.086],["James Taylor",.072],["Samantha Price",.060],["Brandon Martin",.052]];
+const TOT=R.reduce((a,r)=>a+r[1],0),OR='#ff8c0a',BL='#14aaff';
+let reg=-1,cat=-1,demoT=null,played=false,V=new Array(18).fill(0),tid=0;
+const fmt=v=>'$'+v.toFixed(1)+'M',fi=v=>Math.round(v).toLocaleString('it-IT');
+const fR=$('fR'),fC=$('fC');
+fR.innerHTML='<option value="-1">Tutte le regioni</option>'+R.map((r,i)=>'<option value="'+i+'">'+r[0]+'</option>').join('');
+fC.innerHTML='<option value="-1">Tutte le categorie</option>'+C.map((c,i)=>'<option value="'+i+'">'+c[0]+'</option>').join('');
+const ri=()=>reg<0?R.map((_,i)=>i):[reg],ci=()=>cat<0?C.map((_,i)=>i):[cat];
+function calc(){
+  const bf=Array(6).fill(0),si=Array(6).fill(0);let tot=0,tb=0,orders=0,prior=0;
+  ri().forEach(r=>ci().forEach(c=>{let t=0;for(let m=0;m<6;m++){const v=R[r][1]*C[c][1]*S[m];bf[m]+=v*C[c][2];si[m]+=v*(1-C[c][2]);t+=v;}
+    tot+=t;tb+=t*C[c][2];orders+=t*1e6/C[c][3];prior+=t/(1+(R[r][2]+C[c][4])/2);}));
+  const cats=C.map(c=>{let t=0;ri().forEach(r=>t+=R[r][1]*c[1]);return{bf:t*c[2],si:t*(1-c[2]),g:c[4]}});
+  const regs=R.map(r=>{let t=0;ci().forEach(c=>t+=r[1]*C[c][1]);return{t,g:r[2]}});
+  const mx=Math.max(...bf,...si),st=mx>20?10:mx>8?5:mx>3?2:1,ymax=Math.ceil(mx*1.1/st)*st;
+  return{bf,si,tot,pct:tb/tot,orders,aov:tot*1e6/orders,g:tot/prior-1,cats,regs,ymax};
+}
+// build static DOM
+$('donut').innerHTML='<svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="70" fill="none" stroke="'+BL+'" stroke-width="24" style="filter:drop-shadow(0 0 6px '+BL+')"/><circle id="dArc" cx="100" cy="100" r="70" fill="none" stroke="'+OR+'" stroke-width="24" stroke-dasharray="0 440" transform="rotate(-90 100 100)" style="filter:drop-shadow(0 0 6px '+OR+')"/><text x="100" y="86" text-anchor="middle" fill="#9fb0c4" font-size="11" font-weight="700">VENDITE TOTALI</text><text id="dTot" x="100" y="112" text-anchor="middle" fill="#fff" font-size="26" font-weight="900">$0M</text><text id="dPct" x="100" y="132" text-anchor="middle" fill="#9fb0c4" font-size="11">55% / 45%</text></svg><div class="dx-leg"><span><i style="background:'+OR+'"></i>Big Fashion</span><span><i style="background:'+BL+'"></i>Sister Brands</span></div>';
+const W=600,H=250,pl=44,pr=14,pt=14,pb=28,xs=i=>pl+i*(W-pl-pr)/5,ys=(v,m)=>pt+(1-v/m)*(H-pt-pb);
+let L='<svg viewBox="0 0 '+W+' '+H+'">';
+for(let i=0;i<5;i++)L+='<line id="gl'+i+'" x1="'+pl+'" x2="'+(W-pr)+'" stroke="rgba(255,255,255,.08)"/><text id="gt'+i+'" x="'+(pl-8)+'" text-anchor="end" fill="#8a9ab0" font-size="11"></text>';
+MO.forEach((m,i)=>L+='<text x="'+xs(i)+'" y="'+(H-8)+'" text-anchor="middle" fill="#8a9ab0" font-size="11">'+m+'</text>');
+L+='<line id="vg" y1="'+pt+'" y2="'+(H-pb)+'" stroke="rgba(0,212,255,.5)" opacity="0"/>';
+[[OR,'a'],[BL,'b']].forEach(s=>{L+='<path id="p'+s[1]+'" fill="none" stroke="'+s[0]+'" stroke-width="3" stroke-linejoin="round" style="filter:drop-shadow(0 0 5px '+s[0]+')"/>';for(let i=0;i<6;i++)L+='<circle id="c'+s[1]+i+'" r="4.5" fill="'+s[0]+'" stroke="#04090f" stroke-width="2"/>';});
+for(let i=0;i<6;i++)L+='<rect class="hit" data-i="'+i+'" x="'+(xs(i)-(W-pl-pr)/10)+'" y="'+pt+'" width="'+((W-pl-pr)/5)+'" height="'+(H-pt-pb)+'" fill="transparent"/>';
+$('line').innerHTML=L+'</svg>';
+const rowH=(nm,cl,extra)=>'<div class="dx-row '+cl+'" '+extra+'><span class="nm">'+nm+'</span><div class="bw"></div><span class="gr"></span></div>';
+$('cats').innerHTML=C.map((c,i)=>rowH(c[0],'click','data-c="'+i+'"')).join('');
+$('regs').innerHTML=R.map((r,i)=>rowH(r[0],'click','data-r="'+i+'"')).join('');
+$('mgrs').innerHTML=MG.map(m=>'<div class="dx-row dx-mrow"><span class="nm"><span class="dx-av">'+m[0].split(' ').map(w=>w[0]).join('')+'</span>'+m[0]+'</span><div class="bw"></div><span class="gr"></span></div>').join('');
+document.querySelectorAll('#cats .bw').forEach(b=>b.innerHTML='<div class="dx-b o"><i></i><em></em></div><div class="dx-b c"><i></i><em></em></div>');
+document.querySelectorAll('#regs .bw,#mgrs .bw').forEach(b=>b.innerHTML='<div class="dx-b c"><i></i><em></em></div>');
+function render(v){
+  $('k0').textContent=fmt(v[0]);$('k1').textContent=fi(v[1]);$('k2').textContent='$'+fi(v[2]);
+  const g=v[3]*100;$('k3').textContent=(g>=0?'▲ ':'▼ ')+Math.abs(g).toFixed(1)+'%';
+  $('dTot').textContent=fmt(v[0]);$('dArc').setAttribute('stroke-dasharray',(v[4]*440)+' 440');$('dPct').textContent=Math.round(v[4]*100)+'% / '+(100-Math.round(v[4]*100))+'%';
+  const ym=Math.max(v[17],.5);
+  for(let i=0;i<5;i++){const y=pt+i*(H-pt-pb)/4,val=ym*(1-i/4);$('gl'+i).setAttribute('y1',y);$('gl'+i).setAttribute('y2',y);const t=$('gt'+i);t.setAttribute('y',y+4);t.textContent='$'+(ym<10?val.toFixed(1):Math.round(val))+'M';}
+  [['a',5],['b',11]].forEach(s=>{let d='';for(let i=0;i<6;i++){const x=xs(i),y=ys(v[s[1]+i],ym);d+=(i?'L':'M')+x+' '+y;const c=$('c'+s[0]+i);c.setAttribute('cx',x);c.setAttribute('cy',y);}$('p'+s[0]).setAttribute('d',d);});
+  V=v;
+}
+function tween(to,dur){const from=V.slice(),t0=performance.now(),id=++tid;(function f(n){if(id!==tid)return;const k=Math.min(1,(n-t0)/dur),e=1-Math.pow(1-k,3);render(from.map((a,i)=>a+(to[i]-a)*e));if(k<1)requestAnimationFrame(f);})(t0);}
+function bars(){
+  const d=calc(),mxc=Math.max(...d.cats.map(c=>Math.max(c.bf,c.si))),mxr=Math.max(...d.regs.map(r=>r.t));
+  document.querySelectorAll('#cats .dx-row').forEach((row,i)=>{const c=d.cats[i],b=row.querySelectorAll('.dx-b');
+    b[0].firstChild.style.width=(c.bf/mxc*100)+'%';b[0].lastChild.textContent=fmt(c.bf);b[1].firstChild.style.width=(c.si/mxc*100)+'%';b[1].lastChild.textContent=fmt(c.si);
+    row.querySelector('.gr').textContent='▲ '+(c.g*100).toFixed(1)+'%';row.classList.toggle('sel',cat===i);row.classList.toggle('dim',cat>=0&&cat!==i);});
+  document.querySelectorAll('#regs .dx-row').forEach((row,i)=>{const r=d.regs[i],b=row.querySelector('.dx-b');
+    b.firstChild.style.width=(r.t/mxr*100)+'%';b.lastChild.textContent=fmt(r.t);row.querySelector('.gr').textContent='▲ '+(r.g*100).toFixed(1)+'%';
+    row.classList.toggle('sel',reg===i);row.classList.toggle('dim',reg>=0&&reg!==i);});
+  document.querySelectorAll('#mgrs .dx-row').forEach((row,i)=>{const v=MG[i][1]*d.tot,b=row.querySelector('.dx-b');
+    b.firstChild.style.width=(v/(MG[0][1]*TOT)*100)+'%';b.lastChild.textContent=fmt(v);row.querySelector('.gr').textContent='▲ '+(12-i*.7).toFixed(1)+'%';});
+  return d;
+}
+function update(){const d=bars();tween([d.tot,d.orders,d.aov,d.g,d.pct,...d.bf,...d.si,d.ymax],550);}
+function set(r,c,user){reg=r;cat=c;fR.value=r;fC.value=c;if(user)stopDemo();update();}
+function stopDemo(){if(demoT){clearInterval(demoT);demoT=null;}$('fDemo').textContent='▶ Demo automatica';}
+function startDemo(){if(demoT)return;const seq=[[-1,-1],[0,-1],[1,-1],[2,-1],[3,-1],[0,0],[0,1],[-1,2],[-1,-1]];let k=0;$('fDemo').textContent='⏸ Ferma demo';
+  const step=()=>{k=(k+1)%seq.length;set(seq[k][0],seq[k][1],false);};demoT=setInterval(step,2300);}
+fR.addEventListener('change',()=>set(+fR.value,cat,true));fC.addEventListener('change',()=>set(reg,+fC.value,true));
+$('fReset').addEventListener('click',()=>set(-1,-1,true));
+$('fDemo').addEventListener('click',()=>{demoT?stopDemo():startDemo();});
+$('cats').addEventListener('click',e=>{const r=e.target.closest('[data-c]');if(r){const i=+r.dataset.c;set(reg,cat===i?-1:i,true);}});
+$('regs').addEventListener('click',e=>{const r=e.target.closest('[data-r]');if(r){const i=+r.dataset.r;set(reg===i?-1:i,cat,true);}});
+const tip=$('tip'),dx=$('dx'),vg=$('vg');
+function showTip(e){const i=+e.currentTarget.dataset.i,b=dx.getBoundingClientRect();
+  tip.innerHTML='<b>'+MO[i]+' 2024</b><br><span style="color:'+OR+'">Big Fashion '+fmt(V[5+i])+'</span><br><span style="color:'+BL+'">Sister Brands '+fmt(V[11+i])+'</span>';
+  tip.style.opacity=1;let x=e.clientX-b.left+14;if(x>b.width-190)x=e.clientX-b.left-190;tip.style.left=x+'px';tip.style.top=(e.clientY-b.top-70)+'px';
+  vg.setAttribute('x1',xs(i));vg.setAttribute('x2',xs(i));vg.setAttribute('opacity',1);}
+function hideTip(){tip.style.opacity=0;vg.setAttribute('opacity',0);}
+document.querySelectorAll('#line .hit').forEach(h=>{h.addEventListener('pointermove',showTip);h.addEventListener('pointerdown',showTip);h.addEventListener('pointerleave',hideTip);});
+// avvio
+const d0=bars();render([d0.tot,d0.orders,d0.aov,d0.g,d0.pct,...d0.bf,...d0.si,d0.ymax]);
+function play(){if(played)return;played=true;V=new Array(18).fill(0);V[17]=d0.ymax;tween([d0.tot,d0.orders,d0.aov,d0.g,d0.pct,...d0.bf,...d0.si,d0.ymax],1400);
+  if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))setTimeout(()=>{if(!demoT&&reg<0&&cat<0)startDemo();},3500);}
+if('IntersectionObserver' in window){new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){play();o.disconnect();}},{threshold:.35}).observe(dx);}else play();
+})();
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1d021cb69d9b4991a656b3ce60901075"}'></script><!-- End Cloudflare Web Analytics -->
 </body>

@@ -261,6 +261,25 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 .dx-av{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--electric),var(--purple));color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;flex:0 0 24px;}
 .dx-tip{position:absolute;pointer-events:none;opacity:0;transition:opacity .15s;background:#0b1626;border:1px solid var(--electric);border-radius:10px;padding:8px 11px;font-size:12px;color:#fff;z-index:5;white-space:nowrap;box-shadow:0 0 20px rgba(0,212,255,.4);}
 @media(max-width:820px){.dx-kpis{grid-template-columns:repeat(2,1fr);}.dx-donut,.dx-line,.dx-cat,.dx-reg,.dx-mgr{grid-column:span 12;}.dx-row{grid-template-columns:78px 1fr 54px;}.dx-mrow{grid-template-columns:112px 1fr 58px;}.dx-filters select{min-width:0;width:100%;}.dx-filters label{flex:1 1 140px;}.dx{padding:14px;}.dx-k b{font-size:21px;}}
+.tp{max-width:820px;margin:0 auto 50px;background:linear-gradient(160deg,#04090f,#070d1c);border:1px solid rgba(0,212,255,0.4);border-radius:22px;padding:26px;box-shadow:0 0 50px rgba(0,212,255,0.22);text-align:left;}
+.tp-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+.tp-tag{color:var(--electric);font-size:12px;font-weight:800;letter-spacing:2px;}
+.tp-step{color:var(--gray);font-size:13px;font-weight:700;}
+.tp-prog{height:6px;background:rgba(255,255,255,0.08);border-radius:6px;margin-bottom:22px;overflow:hidden;}
+.tp-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--electric));border-radius:6px;transition:width .4s;}
+.tp-q{font-size:clamp(19px,2.4vw,24px);font-weight:900;margin-bottom:18px;line-height:1.35;color:#fff;}
+.tp-opt{display:block;width:100%;text-align:left;background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.3);color:#fff;border-radius:14px;padding:15px 18px;margin-bottom:10px;font-size:16px;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit;}
+.tp-opt:hover,.tp-opt:focus-visible{background:rgba(0,212,255,0.16);border-color:var(--electric);transform:translateX(4px);outline:none;}
+.tp-res h3{font-size:clamp(22px,3vw,30px);font-weight:900;margin-bottom:6px;color:#fff;}
+.tp-res h3 span{color:var(--electric);}
+.tp-price{color:var(--electric);font-weight:900;font-size:18px;margin-bottom:12px;}
+.tp-res p{color:var(--light);line-height:1.65;font-size:15px;margin-bottom:18px;}
+.tp-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.tp-sec{background:transparent;color:var(--electric);border:1px solid rgba(0,212,255,0.5);border-radius:50px;padding:13px 20px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;}
+.tp-sec:hover{background:rgba(0,212,255,0.12);}
+.p-card.tp-rec{border-color:var(--electric);box-shadow:0 0 40px rgba(0,212,255,0.45);transform:translateY(-6px);}
+.p-card.featured .tp-badge{top:auto;bottom:12px;}
+.tp-badge{position:absolute;top:12px;right:12px;background:var(--electric);color:#021;font-size:11px;font-weight:900;padding:5px 10px;border-radius:20px;letter-spacing:.5px;}
 </style>
 </head>
 <body>
@@ -549,6 +568,11 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
     <div class="section-label">Cosa Offro</div>
     <h2 class="section-title">I Percorsi <span>Academy</span></h2>
   </div>
+    <div class="tp" id="tp">
+    <div class="tp-head"><span class="tp-tag">🧭 TROVA IL TUO PERCORSO</span><span class="tp-step" id="tpStep"></span></div>
+    <div class="tp-prog"><i id="tpBar"></i></div>
+    <div id="tpBody" aria-live="polite"></div>
+  </div>
   <div class="percorsi-grid">
     <div class="p-card">
       <div class="p-icon">🎯</div><h3>Sessione Discovery</h3>
@@ -743,6 +767,35 @@ const d0=bars();render([d0.tot,d0.orders,d0.aov,d0.g,d0.pct,...d0.bf,...d0.si,d0
 function play(){if(played)return;played=true;V=new Array(18).fill(0);V[17]=d0.ymax;tween([d0.tot,d0.orders,d0.aov,d0.g,d0.pct,...d0.bf,...d0.si,d0.ymax],1400);
   if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))setTimeout(()=>{if(!demoT&&reg<0&&cat<0)startDemo();},3500);}
 if('IntersectionObserver' in window){new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){play();o.disconnect();}},{threshold:.35}).observe(dx);}else play();
+})();
+
+(function(){
+const body=document.getElementById('tpBody');if(!body)return;
+const LI="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation";
+const Q=[
+ ["Qual è la tua situazione adesso?",[["Sto valutando: voglio capire cosa può fare l'AI per me","d"],["Ho un problema concreto da risolvere ora","s"],["Voglio cambiare o far crescere il mio lavoro nei prossimi mesi","c"]]],
+ ["Quanto impegno vuoi dedicare?",[["Una prima conversazione per orientarmi","d"],["Un'ora ben spesa su un obiettivo preciso","s"],["Un percorso con più incontri","c"]]],
+ ["Che risultato ti interessa di più?",[["Chiarezza su da dove partire","d"],["Una soluzione pratica da applicare subito","s"],["Competenze nuove che restino nel tempo","c"]]]
+];
+const P={d:{n:"Sessione Discovery",pr:"Gratuita · Per iniziare",i:0,t:"Sei nella fase di orientamento e ti serve chiarezza prima di decidere. La Sessione Discovery è una sessione virtuale 1:1 con Josè e AyNova per capire dove sei, dove vuoi andare e come l'AI può accelerare il tuo percorso."},
+ s:{n:"Sessione Strategica AI",pr:"97€ · 60 minuti, 1:1",i:1,t:"Hai un obiettivo o un problema preciso. In un'ora, uno a uno con Josè e AyNova, lavorate su una situazione concreta che hai adesso, professionale, di carriera o di business."},
+ c:{n:"Percorso AyNova Completo",pr:"Su misura · Contattami",i:2,t:"Cerchi un cambiamento che duri nel tempo. Il Percorso AyNova Completo unisce sessioni live con Josè e AyNova e strumenti applicabili subito, su AI, innovazione e cambiamento professionale."}};
+let step=0,ans=[];
+const $=id=>document.getElementById(id);
+function clearRec(){document.querySelectorAll('.p-card').forEach(c=>{c.classList.remove('tp-rec');const b=c.querySelector('.tp-badge');if(b)b.remove();});}
+function ask(){clearRec();const q=Q[step];$('tpStep').textContent='Domanda '+(step+1)+' di 3';$('tpBar').style.width=(step/3*100)+'%';
+  body.innerHTML='<div class="tp-q">'+q[0]+'</div>'+q[1].map((o,i)=>'<button type="button" class="tp-opt" data-i="'+i+'">'+o[0]+'</button>').join('');}
+function winner(){const sc={d:0,s:0,c:0};ans.forEach(a=>sc[a]++);const mx=Math.max(sc.d,sc.s,sc.c),top=Object.keys(sc).filter(k=>sc[k]===mx);return top.length===1?top[0]:(top.includes(ans[0])?ans[0]:top[0]);}
+function result(){const k=winner(),p=P[k];$('tpStep').textContent='Il tuo risultato';$('tpBar').style.width='100%';
+  const msg='Ciao Josè, ho fatto il test "Trova il tuo percorso" sul tuo sito e mi è uscita la '+p.n+'. Mi racconti come funziona?';
+  body.innerHTML='<div class="tp-res"><h3>Il percorso per te: <span>'+p.n+'</span></h3><div class="tp-price">'+p.pr+'</div><p>'+p.t+'</p><div class="tp-actions"><a class="btn-primary" href="'+LI+'" target="_blank" rel="noopener">💬 Scrivimi su LinkedIn</a><button type="button" class="tp-sec" id="tpCopy">📋 Copia il messaggio</button><button type="button" class="tp-sec" id="tpRedo">↺ Rifai il test</button></div><p style="margin:14px 0 0;font-size:12px;color:var(--gray)">Copia il messaggio e incollalo nella chat di LinkedIn: così so già cosa ti interessa.</p></div>';
+  const card=document.querySelectorAll('.p-card')[p.i];if(card){card.classList.add('tp-rec');const b=document.createElement('div');b.className='tp-badge';b.textContent='✅ CONSIGLIATO PER TE';card.appendChild(b);}
+  $('tpRedo').onclick=()=>{step=0;ans=[];ask();};
+  $('tpCopy').onclick=()=>{const done=()=>{$('tpCopy').textContent='✅ Copiato';setTimeout(()=>{if($('tpCopy'))$('tpCopy').textContent='📋 Copia il messaggio';},2000);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(msg).then(done,()=>fb());}else fb();
+    function fb(){const t=document.createElement('textarea');t.value=msg;t.style.position='fixed';t.style.opacity=0;document.body.appendChild(t);t.select();try{document.execCommand('copy');done();}catch(e){}t.remove();}};}
+body.addEventListener('click',e=>{const b=e.target.closest('.tp-opt');if(!b)return;ans.push(Q[step][1][+b.dataset.i][1]);step++;step<3?ask():result();});
+ask();
 })();
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1d021cb69d9b4991a656b3ce60901075"}'></script><!-- End Cloudflare Web Analytics -->

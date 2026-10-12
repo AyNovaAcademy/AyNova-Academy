@@ -78,17 +78,17 @@ const Q=[
 ["Come si costruisce una visione per la settimana che inizia?",["Lasciando che accada","Scegliendo 3 obiettivi chiari e il primo passo per ciascuno","Aspettando lunedì","Facendo una lista infinita"],1,"Poche priorità chiare e un primo passo concreto fanno partire la settimana con slancio."]]}
 ];
 const LV=[[0,2,"😔","Hai margine di crescita enorme","Su questo tema stai ancora delegando molto al caso. Con un metodo giusto puoi cambiare rotta in fretta."],[3,4,"🔋","Hai la scintilla, ti manca il metodo","Hai intuito le cose importanti, ma serve un sistema per trasformarle in abitudine."],[5,5,"🔥","Sei un motore autonomo","Applichi già i principi giusti. Il prossimo passo è renderli ancora più sistematici."]];
-const app=document.getElementById('app');let day=0,i=0,sc=0,ans=false;
+const app=document.getElementById('app');let day=0,i=0,sc=0,ans=false;let st=false;const BASE=location.pathname.replace(/\/(iniziato|completato)$/,'');function track(p){try{history.pushState({},'',BASE+'/'+p)}catch(e){}}
 const T=()=>Q[day];
 function home(){app.innerHTML=`<span class="badge">⚡ QUIZ DELLA SETTIMANA</span><h1>Un quiz per ogni giorno</h1><p class="mu">5 domande · ~2 minuti · Scegli il giorno</p><div class="days">${Q.map((q,k)=>`<button class="day" onclick="start(${k})"><b>${q.d}</b>${q.e} ${q.t}</button>`).join('')}</div>`}
-function start(k){day=k;i=0;sc=0;ans=false;show()}
+function start(k){day=k;i=0;sc=0;ans=false;st=false;show()}
 function show(){const t=T(),q=t.qs[i];
 app.innerHTML=`<div style="display:flex;justify-content:space-between" class="mu"><b>${t.e} ${t.d} · ${t.t.toUpperCase()}</b><b>${i+1}/${t.qs.length}</b></div><div class="bar"><i style="width:${i/t.qs.length*100}%"></i></div><h2>${q[0]}</h2>${q[1].map((o,k)=>`<button class="opt" onclick="pick(${k})"><span>${String.fromCharCode(65+k)}</span><div>${o}</div></button>`).join('')}<div id="fb"></div>`}
-function pick(k){if(ans)return;ans=true;const q=T().qs[i];if(k===q[2])sc++;
+function pick(k){if(ans)return;ans=true;if(!st){st=true;track('iniziato')}const q=T().qs[i];if(k===q[2])sc++;
 document.querySelectorAll('.opt').forEach((b,n)=>{if(n===q[2])b.classList.add('ok');else if(n===k)b.classList.add('ko');else b.classList.add('dim')});
 document.getElementById('fb').innerHTML=`<div class="ex">💡 ${q[3]}</div><button class="btn" onclick="next()">${i+1===T().qs.length?'Vedi il tuo risultato 🎯':'Prossima domanda →'}</button>`}
 function next(){ans=false;i++;i>=T().qs.length?result():show()}
-function result(){const t=T(),l=LV.find(x=>sc>=x[0]&&sc<=x[1]);
+function result(){track('completato');const t=T(),l=LV.find(x=>sc>=x[0]&&sc<=x[1]);
 app.innerHTML=`<div style="text-align:center"><span class="badge">${l[2]} ${l[3]}</span><div class="score">${sc}<span style="font-size:26px;color:#999">/${t.qs.length}</span></div><p class="mu" style="font-size:15px;line-height:1.6">${l[4]}</p>
 <div class="cta"><p><b>🚀 Vuoi trasformare ${t.t.toLowerCase()} in un sistema concreto?</b></p><p class="mu">Scopri i percorsi di AyNova Academy: l'AI che amplifica le capacità umane.</p><a class="btn" href="${SITE}" target="_blank" rel="noopener noreferrer">🌐 Vai al sito AyNova Academy</a></div>
 <div class="share"><b style="color:#0a66c2">💬 Torna su LinkedIn e commenta:</b><br>"${l[2]} Quiz ${t.t} (${t.d.toLowerCase()}): ${sc}/${t.qs.length}: ${l[3]}!"</div>

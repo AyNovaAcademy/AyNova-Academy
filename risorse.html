@@ -44,6 +44,26 @@ footer{border-top:1px solid rgba(0,212,255,.12);padding:24px 5%;text-align:cente
 .formbox{background:var(--card);border:1px solid rgba(0,212,255,.35);border-radius:18px;padding:18px;margin:24px 0}
 .formbox iframe{width:100%;height:560px;border:0;border-radius:10px;background:#fff}
 .priv{font-size:13px;color:var(--mu)}
+
+.gform{display:grid;gap:16px}
+.gform label.lbl{display:block;font-weight:700;font-size:15px;color:#fff;margin-bottom:6px}
+.gform label.lbl i{color:var(--cy);font-style:normal}
+.gform input[type=text],.gform input[type=email]{width:100%;background:#071022;color:var(--tx);border:1px solid rgba(0,212,255,.35);border-radius:12px;padding:13px 14px;font-size:16px;font-family:inherit;outline:none}
+.gform input[type=text]:focus,.gform input[type=email]:focus{border-color:var(--cy);box-shadow:0 0 0 3px rgba(0,212,255,.18)}
+.gform input::placeholder{color:#6f8299}
+.gform .chk{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:#c9d6e6;line-height:1.5;cursor:pointer}
+.gform .chk input{accent-color:#00d4ff;width:19px;height:19px;margin-top:2px;flex:none}
+.gform .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.gform .opt{background:#071022;border:1px solid rgba(0,212,255,.25);border-radius:12px;padding:11px 12px}
+.gform .opt:hover{border-color:var(--cy)}
+.gform .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.gform .err{display:none;background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.45);color:#ffc9c9;border-radius:12px;padding:11px 14px;font-size:14.5px}
+.gform .btn{width:100%;font-size:16px;padding:14px 24px}
+.gform .btn:disabled{opacity:.6;cursor:wait}
+.thanks{text-align:center;padding:8px 4px}
+.thanks h3{font-size:24px;margin-bottom:8px;color:#fff}
+.thanks p{margin-bottom:18px}
+.thanks .dl{display:grid;gap:12px;max-width:460px;margin:0 auto}
 </style>
 </head>
 <body>
@@ -57,22 +77,54 @@ footer{border-top:1px solid rgba(0,212,255,.12);padding:24px 5%;text-align:cente
 <div class="card"><div class="em">🧠</div><h3>30 prompt per l'AI</h3><p>PDF di 5 pagine con istruzioni pronte da copiare: Excel e dati, report ed email, contratti, riunioni, carriera.</p></div>
 </div>
 <div class="formbox" id="formbox">
-<div id="formArea"></div>
+<div id="formArea">
+<form class="gform" id="gf" action="https://docs.google.com/forms/d/e/1FAIpQLSdn5Vu-c6GIio7-HMyHADU6vTHRC0IInktdp7iQRQT2CTll5A/formResponse" method="POST" target="gfsink" novalidate>
+<div><label class="lbl" for="f_nome">Nome</label><input type="text" id="f_nome" name="entry.1228742974" placeholder="Il tuo nome" autocomplete="given-name"/></div>
+<div><label class="lbl" for="f_email">Indirizzo email <i>*</i></label><input type="email" id="f_email" name="entry.630506908" placeholder="nome@esempio.it" autocomplete="email" inputmode="email" required/></div>
+<label class="chk"><input type="checkbox" id="f_cons" name="entry.1544866842" value="E mail" required/><span>Acconsento a ricevere i materiali via email all'indirizzo indicato <i style="color:#00d4ff;font-style:normal">*</i></span></label>
+<div>
+<span class="lbl">Su cosa vuoi ricevere contenuti in futuro? (facoltativo)</span>
+<div class="opts">
+<label class="chk opt"><input type="checkbox" name="entry.1214294127" value="A.I con Excel"/><span>A.I con Excel</span></label>
+<label class="chk opt"><input type="checkbox" name="entry.1214294127" value="A.I per i contratti"/><span>A.I per i contratti</span></label>
+<label class="chk opt"><input type="checkbox" name="entry.1214294127" value="A.I per strategie di management"/><span>A.I per strategie di management</span></label>
+<label class="chk opt"><input type="checkbox" name="entry.1214294127" value="Marketing"/><span>Marketing</span></label>
+<label class="chk opt"><input type="checkbox" name="entry.1214294127" value="Sviluppo Personale"/><span>Sviluppo Personale</span></label>
+<label class="chk opt"><input type="checkbox" name="entry.1214294127" value="Tecnologia"/><span>Tecnologia</span></label>
+<label class="chk opt"><input type="checkbox" name="entry.1214294127" value="Lingue"/><span>Lingue</span></label>
+</div>
+</div>
+<input class="hp" type="text" id="f_hp" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+<div class="err" id="gerr" role="alert"></div>
+<button class="btn" type="submit" id="gbtn">🎁 Ricevi i regali</button>
+</form>
+<iframe name="gfsink" id="gfsink" title="" style="display:none" aria-hidden="true"></iframe>
+</div>
 </div>
 <p class="priv">Usiamo la tua email per inviarti i materiali e, solo se ti fa piacere, per aggiornamenti su AyNova Academy. Puoi chiedere di essere cancellato in qualsiasi momento scrivendo a Josè Sala su LinkedIn.</p>
 <h2>Intanto, leggi le guide</h2>
 <div class="rel"><a href="guide/copilot-excel.html">Copilot in Excel<small>Come usarlo e 6 prompt per iniziare</small></a><a href="guide/chat-gpt-report.html">Chat GPT Plus per i report di lavoro<small>Il metodo in 5 passi, con prompt pronti</small></a><a href="guide/claude-contratti.html">Claude per analizzare i contratti<small>Il metodo in 4 passi</small></a></div>
 <div class="cta"><h3>Vuoi costruire dashboard come questa con l'AI?</h3><p>Prenota una sessione gratuita di 30 minuti con Josè e AyNova.</p><div class="row"><a class="btn" href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery" target="_blank" rel="noopener">📅 Prenota la Discovery</a><a class="btn ghost" href="./#dashboard">📊 Prova la dashboard</a></div></div>
 <script>
-const FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSdn5Vu-c6GIio7-HMyHADU6vTHRC0IInktdp7iQRQT2CTll5A/viewform";
 (function(){
-  const a=document.getElementById('formArea');
-  if(/^https:\/\/docs\.google\.com\/forms\//.test(FORM_URL)){
-    const u=FORM_URL.indexOf('?')>-1?FORM_URL+'&embedded=true':FORM_URL+'?embedded=true';
-    a.innerHTML='<iframe src="'+u+'" title="Modulo per ricevere i regali" loading="lazy">Caricamento…</iframe><p class="priv" style="margin-top:10px">Se il modulo non si vede, <a href="'+FORM_URL+'" target="_blank" rel="noopener" style="color:#00d4ff">aprilo in una nuova scheda</a>.</p>';
-  }else{
-    a.innerHTML='<p style="margin-bottom:14px">Il modulo è in arrivo. Nel frattempo scrivimi su LinkedIn e ti mando i materiali.</p><a class="btn" href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" rel="noopener">💬 Scrivimi su LinkedIn</a>';
+  var f=document.getElementById('gf'),sink=document.getElementById('gfsink'),err=document.getElementById('gerr'),btn=document.getElementById('gbtn'),area=document.getElementById('formArea');
+  var sent=false,timer=null;
+  function showErr(m){err.textContent=m;err.style.display='block';}
+  function thanks(){
+    clearTimeout(timer);
+    area.innerHTML='<div class="thanks"><h3>🎉 Grazie, ecco i tuoi regali</h3><p>Scarica subito i due file. Si salvano direttamente sul tuo dispositivo.</p><div class="dl"><a class="btn" href="risorse/Modello_Dashboard_AyNova.xlsx" download="Modello_Dashboard_AyNova.xlsx">📊 Scarica il modello Excel</a><a class="btn" href="risorse/30_Prompt_AI_per_il_lavoro_AyNova.pdf" download="30_Prompt_AI_per_il_lavoro_AyNova.pdf">🧠 Scarica i 30 prompt in PDF</a></div></div>';
+    area.scrollIntoView({behavior:'smooth',block:'center'});
   }
+  sink.addEventListener('load',function(){ if(sent) thanks(); });
+  f.addEventListener('submit',function(e){
+    err.style.display='none';
+    if(document.getElementById('f_hp').value){e.preventDefault();return;}
+    var em=document.getElementById('f_email').value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){e.preventDefault();showErr('Inserisci un indirizzo email valido.');return;}
+    if(!document.getElementById('f_cons').checked){e.preventDefault();showErr('Per ricevere i materiali serve spuntare il consenso.');return;}
+    sent=true;btn.disabled=true;btn.textContent='Invio in corso...';
+    timer=setTimeout(function(){sent=false;btn.disabled=false;btn.textContent='🎁 Ricevi i regali';showErr('Non riesco a inviare il modulo. Riprova tra poco oppure scrivimi su LinkedIn.');},12000);
+  });
 })();
 </script>
 </main>

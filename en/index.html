@@ -325,6 +325,20 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 }
 .aynova-orb{max-width:100%;height:auto;aspect-ratio:1/1;}
 .aynova-inner>*{min-width:0;}
+
+/* Menu mobile */
+.nav-burger{display:none;background:rgba(0,212,255,0.12);border:2px solid rgba(0,212,255,0.6);color:#fff;border-radius:12px;width:42px;height:38px;font-size:20px;line-height:1;cursor:pointer;font-family:inherit;padding:0;flex:none}
+.nav-links .menu-cta,.nav-links .li-lang{display:none}
+@media(max-width:960px){
+  .nav-burger{display:inline-flex;align-items:center;justify-content:center}
+  .nav-links.open{display:flex;flex-direction:column;gap:10px;position:absolute;top:100%;left:0;right:0;padding:16px 6% 20px;background:rgba(2,5,16,0.98);border-bottom:1px solid rgba(0,212,255,0.25);box-shadow:0 18px 40px rgba(0,0,0,0.6);max-height:calc(100vh - 64px);overflow-y:auto}
+  .nav-links.open li{width:100%}
+  .nav-links.open a{display:block;text-align:center;padding:13px 18px;font-size:15px}
+}
+@media(max-width:480px){
+  .nav-cta{display:none}
+  .nav-links .menu-cta{display:block}
+}
 </style>
 </head>
 <body>
@@ -332,17 +346,19 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 <div id="spotlight"></div>
 <nav>
 <div class="logo">Ay<span>Nova</span> Academy</div>
-<ul class="nav-links">
+<ul class="nav-links" id="navlinks">
 <li><a href="#dashboard">Dashboard</a></li>
 <li><a href="#bio">About</a></li>
 <li><a href="#aynova">AyNova</a></li>
 <li><a href="#vision">Vision</a></li>
 <li><a href="#percorsi">Programs</a></li>
 <li><a href="#contatti">Contact</a></li>
-    <li><a href="../" hreflang="it" lang="it">IT</a></li>
+    <li class="li-lang"><a href="../" hreflang="it" lang="it">IT</a></li>
+<li class="menu-cta"><a href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery" target="_blank" rel="noopener">🚀 Start Free</a></li>
 </ul>
 <a class="lang-sw" href="../" hreflang="it" lang="it">🌐 IT</a>
 <a class="nav-cta" href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery" target="_blank">🚀 Start Free</a>
+  <button class="nav-burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navlinks">☰</button>
 </nav>
 <div class="floating-widget">
 <a aria-label="Open the chat with AyNova, the AI created by Josè Sala" class="floating-label" href="https://claude.ai/public/artifacts/a82156a0-f02e-41c5-97a3-4474a1a6cca4" rel="noopener" target="_blank">
@@ -834,5 +850,16 @@ ask();
 })();
 </script>
 <!-- Cloudflare Web Analytics --><script data-cf-beacon='{"token": "1d021cb69d9b4991a656b3ce60901075"}' src="https://static.cloudflareinsights.com/beacon.min.js" type="module"></script><!-- End Cloudflare Web Analytics -->
+<script>
+(function(){
+  var b=document.querySelector('.nav-burger'),m=document.querySelector('.nav-links');
+  if(!b||!m)return;
+  function close(){m.classList.remove('open');b.setAttribute('aria-expanded','false');b.textContent='\u2630';}
+  b.addEventListener('click',function(e){e.stopPropagation();var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'\u2715':'\u2630';});
+  m.addEventListener('click',function(e){if(e.target.closest('a'))close();});
+  document.addEventListener('click',function(e){if(!e.target.closest('nav'))close();});
+  window.addEventListener('resize',function(){if(window.innerWidth>960)close();});
+})();
+</script>
 </body>
 </html>

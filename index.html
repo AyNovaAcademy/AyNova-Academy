@@ -322,6 +322,33 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
   .lang-sw{padding:6px 8px;font-size:11px;}
   .nav-cta{padding:7px 9px;font-size:10.5px;}
 }
+/* === MENU MOBILE + SEZIONE NUMERI === */
+.nav-burger{display:none;}
+@media(max-width:520px){.lang-sw{display:none !important;}}
+.logo,.nav-links a,.nav-cta{white-space:nowrap;}
+@media(min-width:961px) and (max-width:1500px){
+  nav{padding:14px 3%;gap:10px;}
+  .nav-links{gap:6px;}
+  .nav-links a{padding:7px 12px;font-size:12px;}
+  .nav-cta{padding:9px 16px;font-size:13px;animation:none;}
+  .logo{font-size:19px;}
+}
+@media(min-width:961px) and (max-width:1120px){
+  .nav-links{gap:4px;}
+  .nav-links a{padding:6px 8px;font-size:11px;}
+  .nav-cta{padding:8px 12px;font-size:12px;}
+  .logo{font-size:16px;letter-spacing:0;}
+}
+@media(max-width:960px){
+  .nav-burger{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;width:42px;height:42px;border-radius:12px;border:2px solid rgba(0,212,255,0.6);background:rgba(0,212,255,0.08);color:#fff;font-size:20px;line-height:1;cursor:pointer;}
+  nav .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:10px;padding:16px 6% 22px;background:rgba(2,5,16,0.98);border-bottom:1px solid rgba(0,212,255,0.25);max-height:calc(100vh - 70px);overflow-y:auto;}
+  nav .nav-links.open{display:flex;}
+  nav .nav-links a{display:block;text-align:center;font-size:15px;padding:12px 18px;}
+}
+.ay-kpis{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;max-width:900px;margin:0 auto 30px;}
+.ay-kpi{background:var(--card);border:1px solid rgba(0,212,255,0.2);border-radius:18px;padding:16px 26px;text-align:center;min-width:210px;}
+.ay-kpi b{display:block;font-size:30px;font-weight:900;color:var(--electric);line-height:1.2;}
+.ay-kpi span{font-size:13px;color:var(--gray);}
 .aynova-orb{max-width:100%;height:auto;aspect-ratio:1/1;}
 .aynova-inner>*{min-width:0;}
 a.dash-open{display:inline-block;text-decoration:none;}
@@ -370,7 +397,7 @@ a.dash-open{display:inline-block;text-decoration:none;}
 
 <nav>
   <div class="logo">Ay<span>Nova</span> Academy</div>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navMenu">
     <li><a href="#dashboard">Dashboard</a></li>
     <li><a href="#percorsi">Percorsi</a></li>
     <li><a href="#bio">Chi Sono</a></li>
@@ -378,10 +405,12 @@ a.dash-open{display:inline-block;text-decoration:none;}
     <li><a href="#vision">Vision</a></li>
     <li><a href="#contatti">Contatti</a></li>
     <li><a href="risorse.html">Risorse</a></li>
+    <li><a href="numeri-del-lavoro.html">Numeri</a></li>
     <li><a href="en/" hreflang="en" lang="en">EN</a></li>
   </ul>
   <a class="lang-sw" href="en/" hreflang="en" lang="en">🌐 EN</a>
   <a href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery" target="_blank" class="nav-cta">🚀 Inizia Gratis</a>
+  <button class="nav-burger" id="navBurger" type="button" aria-label="Apri il menu" aria-expanded="false" aria-controls="navMenu">☰</button>
 </nav>
 
 <div class="floating-widget">
@@ -770,6 +799,22 @@ a.dash-open{display:inline-block;text-decoration:none;}
   </div>
 </section>
 
+<section class="section" id="numeri">
+  <div class="ay-head">
+    <div class="section-label">Ogni mese</div>
+    <h2 class="section-title">I numeri del lavoro in Italia, <span>letti in modo semplice</span></h2>
+    <p class="section-sub">I dati Istat su occupati e disoccupati spiegati con parole semplici. Ultimo aggiornamento: dati di agosto 2026.</p>
+  </div>
+  <div class="ay-kpis">
+    <div class="ay-kpi"><b>6,2%</b><span>tasso di disoccupazione</span></div>
+    <div class="ay-kpi"><b>+291mila</b><span>occupati in un anno</span></div>
+    <div class="ay-kpi"><b>63,0%</b><span>tasso di occupazione</span></div>
+  </div>
+  <div class="ay-more">
+    <a class="btn-primary" href="numeri-del-lavoro.html">Leggi tutti i numeri →</a>
+  </div>
+</section>
+
 <section class="section cta-section" id="contatti">
   <h2>Pronto a cavalcare<br/><span style="background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">l'onda dell'AI?</span></h2>
   <p>Non aspettare che il cambiamento ti travolga. Inizia oggi, gratuitamente. Josè e AyNova ti aspettano in aula virtuale.</p>
@@ -975,5 +1020,21 @@ ask();
 })();
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1d021cb69d9b4991a656b3ce60901075"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+(function(){
+  var b=document.getElementById('navBurger'), m=document.getElementById('navMenu');
+  if(!b||!m) return;
+  function close(){m.classList.remove('open');b.setAttribute('aria-expanded','false');b.textContent='\u2630';b.setAttribute('aria-label','Apri il menu');}
+  b.addEventListener('click',function(){
+    var open=m.classList.toggle('open');
+    b.setAttribute('aria-expanded',open?'true':'false');
+    b.textContent=open?'\u2715':'\u2630';
+    b.setAttribute('aria-label',open?'Chiudi il menu':'Apri il menu');
+  });
+  m.addEventListener('click',function(e){if(e.target.tagName==='A') close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') close();});
+  window.addEventListener('resize',function(){if(window.innerWidth>960) close();});
+})();
+</script>
 </body>
 </html>

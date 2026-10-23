@@ -327,6 +327,38 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 a.dash-open{display:inline-block;text-decoration:none;}
 .foot-guide{margin-top:12px;font-size:13px;color:var(--gray);}
 .foot-guide a{color:var(--electric);text-decoration:none;margin:0 6px;}
+
+/* === NUOVE SEZIONI: RACCOMANDAZIONI, COME FUNZIONA, PRENOTA === */
+#raccomandazioni,#come-funziona,#prenota{scroll-margin-top:80px;}
+.ay-head{text-align:center;margin-bottom:48px;}
+.ay-head .section-sub{margin:16px auto 0;}
+.ay-shots{display:flex;flex-direction:column;gap:22px;max-width:860px;margin:0 auto;}
+.ay-shot{margin:0;background:#fff;border-radius:20px;overflow:hidden;border:1px solid rgba(0,212,255,0.3);box-shadow:0 0 30px rgba(0,212,255,0.14);}
+.ay-shot a{display:block;}
+.ay-shot img{display:block;width:100%;height:auto;}
+.ay-shot figcaption{background:var(--card);color:var(--gray);font-size:12.5px;padding:10px 18px;border-top:1px solid rgba(0,212,255,0.2);}
+.ay-more{text-align:center;margin-top:36px;}
+.ay-tapnote{text-align:center;color:var(--gray);font-size:12.5px;margin-top:14px;}
+.ay-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:0 auto;}
+.ay-step{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:24px;padding:36px 28px;position:relative;overflow:hidden;}
+.ay-step::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--electric));}
+.ay-num{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--electric));display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;margin-bottom:18px;}
+.ay-step h3{font-size:20px;font-weight:900;margin-bottom:10px;}
+.ay-step p{color:var(--gray);font-size:14px;line-height:1.7;}
+.ay-faq{max-width:820px;margin:56px auto 0;text-align:left;}
+.ay-faq h3{font-size:22px;font-weight:900;margin-bottom:18px;text-align:center;}
+.ay-faq details{background:var(--card);border:1px solid rgba(0,212,255,0.15);border-radius:16px;padding:16px 22px;margin-bottom:12px;transition:border-color .3s;}
+.ay-faq details[open]{border-color:rgba(0,212,255,0.4);}
+.ay-faq summary{cursor:pointer;font-weight:800;font-size:15px;list-style:none;display:flex;justify-content:space-between;gap:12px;}
+.ay-faq summary::-webkit-details-marker{display:none;}
+.ay-faq summary::after{content:'+';color:var(--electric);font-weight:900;font-size:20px;line-height:1;}
+.ay-faq details[open] summary::after{content:'\2212';}
+.ay-faq details p{color:var(--gray);font-size:14.5px;line-height:1.75;margin-top:12px;}
+.ay-cal{max-width:900px;margin:0 auto;min-height:620px;background:var(--card);border:1px solid rgba(0,212,255,0.3);border-radius:22px;padding:8px;box-shadow:0 0 50px rgba(0,212,255,0.18);}
+.ay-note{text-align:center;color:var(--gray);font-size:14px;line-height:1.7;margin-top:18px;}
+.ay-note a{color:var(--electric);}
+@media(max-width:960px){.ay-steps{grid-template-columns:1fr;}}
+@media(max-width:700px){.ay-shot a{overflow-x:auto;-webkit-overflow-scrolling:touch;}.ay-shot img{width:660px;max-width:none;}}
 </style>
 </head>
 <body>
@@ -338,10 +370,10 @@ a.dash-open{display:inline-block;text-decoration:none;}
   <div class="logo">Ay<span>Nova</span> Academy</div>
   <ul class="nav-links">
     <li><a href="#dashboard">Dashboard</a></li>
+    <li><a href="#percorsi">Percorsi</a></li>
     <li><a href="#bio">Chi Sono</a></li>
     <li><a href="#aynova">AyNova</a></li>
     <li><a href="#vision">Vision</a></li>
-    <li><a href="#percorsi">Percorsi</a></li>
     <li><a href="#contatti">Contatti</a></li>
     <li><a href="risorse.html">Risorse</a></li>
     <li><a href="en/" hreflang="en" lang="en">EN</a></li>
@@ -394,6 +426,38 @@ a.dash-open{display:inline-block;text-decoration:none;}
   </div>
 </section>
 
+<section class="section" id="raccomandazioni">
+  <div class="ay-head">
+    <div class="section-label">Cosa dicono di me</div>
+    <h2 class="section-title">Le raccomandazioni di chi ha seguito i <span>miei corsi</span></h2>
+    <p class="section-sub">Sono raccomandazioni pubbliche sul mio profilo LinkedIn, riferite a corsi di Cyber Security e di Comunicazione efficace. Le mostro così come sono state scritte.</p>
+  </div>
+  <div class="ay-shots">
+    <figure class="ay-shot">
+      <a href="raccomandazioni/raccomandazione-luca-virgili.webp" target="_blank" rel="noopener">
+        <img src="raccomandazioni/raccomandazione-luca-virgili.webp" width="1082" height="235" loading="lazy" alt="Raccomandazione LinkedIn di Luca A. Virgili, IT application coordinator, sul corso di Cybersecurity"/>
+      </a>
+      <figcaption>Luca A. Virgili · corso di Cybersecurity</figcaption>
+    </figure>
+    <figure class="ay-shot">
+      <a href="raccomandazioni/raccomandazione-simone-giovanelli.webp" target="_blank" rel="noopener">
+        <img src="raccomandazioni/raccomandazione-simone-giovanelli.webp" width="1076" height="296" loading="lazy" alt="Raccomandazione LinkedIn di Simone Giovanelli, consulente senior Banking e Pubblica Amministrazione, sul corso di Cyber Security"/>
+      </a>
+      <figcaption>Simone Giovanelli · corso di Cyber Security · estratto, il testo completo è sul mio profilo LinkedIn</figcaption>
+    </figure>
+    <figure class="ay-shot">
+      <a href="raccomandazioni/raccomandazione-benedetta-pistilli.webp" target="_blank" rel="noopener">
+        <img src="raccomandazioni/raccomandazione-benedetta-pistilli.webp" width="1074" height="162" loading="lazy" alt="Raccomandazione LinkedIn di Benedetta Sophie Pistilli sul corso Comunicazione efficace, problem solving e gestione dello stress"/>
+      </a>
+      <figcaption>Benedetta Sophie Pistilli · corso «Comunicazione efficace, problem solving e gestione dello stress»</figcaption>
+    </figure>
+  </div>
+  <p class="ay-tapnote">Scorri di lato per leggere, oppure tocca un'immagine per ingrandirla.</p>
+  <div class="ay-more">
+    <a class="btn-ghost" href="https://www.linkedin.com/in/dott-sala-jos%C3%A8-project-master-learning-innovation/" target="_blank" rel="noopener">Leggi tutte le raccomandazioni su LinkedIn →</a>
+  </div>
+</section>
+
 <section class="section" id="dashboard">
     <h2 class="section-title">Questa dashboard è viva. <span>Provala.</span></h2>
   <p class="dash-sub">Cambia i filtri, clicca sulle regioni, guarda i numeri aggiornarsi in tempo reale. L'ho costruita con l'AI su dati di esempio. Nel percorso impari il metodo per costruire dashboard di questo tipo con gli strumenti AI.</p>
@@ -439,6 +503,98 @@ a.dash-open{display:inline-block;text-decoration:none;}
   <a class="btn-primary" href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" rel="noopener">🚀 Voglio imparare a farlo</a>
 </section>
 <div class="lb" id="lb"><img src="dashboard.webp" alt="Dashboard ingrandita"/></div>
+
+<section class="section" id="percorsi">
+  <div style="text-align:center;margin-bottom:60px;">
+    <div class="section-label">Cosa Offro</div>
+    <h2 class="section-title">I Percorsi <span>Academy</span></h2>
+  </div>
+    <div class="tp" id="tp">
+    <div class="tp-head"><span class="tp-tag">🧭 TROVA IL TUO PERCORSO</span><span class="tp-step" id="tpStep"></span></div>
+    <div class="tp-prog"><i id="tpBar"></i></div>
+    <div id="tpBody" aria-live="polite"></div>
+  </div>
+  <div class="percorsi-grid">
+    <div class="p-card">
+      <div class="p-icon">🎯</div><h3>Sessione Discovery</h3>
+      <p>Una sessione virtuale 1:1 con Josè e AyNova. Capisci dove sei, dove vuoi andare e come l'AI può accelerare il tuo percorso.</p>
+      <div class="p-price">Gratuita <span>· 30 minuti, 1:1</span></div>
+      <a class="btn-primary p-book" href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery" target="_blank" rel="noopener">📅 Prenota 30 minuti</a>
+    </div>
+    <div class="p-card featured">
+      <div class="p-badge">⭐ PIÙ RICHIESTA</div>
+      <div class="p-icon">🎯</div><h3>Sessione Strategica AI</h3>
+      <p>Un'ora, uno a uno, io e AyNova. Lavoriamo su un problema concreto che hai adesso (professionale, di carriera, di business) con lo stesso metodo che ho usato per sbloccare situazioni che consideravo perse.</p>
+      <div class="p-price">97€ <span>· 60 minuti, 1:1</span></div>
+      <a class="btn-primary p-book" href="https://cal.com/docente-corsi-jnzsdu/sessione-strategica-ai" target="_blank" rel="noopener">📅 Prenota 60 minuti</a>
+    </div>
+    <div class="p-card">
+      <div class="p-icon">🚀</div><h3>Percorso AyNova Completo</h3>
+      <p>Il percorso formativo su AI, innovazione e cambiamento professionale. Sessioni live con Josè e AyNova, strumenti applicabili subito.</p>
+      <div class="p-price">Su misura <span>· Contattami</span></div>
+      <a class="btn-primary p-book" href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" rel="noopener">💬 Scrivimi su LinkedIn</a>
+    </div>
+  </div>
+  <div class="dash-strip">
+    <img src="dashboard.webp" alt="Anteprima della dashboard" loading="lazy"/>
+    <div>
+      <p>La dashboard che hai visto sopra? Nel percorso impari il metodo per costruire dashboard di questo tipo con Copilot, Chat GPT Plus e Claude.</p>
+      <a class="btn-ghost" href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" rel="noopener">💬 Parliamone</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="come-funziona">
+  <div class="ay-head">
+    <div class="section-label">Come funziona</div>
+    <h2 class="section-title">Tre passi, <span>nessun obbligo</span></h2>
+    <p class="section-sub">Si parte da una conversazione gratuita. Poi decidi tu se e come proseguire.</p>
+  </div>
+  <div class="ay-steps">
+    <div class="ay-step">
+      <div class="ay-num">1</div>
+      <h3>Prenoti 30 minuti gratuiti</h3>
+      <p>Scegli giorno e ora nel calendario qui sotto. La Sessione Discovery è gratuita e si svolge online, uno a uno.</p>
+    </div>
+    <div class="ay-step">
+      <div class="ay-num">2</div>
+      <h3>Parliamo del tuo caso</h3>
+      <p>Capiamo dove sei, dove vuoi andare e come l'AI può accelerare il tuo percorso.</p>
+    </div>
+    <div class="ay-step">
+      <div class="ay-num">3</div>
+      <h3>Decidi come proseguire</h3>
+      <p>Se vuoi lavorare a fondo su un problema concreto, c'è la Sessione Strategica AI: 60 minuti, 97€. Ne esci con strumenti pratici per Excel, contratti e revisione dei documenti. Altrimenti ci salutiamo lì.</p>
+    </div>
+  </div>
+  <div class="ay-faq">
+    <h3>Domande frequenti</h3>
+    <details><summary>Per chi sono le sessioni?</summary><p>Per chi vede il proprio lavoro cambiare, o sente che è il momento di cambiarlo, e vuole capire come usare l'AI in modo concreto.</p></details>
+    <details><summary>Devo già saper usare l'AI?</summary><p>No. Si parte da un problema reale tuo e si sceglie lo strumento giusto per quel lavoro: Copilot, Chat GPT Plus o Claude.</p></details>
+    <details><summary>Quanto costa la Sessione Discovery?</summary><p>Niente: è gratuita e dura 30 minuti.</p></details>
+    <details><summary>Cos'è la Sessione Strategica AI e quanto costa?</summary><p>Un'ora, uno a uno, per lavorare su un problema concreto che hai adesso: professionale, di carriera o di business. Costa 97€.</p></details>
+    <details><summary>Cosa ottengo dopo la Sessione Strategica?</summary><p>Strumenti pratici per affrontare problemi complessi su Excel, per la stesura di contratti e per la revisione di documenti ad alta qualità.</p></details>
+    <details><summary>Come si svolgono le sessioni?</summary><p>Online, uno a uno, con me e con AyNova.</p></details>
+    <details><summary>Chi è AyNova?</summary><p>AyNova è un'intelligenza artificiale che ho creato io. Non è una persona: affianca le sessioni, e la decisione finale resta sempre a te.</p></details>
+    <details><summary>In che lingua si svolgono?</summary><p>In italiano o in inglese.</p></details>
+  </div>
+</section>
+
+<section class="section" id="prenota">
+  <div class="ay-head">
+    <div class="section-label">Prenota</div>
+    <h2 class="section-title">Scegli il <span>tuo giorno</span></h2>
+    <p class="section-sub">30 minuti gratuiti, uno a uno. Seleziona un orario qui sotto, senza uscire dal sito.</p>
+  </div>
+  <div class="ay-cal" id="ay-cal"></div>
+  <p class="ay-note">Se il calendario non si carica, prenota da <a href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery" target="_blank" rel="noopener">questo link</a>.<br/>Preferisci lavorare su un problema concreto? <a href="https://cal.com/docente-corsi-jnzsdu/sessione-strategica-ai" target="_blank" rel="noopener">Sessione Strategica AI: 60 minuti, 97€</a>.</p>
+  <script>
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", { origin: "https://app.cal.com" });
+    Cal("inline", { elementOrSelector: "#ay-cal", calLink: "docente-corsi-jnzsdu/sessione-discovery", layout: "month_view" });
+    Cal("ui", { theme: "dark", hideEventTypeDetails: false, layout: "month_view" });
+  </script>
+</section>
 
 <section class="section" id="bio">
   <div class="bio-grid">
@@ -612,46 +768,6 @@ a.dash-open{display:inline-block;text-decoration:none;}
   </div>
 </section>
 
-<section class="section" id="percorsi">
-  <div style="text-align:center;margin-bottom:60px;">
-    <div class="section-label">Cosa Offro</div>
-    <h2 class="section-title">I Percorsi <span>Academy</span></h2>
-  </div>
-    <div class="tp" id="tp">
-    <div class="tp-head"><span class="tp-tag">🧭 TROVA IL TUO PERCORSO</span><span class="tp-step" id="tpStep"></span></div>
-    <div class="tp-prog"><i id="tpBar"></i></div>
-    <div id="tpBody" aria-live="polite"></div>
-  </div>
-  <div class="percorsi-grid">
-    <div class="p-card">
-      <div class="p-icon">🎯</div><h3>Sessione Discovery</h3>
-      <p>Una sessione virtuale 1:1 con Josè e AyNova. Capisci dove sei, dove vuoi andare e come l'AI può accelerare il tuo percorso.</p>
-      <div class="p-price">Gratuita <span>· 30 minuti, 1:1</span></div>
-      <a class="btn-primary p-book" href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery" target="_blank" rel="noopener">📅 Prenota 30 minuti</a>
-    </div>
-    <div class="p-card featured">
-      <div class="p-badge">⭐ PIÙ RICHIESTA</div>
-      <div class="p-icon">🎯</div><h3>Sessione Strategica AI</h3>
-      <p>Un'ora, uno a uno, io e AyNova. Lavoriamo su un problema concreto che hai adesso (professionale, di carriera, di business) con lo stesso metodo che ho usato per sbloccare situazioni che consideravo perse.</p>
-      <div class="p-price">97€ <span>· 60 minuti, 1:1</span></div>
-      <a class="btn-primary p-book" href="https://cal.com/docente-corsi-jnzsdu/sessione-strategica-ai" target="_blank" rel="noopener">📅 Prenota 60 minuti</a>
-    </div>
-    <div class="p-card">
-      <div class="p-icon">🚀</div><h3>Percorso AyNova Completo</h3>
-      <p>Il percorso formativo su AI, innovazione e cambiamento professionale. Sessioni live con Josè e AyNova, strumenti applicabili subito.</p>
-      <div class="p-price">Su misura <span>· Contattami</span></div>
-      <a class="btn-primary p-book" href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" rel="noopener">💬 Scrivimi su LinkedIn</a>
-    </div>
-  </div>
-  <div class="dash-strip">
-    <img src="dashboard.webp" alt="Anteprima della dashboard" loading="lazy"/>
-    <div>
-      <p>La dashboard che hai visto sopra? Nel percorso impari il metodo per costruire dashboard di questo tipo con Copilot, Chat GPT Plus e Claude.</p>
-      <a class="btn-ghost" href="https://www.linkedin.com/messaging/compose/?recipient=dott-sala-jos%C3%A8-project-master-learning-innovation" target="_blank" rel="noopener">💬 Parliamone</a>
-    </div>
-  </div>
-</section>
-
 <section class="section cta-section" id="contatti">
   <h2>Pronto a cavalcare<br/><span style="background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">l'onda dell'AI?</span></h2>
   <p>Non aspettare che il cambiamento ti travolga. Inizia oggi, gratuitamente. Josè e AyNova ti aspettano in aula virtuale.</p>
@@ -661,6 +777,7 @@ a.dash-open{display:inline-block;text-decoration:none;}
   </div>
 </section>
 
+
 <footer>
   <div class="footer-logo">Ay<span>Nova</span> Academy</div>
   <div class="footer-tagline">L'Intelligenza Umana incontra l'AI</div>
@@ -669,7 +786,7 @@ a.dash-open{display:inline-block;text-decoration:none;}
     <a href="https://www.linkedin.com/in/dott-sala-jos%C3%A8-project-master-learning-innovation/" target="_blank">LinkedIn</a>
   </div>
   <p>© 2026 AyNova Academy · Dott. Josè Sala<br/>AI Creative & Task | Kaizen Strategist | Innovation | Digital | Copilot</p>
-<p class="foot-guide">Guide: <a href="guide/copilot-excel.html">Copilot in Excel</a> · <a href="guide/chat-gpt-report.html">Chat GPT Plus per i report</a> · <a href="guide/claude-contratti.html">Claude per i contratti</a> · <a href="risorse.html">Risorse gratis</a></p>
+<p class="foot-guide">Guide: <a href="guide/copilot-excel.html">Copilot in Excel</a> · <a href="guide/chat-gpt-report.html">Chat GPT Plus per i report</a> · <a href="guide/claude-contratti.html">Claude per i contratti</a> · <a href="risorse.html">Risorse gratis</a> · <a href="numeri-del-lavoro.html">I numeri del lavoro</a></p>
 </footer>
 
 <script>

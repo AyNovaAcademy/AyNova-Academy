@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I numeri del lavoro in Italia: dati Istat letti in modo semplice | AyNova Academy</title>
+<meta name="description" content="Disoccupazione, occupati, contratti ed età: i dati Istat sul lavoro in Italia spiegati con parole semplici, aggiornati ogni mese. Ultimo dato: agosto 2026.">
+<link rel="canonical" href="https://aynovaacademy.github.io/AyNova-Academy/numeri-del-lavoro.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="AyNova Academy">
+<meta property="og:title" content="I numeri del lavoro in Italia, letti in modo semplice">
+<meta property="og:description" content="Dati Istat sul lavoro spiegati con parole semplici, aggiornati ogni mese. Ultimo dato: agosto 2026.">
+<meta property="og:url" content="https://aynovaacademy.github.io/AyNova-Academy/numeri-del-lavoro.html">
+<meta property="og:image" content="https://aynovaacademy.github.io/AyNova-Academy/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!--
+  AGGIORNAMENTO MENSILE
+  Dopo ogni comunicato Istat "Occupati e disoccupati": mandami il PDF e rigenero questa pagina.
+  Da cambiare ogni volta: mese dei dati, i numeri, data del comunicato, prossima diffusione.
+-->
+<style>
+:root{--black:#020510;--dark:#060d1f;--card:#0a1628;--blue:#0a66c2;--electric:#00d4ff;--purple:#7b2fff;--orange:#ff8c0a;--white:#fff;--gray:#8892a4;--light:#c8d6e8}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--black);color:var(--white);line-height:1.65;overflow-x:hidden}
+a{color:var(--electric)}
+header.top{position:sticky;top:0;z-index:50;background:rgba(2,5,16,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,212,255,0.12)}
+header.top div{max-width:1100px;margin:0 auto;padding:14px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.logo{font-size:20px;font-weight:900;letter-spacing:1px;color:var(--white);text-decoration:none}
+.logo span{background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.btn-primary{background:linear-gradient(135deg,var(--blue),var(--electric));color:#fff;padding:12px 26px;border-radius:50px;font-weight:900;font-size:14px;text-decoration:none;display:inline-block;border:2px solid rgba(0,212,255,0.8);box-shadow:0 0 20px rgba(0,212,255,0.4)}
+.btn-ghost{background:transparent;color:var(--electric);padding:12px 26px;border-radius:50px;font-weight:900;font-size:14px;text-decoration:none;display:inline-block;border:2px solid var(--electric)}
+main{max-width:1000px;margin:0 auto;padding:56px 5% 80px}
+.eyebrow{color:var(--electric);font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px}
+h1{font-size:clamp(30px,5vw,48px);font-weight:900;line-height:1.15;margin-bottom:16px}
+h1 span{background:linear-gradient(135deg,var(--electric),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+h2{font-size:24px;font-weight:900;margin:52px 0 8px}
+.lead{color:var(--gray);font-size:16px;max-width:680px}
+.upd{display:inline-block;background:var(--card);border:1px solid rgba(0,212,255,0.25);border-radius:50px;padding:8px 18px;font-size:13px;color:var(--light);margin-top:16px}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:20px}
+.stat{background:var(--card);border:1px solid rgba(255,255,255,0.06);border-radius:22px;padding:24px;position:relative;overflow:hidden}
+.stat::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--electric))}
+.stat .n{font-size:40px;font-weight:900;line-height:1.1}
+.stat .n.cy{color:var(--electric)}.stat .n.vi{color:#a77bff}.stat .n.or{color:var(--orange)}
+.stat .l{margin:8px 0 2px;font-weight:800}
+.stat .s{color:var(--gray);font-size:13.5px}
+.read{background:var(--card);border-left:4px solid var(--electric);border-radius:12px;padding:18px 22px;margin-top:20px;color:var(--light)}
+ol.checks{padding-left:22px;color:var(--light)}
+ol.checks li{margin:10px 0}
+.cta{margin-top:56px;background:var(--card);border:1px solid rgba(0,212,255,0.3);border-radius:24px;padding:34px;box-shadow:0 0 50px rgba(0,212,255,0.14);text-align:center}
+.cta h2{margin:0 0 10px}
+.cta .lead{margin:0 auto}
+.cta .row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:22px}
+.src{color:var(--gray);font-size:13px;margin-top:40px;border-top:1px solid rgba(255,255,255,0.08);padding-top:18px}
+footer{border-top:1px solid rgba(0,212,255,0.1);color:var(--gray);font-size:13px;text-align:center;padding:26px 5%}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div>
+    <a class="logo" href="./">Ay<span>Nova</span> Academy</a>
+    <a class="btn-primary" href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery?utm_source=sito&amp;utm_medium=numeri&amp;utm_campaign=numeri-lavoro">Prima sessione gratuita</a>
+  </div>
+</header>
+
+<main>
+  <p class="eyebrow">Ogni mese</p>
+  <h1>I numeri del lavoro in Italia, <span>letti in modo semplice</span></h1>
+  <p class="lead">Ogni mese l'Istat pubblica i dati su occupati e disoccupati. Qui trovi i numeri principali e come leggerli senza farti trascinare dal titolo.</p>
+  <span class="upd">Ultimo aggiornamento: dati di agosto 2026 (comunicato Istat del 1 ottobre 2026). Prossima diffusione Istat: 29 ottobre 2026.</span>
+
+  <h2>I numeri di agosto 2026</h2>
+  <div class="grid">
+    <div class="stat"><div class="n cy">6,2%</div><p class="l">Tasso di disoccupazione</p><p class="s">+0,2 punti rispetto al mese precedente</p></div>
+    <div class="stat"><div class="n vi">+291mila</div><p class="l">Occupati in più in un anno</p><p class="s">agosto 2026 su agosto 2025</p></div>
+    <div class="stat"><div class="n cy">63,0%</div><p class="l">Tasso di occupazione</p><p class="s">persone tra 15 e 64 anni che lavorano</p></div>
+    <div class="stat"><div class="n or">20,3%</div><p class="l">Disoccupazione tra i 15 e i 24 anni</p><p class="s">su 100 giovani che lavorano o cercano lavoro</p></div>
+    <div class="stat"><div class="n or">+129mila</div><p class="l">Persone in cerca di lavoro in più</p><p class="s">in un anno (+8,8%)</p></div>
+    <div class="stat"><div class="n cy">-381mila</div><p class="l">Inattivi tra 15 e 64 anni</p><p class="s">in un anno (-3,0%)</p></div>
+  </div>
+  <div class="read">
+    <p><strong>Come stanno insieme?</strong> La disoccupazione sale e gli occupati crescono. Una lettura possibile: più persone tornano a cercare lavoro (gli inattivi calano), e questo fa salire il tasso di disoccupazione anche se gli occupati aumentano.</p>
+  </div>
+
+  <h2>Per tipo di contratto</h2>
+  <p class="lead">Occupati, agosto 2026 su agosto 2025.</p>
+  <div class="grid">
+    <div class="stat"><div class="n cy">+370mila</div><p class="l">Dipendenti a tempo indeterminato</p><p class="s">+2,3%</p></div>
+    <div class="stat"><div class="n cy">+78mila</div><p class="l">Lavoratori indipendenti</p><p class="s">+1,5%</p></div>
+    <div class="stat"><div class="n or">-157mila</div><p class="l">Dipendenti a termine</p><p class="s">-6,2%</p></div>
+  </div>
+
+  <h2>Per età</h2>
+  <p class="lead">Occupati, agosto 2026 su agosto 2025.</p>
+  <div class="grid">
+    <div class="stat"><div class="n cy">+367mila</div><p class="l">Con 50 anni e più</p><p class="s">+3,6%</p></div>
+    <div class="stat"><div class="n or">-122mila</div><p class="l">Tra 35 e 49 anni</p><p class="s">-1,4%, dato osservato</p></div>
+    <div class="stat"><div class="n vi">+0,6%</div><p class="l">35-49 anni, al netto della demografia</p><p class="s">variazione corretta per l'invecchiamento della popolazione</p></div>
+  </div>
+  <div class="read">
+    <p><strong>Perché due numeri diversi?</strong> L'Istat precisa che parte della variazione dipende dall'invecchiamento della popolazione. Per questo, accanto al dato osservato, pubblica quello al netto della componente demografica.</p>
+  </div>
+
+  <h2>Tre controlli prima di commentare un dato</h2>
+  <ol class="checks">
+    <li><strong>È mensile o annuale?</strong> Il confronto con il mese precedente e quello con lo stesso mese dell'anno prima possono dire cose diverse.</li>
+    <li><strong>È destagionalizzato?</strong> I dati mensili Istat sono corretti per l'effetto delle stagioni.</li>
+    <li><strong>È stato rivisto?</strong> L'Istat rivede i dati ogni mese: il valore di un mese può cambiare nel comunicato successivo.</li>
+  </ol>
+
+  <section class="cta">
+    <h2>E il tuo lavoro, come si colloca in questi numeri?</h2>
+    <p class="lead">I numeri medi non dicono dove sei tu. In 30 minuti, uno a uno, capiamo da dove ripartire e come l'AI può accelerarti.</p>
+    <div class="row">
+      <a class="btn-primary" href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery?utm_source=sito&amp;utm_medium=numeri&amp;utm_campaign=numeri-lavoro">Prenota 30 minuti gratuiti</a>
+      <a class="btn-ghost" href="https://aynovaacademy.github.io/AyNova-Academy/risorse.html?utm_source=sito&amp;utm_medium=numeri&amp;utm_campaign=numeri-lavoro">Scarica Excel + 30 prompt</a>
+    </div>
+  </section>
+
+  <p class="src">Fonte: Istat, comunicato «Occupati e disoccupati», agosto 2026 (dati provvisori, destagionalizzati), diffuso il 1 ottobre 2026.
+    <a href="https://www.istat.it/wp-content/uploads/2026/10/CS_Occupati-e-disoccupati_AGOSTO_2026.pdf" target="_blank" rel="noopener">Leggi il comunicato</a>.
+    Le interpretazioni sono mie e non sostituiscono la lettura del comunicato.</p>
+</main>
+
+<footer>
+  &copy; 2026 AyNova Academy &middot; Dott. Josè Sala &middot;
+  <a href="./">Home</a>
+</footer>
+
+</body>
+</html>

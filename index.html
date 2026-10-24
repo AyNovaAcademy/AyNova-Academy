@@ -349,6 +349,20 @@ footer p{color:var(--gray);font-size:13px;line-height:1.8;}
 .ay-kpi{background:var(--card);border:1px solid rgba(0,212,255,0.2);border-radius:18px;padding:16px 26px;text-align:center;min-width:210px;}
 .ay-kpi b{display:block;font-size:30px;font-weight:900;color:var(--electric);line-height:1.2;}
 .ay-kpi span{font-size:13px;color:var(--gray);}
+.lang-dd{display:none;}
+.nav-links .m-only{display:none;}
+@media(max-width:960px){
+  .lang-dd{display:block;position:relative;margin-left:auto;flex:0 0 auto;}
+  .lang-btn{display:inline-flex;align-items:center;gap:6px;height:42px;padding:0 14px;border-radius:12px;border:2px solid rgba(0,212,255,0.6);background:rgba(0,212,255,0.08);color:#fff;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;}
+  .lang-caret{font-size:11px;color:var(--electric);}
+  .lang-menu{display:none;position:absolute;right:0;top:calc(100% + 12px);min-width:160px;background:rgba(2,5,16,0.98);border:1px solid rgba(0,212,255,0.4);border-radius:14px;padding:6px;box-shadow:0 10px 30px rgba(0,0,0,0.6);}
+  .lang-menu.open{display:block;}
+  .lang-menu a{display:flex;justify-content:space-between;gap:10px;padding:11px 14px;color:#fff;text-decoration:none;font-weight:700;font-size:14px;border-radius:10px;}
+  .lang-menu a.current{color:var(--electric);}
+  nav .nav-cta{display:none;}
+  nav .nav-links .m-only{display:block;}
+  nav .nav-links .d-only{display:none;}
+}
 .aynova-orb{max-width:100%;height:auto;aspect-ratio:1/1;}
 .aynova-inner>*{min-width:0;}
 a.dash-open{display:inline-block;text-decoration:none;}
@@ -398,6 +412,7 @@ a.dash-open{display:inline-block;text-decoration:none;}
 <nav>
   <div class="logo">Ay<span>Nova</span> Academy</div>
   <ul class="nav-links" id="navMenu">
+    <li class="m-only"><a href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery" target="_blank" rel="noopener">🚀 Inizia Gratis</a></li>
     <li><a href="#dashboard">Dashboard</a></li>
     <li><a href="#percorsi">Percorsi</a></li>
     <li><a href="#bio">Chi Sono</a></li>
@@ -406,9 +421,15 @@ a.dash-open{display:inline-block;text-decoration:none;}
     <li><a href="#contatti">Contatti</a></li>
     <li><a href="risorse.html">Risorse</a></li>
     <li><a href="numeri-del-lavoro.html">Numeri</a></li>
-    <li><a href="en/" hreflang="en" lang="en">EN</a></li>
+    <li class="d-only"><a href="en/" hreflang="en" lang="en">EN</a></li>
   </ul>
-  <a class="lang-sw" href="en/" hreflang="en" lang="en">🌐 EN</a>
+  <div class="lang-dd" id="langDd">
+    <button class="lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Lingua: italiano">IT <span class="lang-caret">▾</span></button>
+    <div class="lang-menu" id="langMenu">
+      <a href="./" class="current" aria-current="true">Italiano <span>✓</span></a>
+      <a href="en/" hreflang="en" lang="en">English</a>
+    </div>
+  </div>
   <a href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery" target="_blank" class="nav-cta">🚀 Inizia Gratis</a>
   <button class="nav-burger" id="navBurger" type="button" aria-label="Apri il menu" aria-expanded="false" aria-controls="navMenu">☰</button>
 </nav>
@@ -1023,17 +1044,14 @@ ask();
 <script>
 (function(){
   var b=document.getElementById('navBurger'), m=document.getElementById('navMenu');
-  if(!b||!m) return;
-  function close(){m.classList.remove('open');b.setAttribute('aria-expanded','false');b.textContent='\u2630';b.setAttribute('aria-label','Apri il menu');}
-  b.addEventListener('click',function(){
-    var open=m.classList.toggle('open');
-    b.setAttribute('aria-expanded',open?'true':'false');
-    b.textContent=open?'\u2715':'\u2630';
-    b.setAttribute('aria-label',open?'Chiudi il menu':'Apri il menu');
-  });
-  m.addEventListener('click',function(e){if(e.target.tagName==='A') close();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape') close();});
-  window.addEventListener('resize',function(){if(window.innerWidth>960) close();});
+  var lb=document.getElementById('langBtn'), lm=document.getElementById('langMenu');
+  function closeMenu(){ if(!m||!b) return; m.classList.remove('open'); b.setAttribute('aria-expanded','false'); b.textContent='\u2630'; b.setAttribute('aria-label','Apri il menu'); }
+  function closeLang(){ if(!lm||!lb) return; lm.classList.remove('open'); lb.setAttribute('aria-expanded','false'); }
+  if(b&&m){ b.addEventListener('click',function(e){ e.stopPropagation(); closeLang(); var o=m.classList.toggle('open'); b.setAttribute('aria-expanded',o?'true':'false'); b.textContent=o?'\u2715':'\u2630'; b.setAttribute('aria-label',o?'Chiudi il menu':'Apri il menu'); }); m.addEventListener('click',function(e){ if(e.target.closest('a')) closeMenu(); }); }
+  if(lb&&lm){ lb.addEventListener('click',function(e){ e.stopPropagation(); closeMenu(); var o=lm.classList.toggle('open'); lb.setAttribute('aria-expanded',o?'true':'false'); }); }
+  document.addEventListener('click',function(e){ if(!e.target.closest('nav')){ closeMenu(); closeLang(); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closeMenu(); closeLang(); } });
+  window.addEventListener('resize',function(){ if(window.innerWidth>960){ closeMenu(); closeLang(); } });
 })();
 </script>
 </body>

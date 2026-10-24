@@ -402,6 +402,9 @@ a.dash-open{display:inline-block;text-decoration:none;}
 @media(max-width:700px){.ay-head .section-label{font-size:14px;letter-spacing:3px;}}
 @media(max-width:960px){.ay-steps{grid-template-columns:1fr;}}
 @media(max-width:700px){.ay-shot a{overflow-x:auto;-webkit-overflow-scrolling:touch;}.ay-shot img{width:660px;max-width:none;}}
+.ay-cal-btn{display:none;text-align:center;margin-top:8px;}
+.ay-cal-btn button{font-family:inherit;font-size:16px;cursor:pointer;}
+@media(max-width:760px){.ay-cal{display:none;}.ay-cal-btn{display:block;}}
 </style>
 </head>
 <body>
@@ -639,11 +642,14 @@ a.dash-open{display:inline-block;text-decoration:none;}
     <p class="section-sub">30 minuti gratuiti, uno a uno. Seleziona un orario qui sotto, senza uscire dal sito.</p>
   </div>
   <div class="ay-cal" id="ay-cal"></div>
+  <div class="ay-cal-btn"><button type="button" class="btn-primary" data-cal-link="docente-corsi-jnzsdu/sessione-discovery" data-cal-config='{"layout":"month_view"}'>📅 Prenota 30 minuti gratuiti</button><p class="ay-note" style="margin-top:14px">Si apre il calendario a schermo intero, senza uscire dal sito.</p></div>
   <p class="ay-note">Se il calendario non si carica, prenota da <a href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery" target="_blank" rel="noopener">questo link</a>.<br/>Preferisci lavorare su un problema concreto? <a href="https://cal.com/docente-corsi-jnzsdu/sessione-strategica-ai" target="_blank" rel="noopener">Sessione Strategica AI: 60 minuti, 97€</a>.</p>
   <script>
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", { origin: "https://app.cal.com" });
-    Cal("inline", { elementOrSelector: "#ay-cal", calLink: "docente-corsi-jnzsdu/sessione-discovery", layout: "month_view" });
+    if (window.matchMedia("(min-width: 761px)").matches) {
+      Cal("inline", { elementOrSelector: "#ay-cal", calLink: "docente-corsi-jnzsdu/sessione-discovery", layout: "month_view" });
+    }
     Cal("ui", { theme: "dark", hideEventTypeDetails: false, layout: "month_view" });
   </script>
 </section>

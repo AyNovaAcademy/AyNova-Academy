@@ -341,6 +341,35 @@ a.dash-open{display:inline-block;text-decoration:none;}
   .nav-cta{display:none}
   .nav-links .menu-cta{display:block}
 }
+
+/* === LANGUAGE DROPDOWN + COMPACT NAV === */
+.logo,.nav-links a,.nav-cta{white-space:nowrap;}
+.lang-dd{display:none;}
+@media(min-width:961px) and (max-width:1500px){
+  nav{padding:14px 3%;gap:10px;}
+  .nav-links{gap:6px;}
+  .nav-links a{padding:7px 12px;font-size:12px;}
+  .nav-cta{padding:9px 16px;font-size:13px;animation:none;}
+  .logo{font-size:19px;}
+}
+@media(min-width:961px) and (max-width:1120px){
+  .nav-links{gap:4px;}
+  .nav-links a{padding:6px 8px;font-size:11px;}
+  .nav-cta{padding:8px 12px;font-size:12px;}
+  .logo{font-size:16px;letter-spacing:0;}
+}
+@media(max-width:960px){
+  .lang-dd{display:block;position:relative;margin-left:auto;flex:0 0 auto;}
+  .lang-btn{display:inline-flex;align-items:center;gap:6px;height:42px;padding:0 14px;border-radius:12px;border:2px solid rgba(0,212,255,0.6);background:rgba(0,212,255,0.08);color:#fff;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;}
+  .lang-caret{font-size:11px;color:var(--electric);}
+  .lang-menu{display:none;position:absolute;right:0;top:calc(100% + 12px);min-width:160px;background:rgba(2,5,16,0.98);border:1px solid rgba(0,212,255,0.4);border-radius:14px;padding:6px;box-shadow:0 10px 30px rgba(0,0,0,0.6);}
+  .lang-menu.open{display:block;}
+  .lang-menu a{display:flex;justify-content:space-between;gap:10px;padding:11px 14px;color:#fff;text-decoration:none;font-weight:700;font-size:14px;border-radius:10px;}
+  .lang-menu a.current{color:var(--electric);}
+  nav .nav-cta{display:none;}
+  nav .nav-links .menu-cta{display:block;}
+  .nav-burger{height:42px;}
+}
 </style>
 </head>
 <body>
@@ -349,6 +378,7 @@ a.dash-open{display:inline-block;text-decoration:none;}
 <nav>
 <div class="logo">Ay<span>Nova</span> Academy</div>
 <ul class="nav-links" id="navlinks">
+<li class="menu-cta"><a href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery" target="_blank" rel="noopener">🚀 Start Free</a></li>
 <li><a href="#dashboard">Dashboard</a></li>
 <li><a href="#bio">About</a></li>
 <li><a href="#aynova">AyNova</a></li>
@@ -357,11 +387,16 @@ a.dash-open{display:inline-block;text-decoration:none;}
 <li><a href="#contatti">Contact</a></li>
 <li><a href="resources.html">Resources</a></li>
     <li class="li-lang"><a href="https://aynovaacademy.github.io/AyNova-Academy/" hreflang="it" lang="it">IT</a></li>
-<li class="menu-cta"><a href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery" target="_blank" rel="noopener">🚀 Start Free</a></li>
 </ul>
-<a class="lang-sw" href="https://aynovaacademy.github.io/AyNova-Academy/" hreflang="it" lang="it">🌐 IT</a>
+<div class="lang-dd" id="langDd">
+  <button class="lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language: English">EN <span class="lang-caret">▾</span></button>
+  <div class="lang-menu" id="langMenu">
+    <a href="https://aynovaacademy.github.io/AyNova-Academy/" hreflang="it" lang="it">Italiano</a>
+    <a href="https://aynovaacademy.github.io/AyNova-Academy/en/" class="current" aria-current="true">English <span>✓</span></a>
+  </div>
+</div>
 <a class="nav-cta" href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery" target="_blank">🚀 Start Free</a>
-  <button class="nav-burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navlinks">☰</button>
+  <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">☰</button>
 </nav>
 <div class="floating-widget">
 <a aria-label="Open the chat with AyNova, the AI created by Josè Sala" class="floating-label" href="https://claude.ai/public/artifacts/a82156a0-f02e-41c5-97a3-4474a1a6cca4" rel="noopener" target="_blank">
@@ -857,13 +892,15 @@ ask();
 <!-- Cloudflare Web Analytics --><script data-cf-beacon='{"token": "1d021cb69d9b4991a656b3ce60901075"}' src="https://static.cloudflareinsights.com/beacon.min.js" type="module"></script><!-- End Cloudflare Web Analytics -->
 <script>
 (function(){
-  var b=document.querySelector('.nav-burger'),m=document.querySelector('.nav-links');
-  if(!b||!m)return;
-  function close(){m.classList.remove('open');b.setAttribute('aria-expanded','false');b.textContent='\u2630';}
-  b.addEventListener('click',function(e){e.stopPropagation();var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'\u2715':'\u2630';});
-  m.addEventListener('click',function(e){if(e.target.closest('a'))close();});
-  document.addEventListener('click',function(e){if(!e.target.closest('nav'))close();});
-  window.addEventListener('resize',function(){if(window.innerWidth>960)close();});
+  var b=document.getElementById('navBurger'), m=document.getElementById('navlinks');
+  var lb=document.getElementById('langBtn'), lm=document.getElementById('langMenu');
+  function closeMenu(){ if(!m||!b) return; m.classList.remove('open'); b.setAttribute('aria-expanded','false'); b.textContent='\u2630'; b.setAttribute('aria-label','Open menu'); }
+  function closeLang(){ if(!lm||!lb) return; lm.classList.remove('open'); lb.setAttribute('aria-expanded','false'); }
+  if(b&&m){ b.addEventListener('click',function(e){ e.stopPropagation(); closeLang(); var o=m.classList.toggle('open'); b.setAttribute('aria-expanded',o?'true':'false'); b.textContent=o?'\u2715':'\u2630'; b.setAttribute('aria-label',o?'Close menu':'Open menu'); }); m.addEventListener('click',function(e){ if(e.target.closest('a')) closeMenu(); }); }
+  if(lb&&lm){ lb.addEventListener('click',function(e){ e.stopPropagation(); closeMenu(); var o=lm.classList.toggle('open'); lb.setAttribute('aria-expanded',o?'true':'false'); }); }
+  document.addEventListener('click',function(e){ if(!e.target.closest('nav')){ closeMenu(); closeLang(); } });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closeMenu(); closeLang(); } });
+  window.addEventListener('resize',function(){ if(window.innerWidth>960){ closeMenu(); closeLang(); } });
 })();
 </script>
 </body>

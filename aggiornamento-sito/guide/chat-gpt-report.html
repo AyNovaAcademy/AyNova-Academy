@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Chat GPT Plus per report di lavoro: metodo e prompt | AyNova Academy</title>
+<meta name="description" content="Il metodo in 5 passi per scrivere report di lavoro con Chat GPT Plus (ChatGPT), con prompt pronti e consigli per evitare numeri inventati."/>
+<link rel="canonical" href="https://aynovaacademy.github.io/AyNova-Academy/guide/chat-gpt-report.html"/>
+<link rel="alternate" hreflang="it" href="https://aynovaacademy.github.io/AyNova-Academy/guide/chat-gpt-report.html"/>
+<link rel="alternate" hreflang="en" href="https://aynovaacademy.github.io/AyNova-Academy/en/guide/chat-gpt-reports.html"/>
+<link rel="alternate" hreflang="x-default" href="https://aynovaacademy.github.io/AyNova-Academy/guide/chat-gpt-report.html"/>
+<meta property="og:type" content="article"/><meta property="og:site_name" content="AyNova Academy"/><meta property="og:title" content="Chat GPT Plus (ChatGPT) per report di lavoro: metodo e prompt | AyNova Academy"/><meta property="og:description" content="Il metodo in 5 passi per scrivere report di lavoro con Chat GPT Plus (ChatGPT), con prompt pronti e consigli per evitare numeri inventati."/><meta property="og:url" content="https://aynovaacademy.github.io/AyNova-Academy/guide/chat-gpt-report.html"/><meta property="og:image" content="https://aynovaacademy.github.io/AyNova-Academy/og-image.jpg"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:locale" content="it_IT"/>
+<meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Chat GPT Plus (ChatGPT) per report di lavoro: metodo e prompt | AyNova Academy"/><meta name="twitter:description" content="Il metodo in 5 passi per scrivere report di lavoro con Chat GPT Plus (ChatGPT), con prompt pronti e consigli per evitare numeri inventati."/><meta name="twitter:image" content="https://aynovaacademy.github.io/AyNova-Academy/og-image.jpg"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%E2%9A%A1%3C/text%3E%3C/svg%3E"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Chat GPT Plus per i report di lavoro: il metodo in 5 passi", "description": "Il metodo in 5 passi per scrivere report di lavoro con Chat GPT Plus (ChatGPT), con prompt pronti e consigli per evitare numeri inventati.", "inLanguage": "it", "datePublished": "2026-10-12", "dateModified": "2026-10-12", "author": {"@type": "Person", "name": "Josè Sala"}, "publisher": {"@type": "Organization", "name": "AyNova Academy", "url": "https://aynovaacademy.github.io/AyNova-Academy/"}, "mainEntityOfPage": "https://aynovaacademy.github.io/AyNova-Academy/guide/chat-gpt-report.html", "image": "https://aynovaacademy.github.io/AyNova-Academy/og-image.jpg"}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#020510;--card:#0b1626;--cy:#00d4ff;--pu:#7b2fff;--tx:#e8f0fa;--mu:#9fb0c4}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(1200px 600px at 70% -10%,rgba(123,47,255,.18),transparent),var(--bg);color:var(--tx);font-family:'Segoe UI',Arial,sans-serif;line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 5%;border-bottom:1px solid rgba(0,212,255,.15);position:sticky;top:0;background:rgba(2,5,16,.92);backdrop-filter:blur(8px);z-index:10}
+.logo{font-weight:900;font-size:19px;letter-spacing:1px;color:#fff;text-decoration:none}.logo span{background:linear-gradient(135deg,var(--cy),var(--pu));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-r{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.nav-r a{color:var(--cy);text-decoration:none;font-weight:700;font-size:14px}
+.btn{display:inline-block;background:linear-gradient(135deg,#0a66c2,var(--cy));color:#fff!important;text-decoration:none;font-weight:800;padding:12px 24px;border-radius:50px;font-size:15px;border:0;cursor:pointer;font-family:inherit}
+.btn.sm{padding:9px 16px;font-size:13px}
+.btn.ghost{background:transparent;border:2px solid rgba(0,212,255,.55);color:var(--cy)!important}
+main{max-width:800px;margin:0 auto;padding:44px 5% 60px}
+.crumb{font-size:13px;color:var(--mu);margin-bottom:14px}.crumb a{color:var(--cy);text-decoration:none}
+h1{font-size:clamp(28px,4.4vw,42px);line-height:1.2;font-weight:900;margin-bottom:16px}
+h1 span{background:linear-gradient(135deg,var(--cy),var(--pu));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+h2{font-size:clamp(21px,2.8vw,27px);margin:36px 0 12px;color:#fff}
+p{color:#c9d6e6;margin-bottom:14px;font-size:17px}
+ul,ol{margin:0 0 16px 22px;color:#c9d6e6;font-size:17px}li{margin-bottom:7px}
+.lead{font-size:19px;color:#dbe6f3}
+.pr{background:var(--card);border:1px solid rgba(0,212,255,.3);border-left:4px solid var(--cy);border-radius:12px;padding:14px 16px;margin:0 0 12px;font-size:15.5px;color:#e8f0fa}
+.pr b{display:block;color:var(--cy);font-size:12px;letter-spacing:1.5px;margin-bottom:4px}
+.note{background:rgba(255,200,0,.08);border:1px solid rgba(255,200,0,.35);border-radius:12px;padding:14px 16px;font-size:15px;color:#f3e3b0;margin:18px 0}
+.cta{background:linear-gradient(135deg,rgba(0,212,255,.12),rgba(123,47,255,.14));border:1px solid rgba(0,212,255,.4);border-radius:18px;padding:26px;margin:38px 0 10px;text-align:center}
+.cta h3{font-size:22px;margin-bottom:8px}.cta p{margin-bottom:16px}.cta .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:22px 0}
+.card{background:var(--card);border:1px solid rgba(0,212,255,.3);border-radius:16px;padding:22px}
+.card .em{font-size:34px}.card h3{margin:8px 0;font-size:19px;color:#fff}.card p{font-size:15px;margin:0}
+.rel{display:grid;gap:10px;margin:14px 0}.rel a{display:block;background:var(--card);border:1px solid rgba(0,212,255,.25);border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;font-weight:700}
+.rel a:hover{border-color:var(--cy)}.rel small{display:block;color:var(--mu);font-weight:400;font-size:13px}
+footer{border-top:1px solid rgba(0,212,255,.12);padding:24px 5%;text-align:center;color:var(--mu);font-size:13px}footer a{color:var(--cy);text-decoration:none}
+.formbox{background:var(--card);border:1px solid rgba(0,212,255,.35);border-radius:18px;padding:18px;margin:24px 0}
+.formbox iframe{width:100%;height:560px;border:0;border-radius:10px;background:#fff}
+.priv{font-size:13px;color:var(--mu)}
+</style>
+</head>
+<body>
+<nav><a class="logo" href="../">Ay<span>Nova</span> Academy</a><div class="nav-r"><a href="../risorse.html">🎁 Risorse gratis</a><a class="btn sm" href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery" target="_blank" rel="noopener">📅 Prenota</a></div></nav>
+<main>
+<div class="crumb"><a href="../">AyNova Academy</a> › Guide</div>
+<h1>Chat GPT Plus per i report di lavoro: <span>il metodo in 5 passi</span></h1>
+<p class="lead">Un buon report non nasce da un prompt solo. Con Chat GPT Plus (ChatGPT) funziona meglio un metodo: prima la struttura, poi i contenuti, poi la revisione. Così il testo resta tuo e il tempo si dimezza.</p>
+<h2>Il metodo</h2>
+<ol><li><b>Dai contesto e destinatario.</b> Chi legge, cosa sa già, cosa deve decidere.</li><li><b>Chiedi prima la scaletta</b> e approvala o correggila.</li><li><b>Incolla note e dati veri</b> e chiedi di usare solo quelli.</li><li><b>Chiedi la versione per il destinatario:</b> breve per chi ha 2 minuti, estesa per chi deve approfondire.</li><li><b>Fai una revisione critica:</b> chiedi di segnalare i punti deboli e le affermazioni senza dato.</li></ol>
+<h2>Prompt pronti</h2>
+<div class="pr"><b>PROMPT 1</b>Trasforma queste note in un report di una pagina per [destinatario]. Struttura: situazione, dati chiave, rischi, decisione richiesta. Tono [formale/diretto]. Note: [incolla].</div><div class="pr"><b>PROMPT 2</b>Riassumi questo testo per un dirigente che ha 2 minuti: 3 punti chiave, 1 rischio, 1 decisione da prendere. Testo: [incolla].</div><div class="pr"><b>PROMPT 3</b>Rileggi questo report come un editor severo: segnala frasi ambigue, ripetizioni e affermazioni senza dato, poi proponi una versione più chiara. Testo: [incolla].</div><div class="pr"><b>PROMPT 4</b>Scrivi un'email per accompagnare il report a [destinatario], con una richiesta precisa e una scadenza.</div>
+<div class="note"><b>Per non avere numeri inventati</b>, aggiungi sempre questa istruzione: "Usa solo i dati che ti ho fornito. Se manca un dato, scrivi 'dato mancante' invece di stimarlo."</div>
+<h2>Errori da evitare</h2>
+<ul><li><b>Accettare cifre e fonti senza verificarle.</b> L'AI può sbagliare o inventare.</li><li><b>Pubblicare un testo generico.</b> Aggiungi il tuo punto di vista e un esempio concreto.</li><li><b>Incollare dati riservati</b> senza aver controllato le regole di sicurezza.</li></ul>
+<div class="cta"><h3>Vuoi imparare a usare l'AI sul tuo lavoro?</h3><p>Scarica gratis il modello Excel di dashboard e i 30 prompt, oppure prenota una sessione gratuita di 30 minuti.</p><div class="row"><a class="btn" href="../risorse.html">🎁 Scarica i regali</a><a class="btn ghost" href="https://cal.com/docente-corsi-jnzsdu/sessione-discovery" target="_blank" rel="noopener">📅 Prenota la Discovery</a></div></div>
+<h2>Leggi anche</h2><div class="rel"><a href="../guide/copilot-excel.html">Copilot in Excel<small>Come usarlo e 6 prompt per iniziare</small></a><a href="../guide/claude-contratti.html">Claude per analizzare i contratti<small>Il metodo in 4 passi</small></a></div>
+</main>
+<footer>© 2026 AyNova Academy · Dott. Josè Sala · <a href="../">Home</a> · <a href="https://www.linkedin.com/in/dott-sala-jos%C3%A8-project-master-learning-innovation/" target="_blank" rel="noopener">LinkedIn</a></footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1d021cb69d9b4991a656b3ce60901075"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

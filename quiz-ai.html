@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quiz: quanto sai usare l'AI al lavoro? | AyNova Academy</title>
+<meta name="description" content="7 domande rapide su contratti, report, lavoro, siti, fonti, fatture ed Excel. Tocca la risposta e scopri subito se hai ragione.">
+<link rel="canonical" href="https://aynovaacademy.github.io/AyNova-Academy/quiz-ai.html">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#020510;--card:#0b1626;--cy:#00d4ff;--pu:#7b2fff;--or:#ff8c0a;--ok:#19d98b;--ko:#ff4d6d;--mu:#9fb0c4}
+body{background:radial-gradient(900px 500px at 80% -10%,rgba(123,47,255,.22),transparent),var(--bg);color:#fff;font-family:'Segoe UI',Arial,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:18px 16px 40px}
+header{width:100%;max-width:640px;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.logo{font-weight:900;font-size:18px;color:#fff;text-decoration:none}.logo span{color:var(--cy)}
+.dots{display:flex;gap:6px}.dots i{width:22px;height:6px;border-radius:4px;background:#1b2a3f;transition:.3s}
+.dots i.on{background:var(--cy)}.dots i.done{background:var(--pu)}
+main{width:100%;max-width:640px}
+.card{background:var(--card);border:2px solid rgba(0,212,255,.35);border-radius:22px;padding:26px 22px;animation:in .45s ease both;box-shadow:0 0 40px rgba(0,212,255,.08)}
+.tag{display:inline-block;background:var(--or);color:#111;font-weight:800;font-size:12px;letter-spacing:1px;padding:5px 12px;border-radius:20px;margin-bottom:14px}
+h1{font-size:clamp(24px,6vw,32px);line-height:1.2;font-weight:900}
+.opts{display:grid;gap:12px;margin-top:16px}
+.opt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--card);color:#fff;border:2px solid rgba(0,212,255,.45);border-radius:16px;padding:15px 16px;font:700 18px 'Segoe UI',Arial,sans-serif;cursor:pointer;animation:slide .45s ease both;transition:transform .15s,border-color .2s,background .2s}
+.opt:nth-child(1){animation-delay:.15s}.opt:nth-child(2){animation-delay:.3s}.opt:nth-child(3){animation-delay:.45s}.opt:nth-child(4){animation-delay:.6s}
+.opt:hover:not(:disabled){transform:translateY(-2px) scale(1.01);border-color:var(--cy)}
+.opt b{flex:none;width:34px;height:34px;border-radius:50%;background:var(--pu);display:grid;place-items:center;font-size:16px}
+.opt:disabled{cursor:default;opacity:.55}
+.opt.right{opacity:1;background:rgba(25,217,139,.18);border-color:var(--ok);animation:pop .5s ease}
+.opt.wrong{opacity:1;background:rgba(255,77,109,.16);border-color:var(--ko);animation:shake .4s}
+.fb{margin-top:16px;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.05);font-size:16px;line-height:1.5;color:#dbe6f3;animation:in .4s ease both}
+.fb strong{display:block;font-size:19px;margin-bottom:4px}
+.fb a{color:var(--cy);font-weight:700;text-decoration:none}
+.btn{display:inline-block;margin-top:14px;background:linear-gradient(135deg,#0a66c2,var(--cy));color:#fff;border:0;border-radius:40px;padding:13px 26px;font:800 16px 'Segoe UI',Arial,sans-serif;cursor:pointer;text-decoration:none;animation:pop .5s ease}
+.btn.g{background:transparent;border:2px solid rgba(0,212,255,.55);color:var(--cy)}
+.end{text-align:center}.end .big{font-size:64px;font-weight:900;background:linear-gradient(135deg,var(--cy),var(--pu));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.end p{color:#c9d6e6;margin-top:8px;font-size:17px}
+.cf{position:fixed;top:-12px;width:10px;height:14px;border-radius:2px;animation:fall 1.4s ease-in forwards;pointer-events:none;z-index:9}
+footer{margin-top:24px;color:var(--mu);font-size:13px;text-align:center}footer a{color:var(--cy);text-decoration:none}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes slide{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.94)}60%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes shake{25%{transform:translateX(-7px)}50%{transform:translateX(7px)}75%{transform:translateX(-4px)}}
+@keyframes fall{to{transform:translateY(105vh) rotate(540deg);opacity:.9}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><a class="logo" href="./">Ay<span>Nova</span> Academy</a><div class="dots" id="dots"></div></header>
+<main id="app"></main>
+<footer>Un gioco veloce di <a href="./">AyNova Academy</a> · Dott. Josè Sala</footer>
+<script>
+const Q=[
+{t:"Contratti",q:"10 minuti, 20 pagine. Dove guardi per primo?",o:["Il compenso","Penali e recesso","Il logo in alto","Riassunto dell'AI e firmo"],c:1,e:"Il compenso lo leggono tutti. Penali, recesso e rinnovo costano di più. L'AI ti aiuta a trovarli, la lettura resta tua.",u:"guide/claude-contratti.html",l:"La guida sui contratti con Claude"},
+{t:"Report",q:"Report entro un'ora. Cosa ti frena di più?",o:["I dati","Non so cosa vuole il capo","I grafici","L'impaginazione"],c:1,e:"Un report serve a far decidere qualcuno. Scrivi prima la decisione, poi chiedi all'AI di costruirlo.",u:"guide/chat-gpt-report.html",l:"La guida sui report con Chat GPT Plus"},
+{t:"Lavoro",q:"Annuncio perfetto. Cosa ti fa spiccare?",o:["CV standard, subito","CV su misura e messaggio","Una foto in posa","Cento candidature"],c:1,e:"Il CV su misura dice: ho letto davvero. Il messaggio dice: so a chi scrivo.",u:"./#tp",l:"Il test per scegliere il tuo percorso"},
+{t:"Siti",q:"Un sito con l'AI. Da dove parti?",o:["Dal logo","Dai colori","Da chi lo visita e cosa fa","Dal dominio"],c:2,e:"Chi arriva e cosa deve fare: due risposte. Poi chiedi il codice.",u:"./#dashboard",l:"La dashboard fatta con l'AI"},
+{t:"Fonti",q:"L'AI ti dà 5 fonti. E ora?",o:["Le cito subito","Le apro una per una","Chiedo all'AI se sono vere","Ne uso due a caso"],c:1,e:"L'AI può inventare fonti credibili. Se non la trovi, non esiste.",u:"guide/claude-contratti.html",l:"Il metodo: l'AI indica, tu verifichi"},
+{t:"Controversie",q:"Fattura scaduta da 60 giorni. Prima mossa?",o:["Telefono e insisto","Sollecito scritto e datato","Aspetto ancora","Cambio cliente"],c:1,e:"Per iscritto resta la prova: importi, scadenze, data. I dettagli dipendono dal contratto.",u:"./#prenota",l:"Prenota una Discovery gratuita"},
+{t:"Excel",q:"Date salvate come testo. Cosa succede?",o:["Tutto ok","Risultati sbagliati","Excel avvisa sempre","Copilot le corregge"],c:1,e:"Spesso senza avviso. Controlla i formati, dillo nel prompt e ricalcola a mano 3 righe.",u:"guide/copilot-excel.html",l:"6 prompt per Copilot in Excel"}
+];
+const app=document.getElementById("app"),dots=document.getElementById("dots");
+let i=0,s=0,L="ABCD";
+const n=parseInt(location.hash.slice(1),10);if(n>=1&&n<=Q.length)i=n-1;
+function bar(){dots.innerHTML=Q.map((_,k)=>'<i class="'+(k<i?"done":k==i?"on":"")+'"></i>').join("")}
+function confetti(){const c=["#00d4ff","#7b2fff","#ff8c0a","#19d98b"];for(let k=0;k<26;k++){const d=document.createElement("span");d.className="cf";d.style.left=Math.random()*100+"vw";d.style.background=c[k%4];d.style.animationDelay=Math.random()*.4+"s";document.body.appendChild(d);setTimeout(()=>d.remove(),2200)}}
+function show(){
+bar();const x=Q[i];
+app.innerHTML='<div class="card"><span class="tag">QUIZ '+(i+1)+'/'+Q.length+' · '+x.t.toUpperCase()+'</span><h1>'+x.q+'</h1><div class="opts">'+x.o.map((t,k)=>'<button class="opt" data-k="'+k+'"><b>'+L[k]+'</b>'+t+'</button>').join("")+'</div><div id="fb"></div></div>';
+app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>pick(+b.dataset.k));
+}
+function pick(k){
+const x=Q[i],ok=k==x.c;if(ok){s++;confetti()}
+app.querySelectorAll(".opt").forEach((b,j)=>{b.disabled=true;if(j==x.c)b.classList.add("right");else if(j==k)b.classList.add("wrong")});
+const last=i==Q.length-1;
+document.getElementById("fb").innerHTML='<div class="fb"><strong>'+(ok?"Esatto!":"Quasi! Era la "+L[x.c])+'</strong>'+x.e+'<br><a href="'+x.u+'">'+x.l+' →</a></div><button class="btn" id="nx">'+(last?"Vedi il risultato":"Avanti →")+'</button>';
+document.getElementById("nx").onclick=()=>{i++;last?end():show()};
+}
+function end(){
+bar();const m=s>=6?"Sei già un passo avanti con l'AI.":s>=4?"Buon livello. Le guide ti portano oltre.":"Ottimo punto di partenza: le guide gratuite fanno per te.";
+app.innerHTML='<div class="card end"><span class="tag">RISULTATO</span><div class="big">'+s+'/'+Q.length+'</div><p>'+m+'</p><a class="btn" href="./#prenota">Prenota una Discovery gratuita</a><br><a class="btn g" href="./#dashboard">Prova la dashboard</a><br><button class="btn g" id="rp">Rigioca</button></div>';
+if(s>=5)confetti();document.getElementById("rp").onclick=()=>{i=0;s=0;show()};
+}
+show();
+</script>
+</body>
+</html>
